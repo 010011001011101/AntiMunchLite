@@ -74,5 +74,15 @@ namespace AntiMunchLite
       foreach (Control control in MainFlow.Controls)
         control.Width = _GetCombatantControlsWidth();
     }
+
+    private void ResetBtn_Click(object sender, EventArgs e)
+    {
+      if (_Core.Started && 
+          DialogResult.Yes != MessageBox.Show(@"Confirm Encounter Reset", @"Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+        return;
+
+      _Core.Reset();
+      RefreshCombatants();
+    }
   }
 }

@@ -30,11 +30,13 @@
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.ToolBar = new System.Windows.Forms.ToolStrip();
-      this.MainFlow = new System.Windows.Forms.FlowLayoutPanel();
       this.AddBtn = new System.Windows.Forms.ToolStripButton();
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
       this.NextBtn = new System.Windows.Forms.ToolStripButton();
       this.RoundLbl = new System.Windows.Forms.ToolStripLabel();
+      this.MainFlow = new System.Windows.Forms.FlowLayoutPanel();
+      this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+      this.ResetBtn = new System.Windows.Forms.ToolStripButton();
       this.ToolBar.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -45,24 +47,14 @@
             this.AddBtn,
             this.toolStripSeparator1,
             this.NextBtn,
-            this.RoundLbl});
+            this.RoundLbl,
+            this.toolStripSeparator2,
+            this.ResetBtn});
       this.ToolBar.Location = new System.Drawing.Point(0, 0);
       this.ToolBar.Name = "ToolBar";
       this.ToolBar.Size = new System.Drawing.Size(645, 25);
       this.ToolBar.TabIndex = 0;
       this.ToolBar.Text = "toolStrip1";
-      // 
-      // MainFlow
-      // 
-      this.MainFlow.AutoScroll = true;
-      this.MainFlow.BackColor = System.Drawing.Color.White;
-      this.MainFlow.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.MainFlow.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-      this.MainFlow.Location = new System.Drawing.Point(0, 25);
-      this.MainFlow.Name = "MainFlow";
-      this.MainFlow.Size = new System.Drawing.Size(645, 341);
-      this.MainFlow.TabIndex = 1;
-      this.MainFlow.WrapContents = false;
       // 
       // AddBtn
       // 
@@ -98,6 +90,33 @@
       this.RoundLbl.Size = new System.Drawing.Size(67, 22);
       this.RoundLbl.Text = "<Round ?>";
       // 
+      // MainFlow
+      // 
+      this.MainFlow.AutoScroll = true;
+      this.MainFlow.BackColor = System.Drawing.Color.White;
+      this.MainFlow.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.MainFlow.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+      this.MainFlow.Location = new System.Drawing.Point(0, 25);
+      this.MainFlow.Name = "MainFlow";
+      this.MainFlow.Size = new System.Drawing.Size(645, 341);
+      this.MainFlow.TabIndex = 1;
+      this.MainFlow.WrapContents = false;
+      // 
+      // toolStripSeparator2
+      // 
+      this.toolStripSeparator2.Name = "toolStripSeparator2";
+      this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+      // 
+      // ResetBtn
+      // 
+      this.ResetBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.ResetBtn.Image = ((System.Drawing.Image)(resources.GetObject("ResetBtn.Image")));
+      this.ResetBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.ResetBtn.Name = "ResetBtn";
+      this.ResetBtn.Size = new System.Drawing.Size(23, 22);
+      this.ResetBtn.Text = "Reset Encounter";
+      this.ResetBtn.Click += new System.EventHandler(this.ResetBtn_Click);
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -125,5 +144,7 @@
     private System.Windows.Forms.ToolStripButton NextBtn;
     private System.Windows.Forms.ToolStripLabel RoundLbl;
     private System.Windows.Forms.FlowLayoutPanel MainFlow;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+    private System.Windows.Forms.ToolStripButton ResetBtn;
   }
 }

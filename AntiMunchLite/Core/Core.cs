@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -13,6 +14,12 @@ namespace AntiMunchLite.Core
 
     public Core()
     {
+      Reset();
+    }
+
+    public void Reset()
+    {
+      Started = false;
       CurrentRound = 1;
       CurrentInitiative = decimal.MaxValue;
     }
