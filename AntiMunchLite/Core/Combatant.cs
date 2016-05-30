@@ -9,7 +9,8 @@ namespace AntiMunchLite.Core
     public string Name { get; set; }
     public int MaxHp { get; set; }
     public int CurrentHp { get; set; }
-    public decimal Initiative { get; set; }
+    public int Initiative { get; set; }
+    public uint SubInitiative { get; set; }
     
     public HpStatus HpStatus
     {

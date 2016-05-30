@@ -24,6 +24,7 @@ namespace AntiMunchLite
       Combatant = combatant;
 
       Initiative.Value = combatant.Initiative;
+      SubInitiative.Value = combatant.SubInitiative;
       CombatantName.Text = combatant.Name;
       CurrentHp.Value = combatant.CurrentHp;
       MaxHp.Value = combatant.MaxHp;
@@ -31,6 +32,7 @@ namespace AntiMunchLite
       _Inited = true;
 
       CombatantName.BackColor =
+      SubInitiative.BackColor =
       Initiative.BackColor =
       BackColor = isCurrent
         ? Color.FromArgb(202, 245, 199)
@@ -43,7 +45,15 @@ namespace AntiMunchLite
     {
       if (!_Inited) return;
 
-      Combatant.Initiative = Initiative.Value;
+      Combatant.Initiative = (int)Initiative.Value;
+      _OnInitiativeChange();
+    }
+
+    private void SubInitiative_ValueChanged(object sender, EventArgs e)
+    {
+      if (!_Inited) return;
+
+      Combatant.SubInitiative = (uint)SubInitiative.Value;
       _OnInitiativeChange();
     }
 

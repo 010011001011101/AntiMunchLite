@@ -8,7 +8,8 @@ namespace AntiMunchLite.Core
   {
     public bool Started { get; private set; }
     public uint CurrentRound { get; private set; }
-    public decimal CurrentInitiative { get; private set; }
+    public int CurrentInitiative { get; private set; }
+    public uint CurrentSubInitiative { get; private set; }
 
     private readonly List<Combatant> _Combatants = new List<Combatant>();
 
@@ -21,7 +22,8 @@ namespace AntiMunchLite.Core
     {
       Started = false;
       CurrentRound = 1;
-      CurrentInitiative = decimal.MaxValue;
+      CurrentSubInitiative = 1;
+      CurrentInitiative = int.MaxValue;
     }
 
     public void Next()
@@ -33,16 +35,20 @@ namespace AntiMunchLite.Core
       if (next == null)
       {
         ++CurrentRound;
-        CurrentInitiative = decimal.MaxValue;
+        CurrentSubInitiative = 1;
+        CurrentInitiative = int.MaxValue;
         Next();
       }
       else
+      {
+        CurrentSubInitiative = next.SubInitiative;
         CurrentInitiative = next.Initiative;
+      }
     }
 
     public void AddCombatant()
     {
-      _Combatants.Add(new Combatant { Name = "<Name>" });
+      _Combatants.Add(new Combatant { Name = "<Name>", SubInitiative = 1});
     }
 
     public void RemoveCombatant(Combatant combatant)
@@ -55,8 +61,10 @@ namespace AntiMunchLite.Core
       get
       {
         return (from combatant in _Combatants
-                where Started && combatant.Initiative <= CurrentInitiative
-                orderby combatant.Initiative descending
+                where Started &&
+                      (combatant.Initiative < CurrentInitiative ||
+                       (combatant.Initiative == CurrentInitiative && combatant.SubInitiative >= CurrentSubInitiative))
+                orderby combatant.Initiative descending, combatant.SubInitiative
                 select combatant
                ).FirstOrDefault();
       }
@@ -67,8 +75,10 @@ namespace AntiMunchLite.Core
       get
       {
         return (from combatant in _Combatants
-                where Started && combatant.Initiative < CurrentInitiative
-                orderby combatant.Initiative descending
+                where Started &&
+                      (combatant.Initiative < CurrentInitiative ||
+                       (combatant.Initiative == CurrentInitiative && combatant.SubInitiative > CurrentSubInitiative))
+                orderby combatant.Initiative descending, combatant.SubInitiative
                 select combatant
                ).FirstOrDefault();
       }
@@ -80,7 +90,7 @@ namespace AntiMunchLite.Core
       get
       {
         return Started
-          ? _Combatants.OrderByDescending(c => c.Initiative)
+          ? _Combatants.OrderByDescending(c => c.Initiative).ThenBy(c => c.SubInitiative)
           : _Combatants.AsEnumerable();
       }
     }

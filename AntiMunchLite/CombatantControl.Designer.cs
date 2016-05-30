@@ -40,16 +40,19 @@
       this.Initiative = new System.Windows.Forms.NumericUpDown();
       this.StatusLbl = new System.Windows.Forms.Label();
       this.DmgBtn = new System.Windows.Forms.Button();
+      this.SubInitiative = new System.Windows.Forms.NumericUpDown();
       this.TableLayoutPanel.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.CurrentHp)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.MaxHp)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.Initiative)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.SubInitiative)).BeginInit();
       this.SuspendLayout();
       // 
       // TableLayoutPanel
       // 
-      this.TableLayoutPanel.ColumnCount = 9;
-      this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
+      this.TableLayoutPanel.ColumnCount = 10;
+      this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+      this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
@@ -58,15 +61,16 @@
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-      this.TableLayoutPanel.Controls.Add(this.CombatantName, 1, 0);
-      this.TableLayoutPanel.Controls.Add(this.label1, 3, 0);
-      this.TableLayoutPanel.Controls.Add(this.CurrentHp, 4, 0);
-      this.TableLayoutPanel.Controls.Add(this.label2, 5, 0);
-      this.TableLayoutPanel.Controls.Add(this.MaxHp, 6, 0);
-      this.TableLayoutPanel.Controls.Add(this.DelBtn, 8, 0);
+      this.TableLayoutPanel.Controls.Add(this.SubInitiative, 0, 0);
+      this.TableLayoutPanel.Controls.Add(this.CombatantName, 2, 0);
+      this.TableLayoutPanel.Controls.Add(this.label1, 4, 0);
+      this.TableLayoutPanel.Controls.Add(this.CurrentHp, 5, 0);
+      this.TableLayoutPanel.Controls.Add(this.label2, 6, 0);
+      this.TableLayoutPanel.Controls.Add(this.MaxHp, 7, 0);
+      this.TableLayoutPanel.Controls.Add(this.DelBtn, 9, 0);
       this.TableLayoutPanel.Controls.Add(this.Initiative, 0, 0);
-      this.TableLayoutPanel.Controls.Add(this.StatusLbl, 7, 0);
-      this.TableLayoutPanel.Controls.Add(this.DmgBtn, 2, 0);
+      this.TableLayoutPanel.Controls.Add(this.StatusLbl, 8, 0);
+      this.TableLayoutPanel.Controls.Add(this.DmgBtn, 3, 0);
       this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
       this.TableLayoutPanel.Name = "TableLayoutPanel";
@@ -80,9 +84,9 @@
       this.CombatantName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
       this.CombatantName.BorderStyle = System.Windows.Forms.BorderStyle.None;
       this.CombatantName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.CombatantName.Location = new System.Drawing.Point(64, 8);
+      this.CombatantName.Location = new System.Drawing.Point(98, 8);
       this.CombatantName.Name = "CombatantName";
-      this.CombatantName.Size = new System.Drawing.Size(145, 16);
+      this.CombatantName.Size = new System.Drawing.Size(111, 16);
       this.CombatantName.TabIndex = 1;
       this.CombatantName.TextChanged += new System.EventHandler(this.CombatantName_TextChanged);
       // 
@@ -158,7 +162,6 @@
       // 
       this.Initiative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
       this.Initiative.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.Initiative.DecimalPlaces = 1;
       this.Initiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.Initiative.Location = new System.Drawing.Point(3, 6);
       this.Initiative.Minimum = new decimal(new int[] {
@@ -167,7 +170,7 @@
             0,
             -2147483648});
       this.Initiative.Name = "Initiative";
-      this.Initiative.Size = new System.Drawing.Size(55, 19);
+      this.Initiative.Size = new System.Drawing.Size(44, 19);
       this.Initiative.TabIndex = 0;
       this.Initiative.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
       this.Initiative.ValueChanged += new System.EventHandler(this.Initiative_ValueChanged);
@@ -196,6 +199,28 @@
       this.DmgBtn.UseVisualStyleBackColor = true;
       this.DmgBtn.Click += new System.EventHandler(this.DmgBtn_Click);
       // 
+      // SubInitiative
+      // 
+      this.SubInitiative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.SubInitiative.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.SubInitiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.SubInitiative.Location = new System.Drawing.Point(53, 6);
+      this.SubInitiative.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+      this.SubInitiative.Name = "SubInitiative";
+      this.SubInitiative.Size = new System.Drawing.Size(39, 19);
+      this.SubInitiative.TabIndex = 10;
+      this.SubInitiative.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+      this.SubInitiative.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+      this.SubInitiative.ValueChanged += new System.EventHandler(this.SubInitiative_ValueChanged);
+      // 
       // CombatantControl
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -209,6 +234,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.CurrentHp)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.MaxHp)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.Initiative)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.SubInitiative)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -225,5 +251,6 @@
     private System.Windows.Forms.NumericUpDown Initiative;
     private System.Windows.Forms.Label StatusLbl;
     private System.Windows.Forms.Button DmgBtn;
+    private System.Windows.Forms.NumericUpDown SubInitiative;
   }
 }
