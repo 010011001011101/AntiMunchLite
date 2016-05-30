@@ -73,6 +73,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SaveLoadManager.cs" />
     <EmbeddedResource Include="CombatantControl.resx">
       <DependentUpon>CombatantControl.cs</DependentUpon>
     </EmbeddedResource>

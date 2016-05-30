@@ -6,11 +6,13 @@ namespace AntiMunchLite
 {
   public partial class MainForm : Form
   {
-    private readonly Core.Core _Core = new Core.Core();
+    private readonly SaveLoadManager _SaveLoadManager;
+    private Core.Core _Core = new Core.Core();
 
 
     public MainForm()
     {
+      _SaveLoadManager = new SaveLoadManager(this);
       InitializeComponent();
     }
 
@@ -83,6 +85,17 @@ namespace AntiMunchLite
 
       _Core.Reset();
       RefreshCombatants();
+    }
+
+    private void SaveBtn_Click(object sender, EventArgs e)
+    {
+      _SaveLoadManager.Save(_Core);
+    }
+
+    private void LoadBtn_Click(object sender, EventArgs e)
+    {
+      if(_SaveLoadManager.Load(ref _Core))
+        RefreshCombatants();
     }
   }
 }

@@ -1,5 +1,8 @@
+using System;
+
 namespace AntiMunchLite.Core
 {
+  [Serializable]
   public class Combatant
   {
     private const float LightPercent = 60;

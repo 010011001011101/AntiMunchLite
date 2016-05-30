@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace AntiMunchLite.Core
 {
+  [Serializable]
   public class Core
   {
     public bool Started { get; private set; }

@@ -37,6 +37,10 @@
       this.MainFlow = new System.Windows.Forms.FlowLayoutPanel();
       this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
       this.ResetBtn = new System.Windows.Forms.ToolStripButton();
+      this.Menu = new System.Windows.Forms.ToolStripDropDownButton();
+      this.SaveBtn = new System.Windows.Forms.ToolStripMenuItem();
+      this.LoadBtn = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
       this.ToolBar.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -44,6 +48,8 @@
       // 
       this.ToolBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
       this.ToolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Menu,
+            this.toolStripSeparator3,
             this.AddBtn,
             this.toolStripSeparator1,
             this.NextBtn,
@@ -117,6 +123,39 @@
       this.ResetBtn.Text = "Reset Encounter";
       this.ResetBtn.Click += new System.EventHandler(this.ResetBtn_Click);
       // 
+      // Menu
+      // 
+      this.Menu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+      this.Menu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaveBtn,
+            this.LoadBtn});
+      this.Menu.Image = ((System.Drawing.Image)(resources.GetObject("Menu.Image")));
+      this.Menu.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.Menu.Name = "Menu";
+      this.Menu.Size = new System.Drawing.Size(51, 22);
+      this.Menu.Text = "Menu";
+      // 
+      // SaveBtn
+      // 
+      this.SaveBtn.Image = ((System.Drawing.Image)(resources.GetObject("SaveBtn.Image")));
+      this.SaveBtn.Name = "SaveBtn";
+      this.SaveBtn.Size = new System.Drawing.Size(152, 22);
+      this.SaveBtn.Text = "Save";
+      this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
+      // 
+      // LoadBtn
+      // 
+      this.LoadBtn.Image = ((System.Drawing.Image)(resources.GetObject("LoadBtn.Image")));
+      this.LoadBtn.Name = "LoadBtn";
+      this.LoadBtn.Size = new System.Drawing.Size(152, 22);
+      this.LoadBtn.Text = "Load";
+      this.LoadBtn.Click += new System.EventHandler(this.LoadBtn_Click);
+      // 
+      // toolStripSeparator3
+      // 
+      this.toolStripSeparator3.Name = "toolStripSeparator3";
+      this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -146,5 +185,9 @@
     private System.Windows.Forms.FlowLayoutPanel MainFlow;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     private System.Windows.Forms.ToolStripButton ResetBtn;
+    private System.Windows.Forms.ToolStripDropDownButton Menu;
+    private System.Windows.Forms.ToolStripMenuItem SaveBtn;
+    private System.Windows.Forms.ToolStripMenuItem LoadBtn;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
   }
 }
