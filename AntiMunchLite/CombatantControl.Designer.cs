@@ -34,18 +34,20 @@ namespace AntiMunchLite
     /// </summary>
     private void InitializeComponent()
     {
+      this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CombatantControl));
       this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+      this.SubInitiative = new AntiMunchLite.BugFix.MyNumericInput();
       this.CombatantName = new System.Windows.Forms.TextBox();
       this.label1 = new System.Windows.Forms.Label();
+      this.CurrentHp = new AntiMunchLite.BugFix.MyNumericInput();
       this.label2 = new System.Windows.Forms.Label();
+      this.MaxHp = new AntiMunchLite.BugFix.MyNumericInput();
       this.DelBtn = new System.Windows.Forms.Button();
+      this.Initiative = new AntiMunchLite.BugFix.MyNumericInput();
       this.StatusLbl = new System.Windows.Forms.Label();
       this.DmgBtn = new System.Windows.Forms.Button();
-      this.SubInitiative = new AntiMunchLite.BugFix.MyNumericInput();
-      this.CurrentHp = new AntiMunchLite.BugFix.MyNumericInput();
-      this.MaxHp = new AntiMunchLite.BugFix.MyNumericInput();
-      this.Initiative = new AntiMunchLite.BugFix.MyNumericInput();
+      this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
       this.TableLayoutPanel.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -80,6 +82,35 @@ namespace AntiMunchLite
       this.TableLayoutPanel.Size = new System.Drawing.Size(484, 32);
       this.TableLayoutPanel.TabIndex = 0;
       // 
+      // SubInitiative
+      // 
+      this.SubInitiative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.SubInitiative.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.SubInitiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.SubInitiative.Location = new System.Drawing.Point(53, 8);
+      this.SubInitiative.Maximum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+      this.SubInitiative.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+      this.SubInitiative.Name = "SubInitiative";
+      this.SubInitiative.RepeatingDigitsCount = ((uint)(0u));
+      this.SubInitiative.Size = new System.Drawing.Size(39, 23);
+      this.SubInitiative.TabIndex = 1;
+      this.SubInitiative.Text = "1";
+      this.ToolTip.SetToolTip(this.SubInitiative, "Порядок в одной инициативе (Очередность хода - по возрастанию)");
+      this.SubInitiative.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+      this.SubInitiative.ValueChanged += new System.EventHandler(this.SubInitiative_ValueChanged);
+      // 
       // CombatantName
       // 
       this.CombatantName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -89,6 +120,7 @@ namespace AntiMunchLite
       this.CombatantName.Name = "CombatantName";
       this.CombatantName.Size = new System.Drawing.Size(101, 16);
       this.CombatantName.TabIndex = 2;
+      this.ToolTip.SetToolTip(this.CombatantName, "Имя, Статусы и тп.");
       this.CombatantName.TextChanged += new System.EventHandler(this.CombatantName_TextChanged);
       // 
       // label1
@@ -101,6 +133,34 @@ namespace AntiMunchLite
       this.label1.TabIndex = 2;
       this.label1.Text = "HP :";
       // 
+      // CurrentHp
+      // 
+      this.CurrentHp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.CurrentHp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.CurrentHp.Location = new System.Drawing.Point(266, 4);
+      this.CurrentHp.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+      this.CurrentHp.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+      this.CurrentHp.Name = "CurrentHp";
+      this.CurrentHp.RepeatingDigitsCount = ((uint)(0u));
+      this.CurrentHp.Size = new System.Drawing.Size(44, 23);
+      this.CurrentHp.TabIndex = 4;
+      this.CurrentHp.Text = "0";
+      this.ToolTip.SetToolTip(this.CurrentHp, "Текущие НР");
+      this.CurrentHp.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+      this.CurrentHp.ValueChanged += new System.EventHandler(this.CurrentHp_ValueChanged);
+      // 
       // label2
       // 
       this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -112,6 +172,34 @@ namespace AntiMunchLite
       this.label2.TabIndex = 4;
       this.label2.Text = "/";
       // 
+      // MaxHp
+      // 
+      this.MaxHp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.MaxHp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.MaxHp.Location = new System.Drawing.Point(326, 4);
+      this.MaxHp.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+      this.MaxHp.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+      this.MaxHp.Name = "MaxHp";
+      this.MaxHp.RepeatingDigitsCount = ((uint)(0u));
+      this.MaxHp.Size = new System.Drawing.Size(39, 23);
+      this.MaxHp.TabIndex = 5;
+      this.MaxHp.Text = "0";
+      this.ToolTip.SetToolTip(this.MaxHp, "Максимальные НР");
+      this.MaxHp.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+      this.MaxHp.ValueChanged += new System.EventHandler(this.MaxHp_ValueChanged);
+      // 
       // DelBtn
       // 
       this.DelBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -122,7 +210,37 @@ namespace AntiMunchLite
       this.DelBtn.Size = new System.Drawing.Size(24, 28);
       this.DelBtn.TabIndex = 6;
       this.DelBtn.TabStop = false;
+      this.ToolTip.SetToolTip(this.DelBtn, "Удалить");
       this.DelBtn.UseVisualStyleBackColor = true;
+      // 
+      // Initiative
+      // 
+      this.Initiative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.Initiative.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.Initiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.Initiative.Location = new System.Drawing.Point(3, 8);
+      this.Initiative.Maximum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+      this.Initiative.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+      this.Initiative.Name = "Initiative";
+      this.Initiative.RepeatingDigitsCount = ((uint)(0u));
+      this.Initiative.Size = new System.Drawing.Size(44, 23);
+      this.Initiative.TabIndex = 0;
+      this.Initiative.Text = "0";
+      this.ToolTip.SetToolTip(this.Initiative, "Инициатива (Очередность хода - по убыванию)");
+      this.Initiative.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+      this.Initiative.ValueChanged += new System.EventHandler(this.Initiative_ValueChanged);
       // 
       // StatusLbl
       // 
@@ -145,118 +263,15 @@ namespace AntiMunchLite
       this.DmgBtn.Size = new System.Drawing.Size(23, 28);
       this.DmgBtn.TabIndex = 3;
       this.DmgBtn.TabStop = false;
+      this.ToolTip.SetToolTip(this.DmgBtn, "Нанести урон");
       this.DmgBtn.UseVisualStyleBackColor = true;
       this.DmgBtn.Click += new System.EventHandler(this.DmgBtn_Click);
       // 
-      // SubInitiative
+      // ToolTip
       // 
-      this.SubInitiative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.SubInitiative.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.SubInitiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.SubInitiative.Location = new System.Drawing.Point(53, 8);
-      this.SubInitiative.Maximum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-      this.SubInitiative.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-      this.SubInitiative.Name = "SubInitiative";
-      this.SubInitiative.RepeatingDigitsCount = ((uint)(0u));
-      this.SubInitiative.Size = new System.Drawing.Size(39, 16);
-      this.SubInitiative.TabIndex = 1;
-      this.SubInitiative.Text = "1";
-      this.SubInitiative.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-      this.SubInitiative.ValueChanged += new System.EventHandler(this.SubInitiative_ValueChanged);
-      // 
-      // CurrentHp
-      // 
-      this.CurrentHp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.CurrentHp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.CurrentHp.Location = new System.Drawing.Point(266, 4);
-      this.CurrentHp.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-      this.CurrentHp.Minimum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            -2147483648});
-      this.CurrentHp.Name = "CurrentHp";
-      this.CurrentHp.RepeatingDigitsCount = ((uint)(0u));
-      this.CurrentHp.Size = new System.Drawing.Size(44, 23);
-      this.CurrentHp.TabIndex = 4;
-      this.CurrentHp.Text = "0";
-      this.CurrentHp.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-      this.CurrentHp.ValueChanged += new System.EventHandler(this.CurrentHp_ValueChanged);
-      // 
-      // MaxHp
-      // 
-      this.MaxHp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.MaxHp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.MaxHp.Location = new System.Drawing.Point(326, 4);
-      this.MaxHp.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-      this.MaxHp.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-      this.MaxHp.Name = "MaxHp";
-      this.MaxHp.RepeatingDigitsCount = ((uint)(0u));
-      this.MaxHp.Size = new System.Drawing.Size(39, 23);
-      this.MaxHp.TabIndex = 5;
-      this.MaxHp.Text = "0";
-      this.MaxHp.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-      this.MaxHp.ValueChanged += new System.EventHandler(this.MaxHp_ValueChanged);
-      // 
-      // Initiative
-      // 
-      this.Initiative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.Initiative.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.Initiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.Initiative.Location = new System.Drawing.Point(3, 8);
-      this.Initiative.Maximum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-      this.Initiative.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
-      this.Initiative.Name = "Initiative";
-      this.Initiative.RepeatingDigitsCount = ((uint)(0u));
-      this.Initiative.Size = new System.Drawing.Size(44, 16);
-      this.Initiative.TabIndex = 0;
-      this.Initiative.Text = "0";
-      this.Initiative.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-      this.Initiative.ValueChanged += new System.EventHandler(this.Initiative_ValueChanged);
+      this.ToolTip.AutoPopDelay = 5000;
+      this.ToolTip.InitialDelay = 1000;
+      this.ToolTip.ReshowDelay = 100;
       // 
       // CombatantControl
       // 
@@ -285,5 +300,6 @@ namespace AntiMunchLite
     private System.Windows.Forms.Label StatusLbl;
     private System.Windows.Forms.Button DmgBtn;
     private MyNumericInput SubInitiative;
+    private ToolTip ToolTip;
   }
 }

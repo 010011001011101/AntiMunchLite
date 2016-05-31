@@ -24,8 +24,7 @@ namespace AntiMunchLite.BugFix
       {
         Text = value.ToString();
 
-        if (_PreviousValue != Value)
-          _OnValueChanged();
+        _OnValueChanged();
       }
     }
 
