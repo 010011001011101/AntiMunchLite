@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using AntiMunchLite.Core;
 
@@ -20,11 +21,7 @@ namespace AntiMunchLite
     {
       MainFlow.SuspendLayout();
 
-      foreach (Control control in MainFlow.Controls)
-      {
-        control.Dispose();
-      }
-      MainFlow.Controls.Clear();
+      _DropControls();
 
       var current = _Core.CurrentCombatant;
       foreach (var combatant in _Core.Combatants)
@@ -35,6 +32,14 @@ namespace AntiMunchLite
       _ControlsSizeRefresh();
 
       MainFlow.ResumeLayout();
+    }
+
+    private void _DropControls()
+    {
+      foreach (var controlItem in MainFlow.Controls.Cast<Control>().ToList())
+        controlItem.Dispose();
+
+      MainFlow.Controls.Clear();
     }
 
     private int _GetCombatantControlsWidth()
