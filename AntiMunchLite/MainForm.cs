@@ -19,6 +19,11 @@ namespace AntiMunchLite
     public void RefreshCombatants()
     {
       MainFlow.SuspendLayout();
+
+      foreach (Control control in MainFlow.Controls)
+      {
+        control.Dispose();
+      }
       MainFlow.Controls.Clear();
 
       var current = _Core.CurrentCombatant;

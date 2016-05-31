@@ -30,17 +30,17 @@
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.ToolBar = new System.Windows.Forms.ToolStrip();
-      this.AddBtn = new System.Windows.Forms.ToolStripButton();
-      this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-      this.NextBtn = new System.Windows.Forms.ToolStripButton();
-      this.RoundLbl = new System.Windows.Forms.ToolStripLabel();
-      this.MainFlow = new System.Windows.Forms.FlowLayoutPanel();
-      this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-      this.ResetBtn = new System.Windows.Forms.ToolStripButton();
       this.Menu = new System.Windows.Forms.ToolStripDropDownButton();
       this.SaveBtn = new System.Windows.Forms.ToolStripMenuItem();
       this.LoadBtn = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+      this.AddBtn = new System.Windows.Forms.ToolStripButton();
+      this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+      this.NextBtn = new System.Windows.Forms.ToolStripButton();
+      this.RoundLbl = new System.Windows.Forms.ToolStripLabel();
+      this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+      this.ResetBtn = new System.Windows.Forms.ToolStripButton();
+      this.MainFlow = new System.Windows.Forms.FlowLayoutPanel();
       this.ToolBar.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -61,6 +61,39 @@
       this.ToolBar.Size = new System.Drawing.Size(645, 25);
       this.ToolBar.TabIndex = 0;
       this.ToolBar.Text = "toolStrip1";
+      // 
+      // Menu
+      // 
+      this.Menu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+      this.Menu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaveBtn,
+            this.LoadBtn});
+      this.Menu.Image = ((System.Drawing.Image)(resources.GetObject("Menu.Image")));
+      this.Menu.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.Menu.Name = "Menu";
+      this.Menu.Size = new System.Drawing.Size(51, 22);
+      this.Menu.Text = "Menu";
+      // 
+      // SaveBtn
+      // 
+      this.SaveBtn.Image = ((System.Drawing.Image)(resources.GetObject("SaveBtn.Image")));
+      this.SaveBtn.Name = "SaveBtn";
+      this.SaveBtn.Size = new System.Drawing.Size(100, 22);
+      this.SaveBtn.Text = "Save";
+      this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
+      // 
+      // LoadBtn
+      // 
+      this.LoadBtn.Image = ((System.Drawing.Image)(resources.GetObject("LoadBtn.Image")));
+      this.LoadBtn.Name = "LoadBtn";
+      this.LoadBtn.Size = new System.Drawing.Size(100, 22);
+      this.LoadBtn.Text = "Load";
+      this.LoadBtn.Click += new System.EventHandler(this.LoadBtn_Click);
+      // 
+      // toolStripSeparator3
+      // 
+      this.toolStripSeparator3.Name = "toolStripSeparator3";
+      this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
       // 
       // AddBtn
       // 
@@ -96,18 +129,6 @@
       this.RoundLbl.Size = new System.Drawing.Size(67, 22);
       this.RoundLbl.Text = "<Round ?>";
       // 
-      // MainFlow
-      // 
-      this.MainFlow.AutoScroll = true;
-      this.MainFlow.BackColor = System.Drawing.Color.White;
-      this.MainFlow.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.MainFlow.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-      this.MainFlow.Location = new System.Drawing.Point(0, 25);
-      this.MainFlow.Name = "MainFlow";
-      this.MainFlow.Size = new System.Drawing.Size(645, 341);
-      this.MainFlow.TabIndex = 1;
-      this.MainFlow.WrapContents = false;
-      // 
       // toolStripSeparator2
       // 
       this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -123,38 +144,17 @@
       this.ResetBtn.Text = "Reset Encounter";
       this.ResetBtn.Click += new System.EventHandler(this.ResetBtn_Click);
       // 
-      // Menu
+      // MainFlow
       // 
-      this.Menu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-      this.Menu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SaveBtn,
-            this.LoadBtn});
-      this.Menu.Image = ((System.Drawing.Image)(resources.GetObject("Menu.Image")));
-      this.Menu.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.Menu.Name = "Menu";
-      this.Menu.Size = new System.Drawing.Size(51, 22);
-      this.Menu.Text = "Menu";
-      // 
-      // SaveBtn
-      // 
-      this.SaveBtn.Image = ((System.Drawing.Image)(resources.GetObject("SaveBtn.Image")));
-      this.SaveBtn.Name = "SaveBtn";
-      this.SaveBtn.Size = new System.Drawing.Size(152, 22);
-      this.SaveBtn.Text = "Save";
-      this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
-      // 
-      // LoadBtn
-      // 
-      this.LoadBtn.Image = ((System.Drawing.Image)(resources.GetObject("LoadBtn.Image")));
-      this.LoadBtn.Name = "LoadBtn";
-      this.LoadBtn.Size = new System.Drawing.Size(152, 22);
-      this.LoadBtn.Text = "Load";
-      this.LoadBtn.Click += new System.EventHandler(this.LoadBtn_Click);
-      // 
-      // toolStripSeparator3
-      // 
-      this.toolStripSeparator3.Name = "toolStripSeparator3";
-      this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+      this.MainFlow.AutoScroll = true;
+      this.MainFlow.BackColor = System.Drawing.Color.White;
+      this.MainFlow.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.MainFlow.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+      this.MainFlow.Location = new System.Drawing.Point(0, 25);
+      this.MainFlow.Name = "MainFlow";
+      this.MainFlow.Size = new System.Drawing.Size(645, 341);
+      this.MainFlow.TabIndex = 1;
+      this.MainFlow.WrapContents = false;
       // 
       // MainForm
       // 
