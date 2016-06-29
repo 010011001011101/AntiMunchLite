@@ -42,9 +42,23 @@ namespace AntiMunchLite.Core
       }
       else
       {
+        var skipOne = CurrentInitiative != int.MaxValue && next == CurrentCombatant;
+
         CurrentSubInitiative = next.SubInitiative;
         CurrentInitiative = next.Initiative;
+
+        if(skipOne) Next();
       }
+    }
+
+    public void NextRound()
+    {
+      if (_Combatants.Count == 0) return;
+
+      if (!Started)
+        Next();
+      else
+        ++CurrentRound;
     }
 
     public void AddCombatant()
@@ -64,7 +78,7 @@ namespace AntiMunchLite.Core
         return (from combatant in _Combatants
                 where Started &&
                       (combatant.Initiative < CurrentInitiative ||
-                       (combatant.Initiative == CurrentInitiative && combatant.SubInitiative >= CurrentSubInitiative))
+                      (combatant.Initiative == CurrentInitiative && combatant.SubInitiative >= CurrentSubInitiative))
                 orderby combatant.Initiative descending, combatant.SubInitiative
                 select combatant
                ).FirstOrDefault();
@@ -78,7 +92,7 @@ namespace AntiMunchLite.Core
         return (from combatant in _Combatants
                 where Started &&
                       (combatant.Initiative < CurrentInitiative ||
-                       (combatant.Initiative == CurrentInitiative && combatant.SubInitiative > CurrentSubInitiative))
+                      (combatant.Initiative == CurrentInitiative && combatant.SubInitiative > CurrentSubInitiative))
                 orderby combatant.Initiative descending, combatant.SubInitiative
                 select combatant
                ).FirstOrDefault();

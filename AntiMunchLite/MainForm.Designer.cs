@@ -41,6 +41,7 @@
       this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
       this.ResetBtn = new System.Windows.Forms.ToolStripButton();
       this.MainFlow = new System.Windows.Forms.FlowLayoutPanel();
+      this.NextRoundBtn = new System.Windows.Forms.ToolStripButton();
       this.ToolBar.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -53,6 +54,7 @@
             this.AddBtn,
             this.toolStripSeparator1,
             this.NextBtn,
+            this.NextRoundBtn,
             this.RoundLbl,
             this.toolStripSeparator2,
             this.ResetBtn});
@@ -156,6 +158,17 @@
       this.MainFlow.TabIndex = 1;
       this.MainFlow.WrapContents = false;
       // 
+      // NextRoundBtn
+      // 
+      this.NextRoundBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+      this.NextRoundBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+      this.NextRoundBtn.Image = ((System.Drawing.Image)(resources.GetObject("NextRoundBtn.Image")));
+      this.NextRoundBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.NextRoundBtn.Name = "NextRoundBtn";
+      this.NextRoundBtn.Size = new System.Drawing.Size(78, 22);
+      this.NextRoundBtn.Text = "Next Round";
+      this.NextRoundBtn.Click += new System.EventHandler(this.NextRoundBtn_Click);
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -189,5 +202,6 @@
     private System.Windows.Forms.ToolStripMenuItem SaveBtn;
     private System.Windows.Forms.ToolStripMenuItem LoadBtn;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+    private System.Windows.Forms.ToolStripButton NextRoundBtn;
   }
 }

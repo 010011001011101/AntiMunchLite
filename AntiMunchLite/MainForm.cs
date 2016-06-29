@@ -71,6 +71,12 @@ namespace AntiMunchLite
       RefreshCombatants();
     }
 
+    private void NextRoundBtn_Click(object sender, EventArgs e)
+    {
+      _Core.NextRound();
+      RefreshCombatants();
+    }
+
     private void MainForm_Load(object sender, EventArgs e)
     {
       RefreshCombatants();
