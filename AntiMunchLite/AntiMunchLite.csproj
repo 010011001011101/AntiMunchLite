@@ -52,6 +52,7 @@
     <Compile Include="BugFix\MyNumericInput.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ColorUtils.cs" />
     <Compile Include="CombatantControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -60,12 +61,20 @@
     </Compile>
     <Compile Include="Core\Combatant.cs" />
     <Compile Include="Core\Core.cs" />
+    <Compile Include="Core\Effect.cs" />
+    <Compile Include="Core\EffectType.cs" />
     <Compile Include="Core\HpStatus.cs" />
     <Compile Include="DMGDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DMGDialog.Designer.cs">
       <DependentUpon>DMGDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EffectControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EffectControl.Designer.cs">
+      <DependentUpon>EffectControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -85,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DMGDialog.resx">
       <DependentUpon>DMGDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EffectControl.resx">
+      <DependentUpon>EffectControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

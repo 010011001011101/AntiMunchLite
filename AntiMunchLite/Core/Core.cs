@@ -55,10 +55,10 @@ namespace AntiMunchLite.Core
     {
       if (_Combatants.Count == 0) return;
 
-      if (!Started)
+      if(!Started)
         Next();
       else
-        ++CurrentRound;
+      ++CurrentRound;
     }
 
     public void AddCombatant()

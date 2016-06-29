@@ -46,7 +46,7 @@
       this.TableLayoutPanel.Controls.Add(this.CancelBtn, 1, 1);
       this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-      this.TableLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.TableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
       this.TableLayoutPanel.Name = "TableLayoutPanel";
       this.TableLayoutPanel.RowCount = 2;
       this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -58,7 +58,7 @@
       // 
       this.TableLayoutPanel.SetColumnSpan(this.DmgCounter, 2);
       this.DmgCounter.Location = new System.Drawing.Point(2, 2);
-      this.DmgCounter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.DmgCounter.Margin = new System.Windows.Forms.Padding(2);
       this.DmgCounter.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -78,7 +78,7 @@
       this.OkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.OkBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
       this.OkBtn.Location = new System.Drawing.Point(14, 23);
-      this.OkBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.OkBtn.Margin = new System.Windows.Forms.Padding(2);
       this.OkBtn.Name = "OkBtn";
       this.OkBtn.Size = new System.Drawing.Size(56, 23);
       this.OkBtn.TabIndex = 1;
@@ -89,7 +89,7 @@
       // 
       this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
       this.CancelBtn.Location = new System.Drawing.Point(74, 23);
-      this.CancelBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.CancelBtn.Margin = new System.Windows.Forms.Padding(2);
       this.CancelBtn.Name = "CancelBtn";
       this.CancelBtn.Size = new System.Drawing.Size(56, 23);
       this.CancelBtn.TabIndex = 2;
@@ -105,7 +105,7 @@
       this.ClientSize = new System.Drawing.Size(133, 51);
       this.Controls.Add(this.TableLayoutPanel);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-      this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.Margin = new System.Windows.Forms.Padding(2);
       this.MaximizeBox = false;
       this.MinimizeBox = false;
       this.Name = "DMGDialog";

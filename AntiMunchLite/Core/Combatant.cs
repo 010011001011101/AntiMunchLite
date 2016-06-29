@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace AntiMunchLite.Core
 {
@@ -14,7 +15,14 @@ namespace AntiMunchLite.Core
     public int CurrentHp { get; set; }
     public int Initiative { get; set; }
     public uint SubInitiative { get; set; }
-    
+
+    public List<Effect> Effects { get; set; }
+
+    public Combatant()
+    {
+      Effects = new List<Effect>();
+    }
+
     public HpStatus HpStatus
     {
       get
