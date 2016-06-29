@@ -35,7 +35,7 @@ namespace AntiMunchLite.Core
       var next = NextCombatant;
       if (next == null)
       {
-        ++CurrentRound;
+        _SetNextRound();
         CurrentSubInitiative = 1;
         CurrentInitiative = int.MaxValue;
         Next();
@@ -58,7 +58,17 @@ namespace AntiMunchLite.Core
       if(!Started)
         Next();
       else
+        _SetNextRound();
+    }
+
+    private void _SetNextRound()
+    {
       ++CurrentRound;
+
+      foreach (var combatant in Combatants)
+        foreach (var effect in combatant.Effects.ToArray())
+          if (--effect.RemainTurns <= 0)
+            combatant.Effects.Remove(effect);
     }
 
     public void AddCombatant()

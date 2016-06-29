@@ -127,7 +127,10 @@ namespace AntiMunchLite
 
     private void AddEffectBtn_Click(object sender, EventArgs e)
     {
-      Combatant.Effects.Add(new Effect {Name = "sd22wasa", RemainTurns = 2});
+      var newEffect = EffectDialog.GetNewEffect(Parent);
+      if(newEffect == null) return;
+
+      Combatant.Effects.Add(newEffect);
 
       RefreshEffects();
     }
