@@ -37,6 +37,8 @@
       this.Menu = new System.Windows.Forms.ToolStripDropDownButton();
       this.SaveBtn = new System.Windows.Forms.ToolStripMenuItem();
       this.LoadBtn = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+      this.ShowPreGenEffects = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
       this.AddBtn = new System.Windows.Forms.ToolStripButton();
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -73,7 +75,9 @@
       this.Menu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
       this.Menu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SaveBtn,
-            this.LoadBtn});
+            this.LoadBtn,
+            this.toolStripSeparator4,
+            this.ShowPreGenEffects});
       this.Menu.Image = ((System.Drawing.Image)(resources.GetObject("Menu.Image")));
       this.Menu.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.Menu.Name = "Menu";
@@ -84,7 +88,7 @@
       // 
       this.SaveBtn.Image = ((System.Drawing.Image)(resources.GetObject("SaveBtn.Image")));
       this.SaveBtn.Name = "SaveBtn";
-      this.SaveBtn.Size = new System.Drawing.Size(100, 22);
+      this.SaveBtn.Size = new System.Drawing.Size(172, 22);
       this.SaveBtn.Text = "Save";
       this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
       // 
@@ -92,9 +96,21 @@
       // 
       this.LoadBtn.Image = ((System.Drawing.Image)(resources.GetObject("LoadBtn.Image")));
       this.LoadBtn.Name = "LoadBtn";
-      this.LoadBtn.Size = new System.Drawing.Size(100, 22);
+      this.LoadBtn.Size = new System.Drawing.Size(172, 22);
       this.LoadBtn.Text = "Load";
       this.LoadBtn.Click += new System.EventHandler(this.LoadBtn_Click);
+      // 
+      // toolStripSeparator4
+      // 
+      this.toolStripSeparator4.Name = "toolStripSeparator4";
+      this.toolStripSeparator4.Size = new System.Drawing.Size(169, 6);
+      // 
+      // ShowPreGenEffects
+      // 
+      this.ShowPreGenEffects.Name = "ShowPreGenEffects";
+      this.ShowPreGenEffects.Size = new System.Drawing.Size(172, 22);
+      this.ShowPreGenEffects.Text = "Список эффектов";
+      this.ShowPreGenEffects.Click += new System.EventHandler(this.ShowPreGenEffects_Click);
       // 
       // toolStripSeparator3
       // 
@@ -207,5 +223,7 @@
     private System.Windows.Forms.ToolStripMenuItem LoadBtn;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     private System.Windows.Forms.ToolStripButton NextRoundBtn;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+    private System.Windows.Forms.ToolStripMenuItem ShowPreGenEffects;
   }
 }

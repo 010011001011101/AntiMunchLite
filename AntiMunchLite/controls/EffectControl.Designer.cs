@@ -49,7 +49,7 @@
       this.TableLayoutPanel.Name = "TableLayoutPanel";
       this.TableLayoutPanel.RowCount = 1;
       this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
       this.TableLayoutPanel.Size = new System.Drawing.Size(197, 23);
       this.TableLayoutPanel.TabIndex = 0;
       // 
@@ -70,7 +70,7 @@
       this.RemainTime.Location = new System.Drawing.Point(149, 0);
       this.RemainTime.Margin = new System.Windows.Forms.Padding(0);
       this.RemainTime.Maximum = new decimal(new int[] {
-            200,
+            900,
             0,
             0,
             0});
@@ -83,6 +83,7 @@
       this.RemainTime.RepeatingDigitsCount = ((uint)(0u));
       this.RemainTime.Size = new System.Drawing.Size(33, 20);
       this.RemainTime.TabIndex = 1;
+      this.RemainTime.Text = "0";
       this.RemainTime.Value = new decimal(new int[] {
             0,
             0,

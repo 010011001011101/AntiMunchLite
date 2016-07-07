@@ -9,6 +9,7 @@ namespace AntiMunchLite
 {
   public partial class CombatantControl : UserControl
   {
+    private readonly Core.Core _Core;
     private readonly Action _OnInitiativeChange;
     private readonly Action<Combatant> _DeleteDelegate;
 
@@ -23,8 +24,9 @@ namespace AntiMunchLite
       InitializeComponent();
     }
 
-    public CombatantControl(Action onInitiativeChangeDelegate, Action<Combatant> deleteDelegate) : this()
+    public CombatantControl(Core.Core core, Action onInitiativeChangeDelegate, Action<Combatant> deleteDelegate) : this()
     {
+      _Core = core;
       _OnInitiativeChange = onInitiativeChangeDelegate;
       _DeleteDelegate = deleteDelegate;
     }
@@ -127,7 +129,7 @@ namespace AntiMunchLite
 
     private void AddEffectBtn_Click(object sender, EventArgs e)
     {
-      var newEffect = EffectDialog.GetNewEffect(Parent);
+      var newEffect = EffectDialog.GetNewEffect(_Core.PreGenEffects,  Parent);
       if(newEffect == null) return;
 
       Combatant.Effects.Add(newEffect);

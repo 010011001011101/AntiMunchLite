@@ -7,6 +7,8 @@ namespace AntiMunchLite.Core
   [Serializable]
   public class Core
   {
+    public List<string> PreGenEffects { get; private set; }
+
     public bool Started { get; private set; }
     public uint CurrentRound { get; private set; }
     public int CurrentInitiative { get; private set; }
@@ -16,6 +18,7 @@ namespace AntiMunchLite.Core
 
     public Core()
     {
+      PreGenEffects = new List<string>();
       Reset();
     }
 

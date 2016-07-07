@@ -53,7 +53,7 @@ namespace AntiMunchLite
       if(currentSize < newSize)
         foreach (var i in Enumerable.Range(0, newSize - currentSize))
         {
-          var newControl = new CombatantControl(_OnInitiativeChange, _DeleteCombatant);
+          var newControl = new CombatantControl(_Core, _OnInitiativeChange, _DeleteCombatant);
           _ControlsCache.Add(newControl);
           MainFlow.Controls.Add(newControl);
         }
@@ -132,6 +132,11 @@ namespace AntiMunchLite
     {
       if(_SaveLoadManager.Load(ref _Core))
         RefreshCombatants();
+    }
+
+    private void ShowPreGenEffects_Click(object sender, EventArgs e)
+    {
+      PreGenEffectsDialog.Show(_Core.PreGenEffects, this);
     }
   }
 }
