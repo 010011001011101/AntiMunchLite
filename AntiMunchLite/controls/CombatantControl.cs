@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -12,11 +11,11 @@ namespace AntiMunchLite
     private readonly Core.Core _Core;
     private readonly Action _OnInitiativeChange;
     private readonly Action<Combatant> _DeleteDelegate;
-
-    private readonly List<EffectControl> _ControlsCache = new List<EffectControl>();
+    private readonly ControlsCache<EffectControl> _ControlsCache;
 
     private bool _Inited;
     public Combatant Combatant { get; private set; }
+    public bool IsCurrent { get; private set; }
 
 
     public CombatantControl()
@@ -29,14 +28,28 @@ namespace AntiMunchLite
       _Core = core;
       _OnInitiativeChange = onInitiativeChangeDelegate;
       _DeleteDelegate = deleteDelegate;
+
+      _ControlsCache = new ControlsCache<EffectControl>(EffectsFlow.Controls, _CreateEffectControl);
     }
 
+    #region Initialize
+
     public void Initialize(Combatant combatant, bool isCurrent)
+    {
+      var isNew = Combatant == null;
+
+      if (isNew || Combatant != combatant)
+        _InitializeCombatant(combatant);
+
+      if (isNew || IsCurrent != isCurrent)
+        _InitializeIsCurrent(isCurrent);
+    }
+
+    private void _InitializeCombatant(Combatant combatant)
     {
       _Inited = false;
 
       Combatant = combatant;
-
       Initiative.Value = combatant.Initiative;
       SubInitiative.Value = combatant.SubInitiative;
       CombatantName.Text = combatant.Name;
@@ -44,21 +57,28 @@ namespace AntiMunchLite
       MaxHp.Value = combatant.MaxHp;
       _RefreshHpStatus();
 
-      _RefreshBackColor(isCurrent);
-      ArrowPB.Visible = isCurrent;
-
       RefreshEffects();
 
       _Inited = true;
     }
 
-    private void _RefreshBackColor(bool isCurrent)
+    private void _InitializeIsCurrent(bool isCurrent)
     {
+      IsCurrent = isCurrent;
+
       CombatantName.BackColor =
       SubInitiative.BackColor =
       Initiative.BackColor =
-      BackColor = isCurrent ? ColorUtils.Green : ColorUtils.Yellow;
+      BackColor = IsCurrent ? ColorUtils.Green : ColorUtils.Yellow;
+      ArrowPB.Visible = IsCurrent;
+
+      foreach (var effectControl in _ControlsCache)
+        effectControl.SetBackColor(BackColor);
     }
+
+    #endregion
+
+    #region Events
 
     private void Initiative_ValueChanged(object sender, EventArgs e)
     {
@@ -99,14 +119,6 @@ namespace AntiMunchLite
       _RefreshHpStatus();
     }
 
-    private void _RefreshHpStatus()
-    {
-      StatusLbl.Text = Combatant.HpStatus.ToString();
-      StatusLbl.ForeColor =
-      CurrentHp.ForeColor = 
-      MaxHp.ForeColor = Combatant.HpStatus.ToColor();
-    }
-
     private void DmgBtn_Click(object sender, EventArgs e)
     {
       if (!_Inited) return;
@@ -137,42 +149,35 @@ namespace AntiMunchLite
       RefreshEffects();
     }
 
+    #endregion
+
+    private void _RefreshHpStatus()
+    {
+      StatusLbl.Text = Combatant.HpStatus.ToString();
+      StatusLbl.ForeColor =
+      CurrentHp.ForeColor =
+      MaxHp.ForeColor = Combatant.HpStatus.ToColor();
+    }
+
     #region Effects
 
     public void RefreshEffects()
     {
       EffectsFlow.SuspendLayout();
 
-      _AbjustCacheSize();
+      _ControlsCache.AbjustSize(Combatant.Effects.Count());
 
       var effects = Combatant.Effects.OrderBy(e => e.Type).ToList();
       for (var i = 0; i < effects.Count; ++i)
-        _ControlsCache[i].Initialize(effects[i], BackColor);
+        _ControlsCache[i].Initialize(effects[i]);
 
       RefreshSize();
       EffectsFlow.ResumeLayout();
     }
 
-    private void _AbjustCacheSize()
+    private EffectControl _CreateEffectControl()
     {
-      var currentSize = _ControlsCache.Count;
-      var newSize = Combatant.Effects.Count();
-
-      if (currentSize > newSize)
-        foreach (var controlToDelete in _ControlsCache.Take(currentSize - newSize).ToList())
-        {
-          _ControlsCache.Remove(controlToDelete);
-          EffectsFlow.Controls.Remove(controlToDelete);
-          controlToDelete.Dispose();
-        }
-
-      if (currentSize < newSize)
-        foreach (var i in Enumerable.Range(0, newSize - currentSize))
-        {
-          var newControl = new EffectControl(_DeleteEffect);
-          _ControlsCache.Add(newControl);
-          EffectsFlow.Controls.Add(newControl);
-        }
+      return new EffectControl(_DeleteEffect);
     }
 
     private void _DeleteEffect(Effect effect)
@@ -181,6 +186,8 @@ namespace AntiMunchLite
 
       RefreshEffects();
     }
+
+    #endregion
 
     public void RefreshSize()
     {
@@ -191,8 +198,6 @@ namespace AntiMunchLite
         ? EffectsFlow.GetPreferredSize(new Size(EffectsFlow.Width, prSize.Height * heightMult)).Height
         : 31;
     }
-
-    #endregion
   }
 
   public static class HpStatusExtensions

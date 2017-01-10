@@ -28,23 +28,17 @@ namespace AntiMunchLite
       }
     }
 
-    public bool Load(ref Core.Core core)
+    public Core.Core Load()
     {
       try
       {
-        var loadedCore = _Load();
-        if (loadedCore != null)
-        {
-          core = loadedCore;
-          return true;
-        }
+        return _Load();
       }
       catch (Exception e)
       {
         MessageBox.Show(e.Message, @"Load error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        return null;
       }
-
-      return false;
     }
 
     #region Save
@@ -77,7 +71,7 @@ namespace AntiMunchLite
 
     #endregion
 
-    #region Save
+    #region Load
 
     private Core.Core _Load()
     {
@@ -85,10 +79,7 @@ namespace AntiMunchLite
       if (fileName == null) return null;
 
       using (var file = new FileStream(fileName, FileMode.Open))
-      {
-        var formetter = new BinaryFormatter();
-        return  formetter.Deserialize(file) as Core.Core;
-      }
+        return new BinaryFormatter().Deserialize(file) as Core.Core;
     }
 
     private string _SelectFile()
@@ -106,7 +97,5 @@ namespace AntiMunchLite
     }
 
     #endregion
-
-
   }
 }

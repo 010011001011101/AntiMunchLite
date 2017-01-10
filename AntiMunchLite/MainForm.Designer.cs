@@ -18,7 +18,7 @@
         components.Dispose();
       }
 
-      foreach (var control in _ControlsCache)
+      foreach (var control in _CombatantControlsCache)
         control.Dispose();
 
       base.Dispose(disposing);
@@ -34,7 +34,7 @@
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.ToolBar = new System.Windows.Forms.ToolStrip();
-      this.Menu = new System.Windows.Forms.ToolStripDropDownButton();
+      this.MenuList = new System.Windows.Forms.ToolStripDropDownButton();
       this.SaveBtn = new System.Windows.Forms.ToolStripMenuItem();
       this.LoadBtn = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -55,7 +55,7 @@
       // 
       this.ToolBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
       this.ToolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Menu,
+            this.MenuList,
             this.toolStripSeparator3,
             this.AddBtn,
             this.toolStripSeparator1,
@@ -70,19 +70,19 @@
       this.ToolBar.TabIndex = 0;
       this.ToolBar.Text = "toolStrip1";
       // 
-      // Menu
+      // MenuList
       // 
-      this.Menu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-      this.Menu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+      this.MenuList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+      this.MenuList.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SaveBtn,
             this.LoadBtn,
             this.toolStripSeparator4,
             this.ShowPreGenEffects});
-      this.Menu.Image = ((System.Drawing.Image)(resources.GetObject("Menu.Image")));
-      this.Menu.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.Menu.Name = "Menu";
-      this.Menu.Size = new System.Drawing.Size(51, 22);
-      this.Menu.Text = "Menu";
+      this.MenuList.Image = ((System.Drawing.Image)(resources.GetObject("MenuList.Image")));
+      this.MenuList.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.MenuList.Name = "MenuList";
+      this.MenuList.Size = new System.Drawing.Size(51, 22);
+      this.MenuList.Text = "Menu";
       // 
       // SaveBtn
       // 
@@ -218,7 +218,7 @@
     private System.Windows.Forms.FlowLayoutPanel MainFlow;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     private System.Windows.Forms.ToolStripButton ResetBtn;
-    private System.Windows.Forms.ToolStripDropDownButton Menu;
+    private System.Windows.Forms.ToolStripDropDownButton MenuList;
     private System.Windows.Forms.ToolStripMenuItem SaveBtn;
     private System.Windows.Forms.ToolStripMenuItem LoadBtn;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;

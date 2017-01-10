@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using AntiMunchLite.Core;
@@ -9,54 +8,38 @@ namespace AntiMunchLite
   public partial class MainForm : Form
   {
     private readonly SaveLoadManager _SaveLoadManager;
+    private readonly ControlsCache<CombatantControl> _CombatantControlsCache;
     private Core.Core _Core = new Core.Core();
-
-    private readonly List<CombatantControl> _ControlsCache = new List<CombatantControl>();
 
 
     public MainForm()
     {
-      _SaveLoadManager = new SaveLoadManager(this);
       InitializeComponent();
+
+      _SaveLoadManager = new SaveLoadManager(this);
+      _CombatantControlsCache = new ControlsCache<CombatantControl>(MainFlow.Controls, _CreateCombatantControl);
+    }
+
+    private CombatantControl _CreateCombatantControl()
+    {
+      return new CombatantControl(_Core, _OnInitiativeChange, _DeleteCombatant);
     }
 
     public void RefreshCombatants()
     {
       MainFlow.SuspendLayout();
 
-      _AbjustCacheSize();
+      _CombatantControlsCache.AbjustSize(_Core.Combatants.Count());
 
       var current = _Core.CurrentCombatant;
       var combatants = _Core.Combatants.ToList();
       for (var i = 0; i < combatants.Count; ++i)
-        _ControlsCache[i].Initialize(combatants[i], combatants[i] == current);
+        _CombatantControlsCache[i].Initialize(combatants[i], combatants[i] == current);
 
       RoundLbl.Text = @"Round " + _Core.CurrentRound;
 
       _ControlsSizeRefresh();
       MainFlow.ResumeLayout();
-    }
-
-    private void _AbjustCacheSize()
-    {
-      var currentSize = _ControlsCache.Count;
-      var newSize = _Core.Combatants.Count();
-
-      if(currentSize > newSize)
-        foreach (var controlToDelete in _ControlsCache.Take(currentSize - newSize).ToList())
-        {
-          _ControlsCache.Remove(controlToDelete);
-          MainFlow.Controls.Remove(controlToDelete);
-          controlToDelete.Dispose();
-        }
-
-      if(currentSize < newSize)
-        foreach (var i in Enumerable.Range(0, newSize - currentSize))
-        {
-          var newControl = new CombatantControl(_Core, _OnInitiativeChange, _DeleteCombatant);
-          _ControlsCache.Add(newControl);
-          MainFlow.Controls.Add(newControl);
-        }
     }
 
     private int _GetCombatantControlsWidth()
@@ -106,9 +89,10 @@ namespace AntiMunchLite
 
     private void _ControlsSizeRefresh()
     {
-      foreach (var control in _ControlsCache)
+      var newWidth = _GetCombatantControlsWidth();
+      foreach (var control in _CombatantControlsCache)
       {
-        control.Width = _GetCombatantControlsWidth();
+        control.Width = newWidth;
         control.RefreshSize();
       }
     }
@@ -130,8 +114,11 @@ namespace AntiMunchLite
 
     private void LoadBtn_Click(object sender, EventArgs e)
     {
-      if(_SaveLoadManager.Load(ref _Core))
-        RefreshCombatants();
+      var loaded = _SaveLoadManager.Load();
+      if (loaded == null) return;
+
+      _Core = loaded;
+      RefreshCombatants();
     }
 
     private void ShowPreGenEffects_Click(object sender, EventArgs e)

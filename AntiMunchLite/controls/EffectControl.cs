@@ -11,30 +11,36 @@ namespace AntiMunchLite
     private readonly Action<Effect> _DeleteDelegate;
     public Effect Effect { get; private set; }
 
+
     public EffectControl()
     {
       InitializeComponent();
     }
 
-    public EffectControl(Action<Effect> deleteDelegate)
-      : this()
+    public EffectControl(Action<Effect> deleteDelegate) : this()
     {
       _DeleteDelegate = deleteDelegate;
     }
 
-    public void Initialize(Effect effect, Color backColor)
+    public void Initialize(Effect effect)
     {
+      if(Effect == null || Effect == effect) return;
+
       _Inited = false;
 
       Effect = effect;
       EffectName.Text = Effect.Name;
       RemainTime.Value = Effect.RemainTurns;
 
-      EffectName.BackColor = backColor;
       EffectName.ForeColor =
       RemainTime.ForeColor = Effect.Type == EffectType.Buff ? Color.Black : Color.DarkRed;
 
       _Inited = true;
+    }
+
+    public void SetBackColor(Color color)
+    {
+      EffectName.BackColor = color;
     }
 
     private void EffectName_TextChanged(object sender, EventArgs e)

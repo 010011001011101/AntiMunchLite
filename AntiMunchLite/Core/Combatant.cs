@@ -30,6 +30,7 @@ namespace AntiMunchLite.Core
         if (MaxHp <= 0) return HpStatus.Unknown;
         if (CurrentHp < 0) return HpStatus.BellowZero;
         if (CurrentHp >= MaxHp) return HpStatus.Uninjured;
+        if (CurrentHp == 1) return HpStatus.Critical;
 
         var percent = (float) CurrentHp * 100 / MaxHp;
 
@@ -38,6 +39,11 @@ namespace AntiMunchLite.Core
         if (percent > HeavyPercent) return HpStatus.Heavy;
         return HpStatus.Critical;
       }
+    }
+
+    public void OnNextRound()
+    {
+      Effects.RemoveAll(e => --e.RemainTurns <= 0);
     }
   }
 }
