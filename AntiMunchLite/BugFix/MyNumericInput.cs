@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace AntiMunchLite.BugFix
 {
@@ -83,5 +84,17 @@ namespace AntiMunchLite.BugFix
       e.Cancel = true;
       _InputError = true;
     }
+
+    protected override void OnKeyUp(KeyEventArgs e)
+    {
+      if(e.KeyCode == Keys.Enter)
+      {
+        e.Handled = true;
+        Parent.Focus();
+      }
+
+      base.OnKeyUp(e);
+    }
+
   }
 }

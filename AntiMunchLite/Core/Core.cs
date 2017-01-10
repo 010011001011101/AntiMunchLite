@@ -19,15 +19,18 @@ namespace AntiMunchLite.Core
     public Core()
     {
       PreGenEffects = new List<string>();
-      Reset();
+      Reset(false, false);
     }
 
-    public void Reset()
+    public void Reset(bool resetInitiatives, bool resetEffects)
     {
       Started = false;
       CurrentRound = 1;
       CurrentSubInitiative = 1;
       CurrentInitiative = int.MaxValue;
+
+      foreach (var combatant in _Combatants)
+        combatant.OnReset(resetInitiatives, resetEffects);
     }
 
     public void Next()

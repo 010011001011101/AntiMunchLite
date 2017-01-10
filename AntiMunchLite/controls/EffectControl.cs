@@ -22,25 +22,19 @@ namespace AntiMunchLite
       _DeleteDelegate = deleteDelegate;
     }
 
-    public void Initialize(Effect effect)
+    public void Initialize(Effect effect, Color backColor)
     {
-      if(Effect == null || Effect == effect) return;
-
       _Inited = false;
 
       Effect = effect;
       EffectName.Text = Effect.Name;
       RemainTime.Value = Effect.RemainTurns;
 
+      EffectName.BackColor = backColor;
       EffectName.ForeColor =
       RemainTime.ForeColor = Effect.Type == EffectType.Buff ? Color.Black : Color.DarkRed;
 
       _Inited = true;
-    }
-
-    public void SetBackColor(Color color)
-    {
-      EffectName.BackColor = color;
     }
 
     private void EffectName_TextChanged(object sender, EventArgs e)

@@ -43,11 +43,14 @@ namespace AntiMunchLite
 
     #region Save
 
-    private static void _Save(Core.Core core)
+    private void _Save(Core.Core core)
     {
       var directory = _GetSavesDirectory();
-      var fileName = Path.Combine(directory.ToString(), _GenerateFileName(core));
-      using (var file = new FileStream(fileName, FileMode.Create))
+      var fileName = _GenerateFileName(core);
+      if (string.IsNullOrWhiteSpace(fileName))
+        return;
+
+      using (var file = new FileStream(Path.Combine(directory.ToString(), fileName + ".amls"), FileMode.Create))
       {
         var formetter = new BinaryFormatter();
         formetter.Serialize(file, core);
@@ -64,9 +67,11 @@ namespace AntiMunchLite
       return directory;
     }
 
-    private static string _GenerateFileName(Core.Core core)
+    private string _GenerateFileName(Core.Core core)
     {
-      return string.Format("Save_R{0}_[{1:MM.dd.yy H.mm.ss}].amls", core.CurrentRound, DateTime.Now);
+      var pregen = string.Format("Save_R{0}_[{1:MM.dd.yy H.mm.ss}]", core.CurrentRound, DateTime.Now);
+
+      return SaveDialog.GetSaveFileName(pregen, _Parent);
     }
 
     #endregion

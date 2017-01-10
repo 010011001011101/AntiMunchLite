@@ -15,7 +15,6 @@ namespace AntiMunchLite
 
     private bool _Inited;
     public Combatant Combatant { get; private set; }
-    public bool IsCurrent { get; private set; }
 
 
     public CombatantControl()
@@ -36,17 +35,16 @@ namespace AntiMunchLite
 
     public void Initialize(Combatant combatant, bool isCurrent)
     {
-      var isNew = Combatant == null;
-
-      if (isNew || Combatant != combatant)
-        _InitializeCombatant(combatant);
-
-      if (isNew || IsCurrent != isCurrent)
-        _InitializeIsCurrent(isCurrent);
+      _SetIsCurrent(isCurrent);
+      _InitializeCombatant(combatant);
+      
+      RefreshEffects();
     }
 
     private void _InitializeCombatant(Combatant combatant)
     {
+      if (Combatant == combatant) return;
+
       _Inited = false;
 
       Combatant = combatant;
@@ -57,23 +55,16 @@ namespace AntiMunchLite
       MaxHp.Value = combatant.MaxHp;
       _RefreshHpStatus();
 
-      RefreshEffects();
-
       _Inited = true;
     }
 
-    private void _InitializeIsCurrent(bool isCurrent)
+    private void _SetIsCurrent(bool isCurrent)
     {
-      IsCurrent = isCurrent;
-
       CombatantName.BackColor =
       SubInitiative.BackColor =
       Initiative.BackColor =
-      BackColor = IsCurrent ? ColorUtils.Green : ColorUtils.Yellow;
-      ArrowPB.Visible = IsCurrent;
-
-      foreach (var effectControl in _ControlsCache)
-        effectControl.SetBackColor(BackColor);
+      BackColor = isCurrent ? ColorUtils.Green : ColorUtils.Yellow;
+      ArrowPB.Visible = isCurrent;
     }
 
     #endregion
@@ -108,7 +99,11 @@ namespace AntiMunchLite
       if (!_Inited) return;
 
       Combatant.CurrentHp = (int)CurrentHp.Value;
-      _RefreshHpStatus();
+
+      if (Combatant.CurrentHp > 0 && Combatant.MaxHp == 0)
+        MaxHp.Value = Combatant.CurrentHp;
+      else
+        _RefreshHpStatus();
     }
 
     private void MaxHp_ValueChanged(object sender, EventArgs e)
@@ -123,13 +118,10 @@ namespace AntiMunchLite
     {
       if (!_Inited) return;
 
-      using (var dmgDialog = new DMGDialog())
-      {
-        if (dmgDialog.ShowDialog(Parent) != DialogResult.OK)
-          return;
+      var dmg = DMGDialog.GetNewDmg(Parent);
+      if(!dmg.HasValue) return;
 
-        CurrentHp.Value -= dmgDialog.DmgCounter.Value;
-      }
+      CurrentHp.Value -= dmg.Value;
     }
 
     private void DelBtn_Click(object sender, EventArgs e)
@@ -169,7 +161,7 @@ namespace AntiMunchLite
 
       var effects = Combatant.Effects.OrderBy(e => e.Type).ToList();
       for (var i = 0; i < effects.Count; ++i)
-        _ControlsCache[i].Initialize(effects[i]);
+        _ControlsCache[i].Initialize(effects[i], BackColor);
 
       RefreshSize();
       EffectsFlow.ResumeLayout();

@@ -29,13 +29,13 @@
     private void InitializeComponent()
     {
       this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+      this.RemainTime = new AntiMunchLite.BugFix.MyNumericInput();
       this.TypePanel = new System.Windows.Forms.FlowLayoutPanel();
       this.IsDebuff = new System.Windows.Forms.RadioButton();
       this.IsBuff = new System.Windows.Forms.RadioButton();
       this.OkBtn = new System.Windows.Forms.Button();
       this.CancelBtn = new System.Windows.Forms.Button();
       this.EffectName = new System.Windows.Forms.ComboBox();
-      this.RemainTime = new AntiMunchLite.BugFix.MyNumericInput();
       this.TableLayoutPanel.SuspendLayout();
       this.TypePanel.SuspendLayout();
       this.SuspendLayout();
@@ -59,6 +59,31 @@
       this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.TableLayoutPanel.Size = new System.Drawing.Size(218, 86);
       this.TableLayoutPanel.TabIndex = 0;
+      // 
+      // RemainTime
+      // 
+      this.RemainTime.Dock = System.Windows.Forms.DockStyle.Top;
+      this.RemainTime.Location = new System.Drawing.Point(161, 3);
+      this.RemainTime.Maximum = new decimal(new int[] {
+            900,
+            0,
+            0,
+            0});
+      this.RemainTime.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+      this.RemainTime.Name = "RemainTime";
+      this.RemainTime.RepeatingDigitsCount = ((uint)(0u));
+      this.RemainTime.Size = new System.Drawing.Size(54, 20);
+      this.RemainTime.TabIndex = 1;
+      this.RemainTime.Text = "10";
+      this.RemainTime.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
       // 
       // TypePanel
       // 
@@ -125,31 +150,6 @@
       this.EffectName.Name = "EffectName";
       this.EffectName.Size = new System.Drawing.Size(152, 21);
       this.EffectName.TabIndex = 0;
-      // 
-      // RemainTime
-      // 
-      this.RemainTime.Dock = System.Windows.Forms.DockStyle.Top;
-      this.RemainTime.Location = new System.Drawing.Point(161, 3);
-      this.RemainTime.Maximum = new decimal(new int[] {
-            900,
-            0,
-            0,
-            0});
-      this.RemainTime.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-      this.RemainTime.Name = "RemainTime";
-      this.RemainTime.RepeatingDigitsCount = ((uint)(0u));
-      this.RemainTime.Size = new System.Drawing.Size(54, 20);
-      this.RemainTime.TabIndex = 1;
-      this.RemainTime.Text = "10";
-      this.RemainTime.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
       // 
       // EffectDialog
       // 

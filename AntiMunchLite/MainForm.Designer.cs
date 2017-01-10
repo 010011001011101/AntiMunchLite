@@ -88,7 +88,7 @@
       // 
       this.SaveBtn.Image = ((System.Drawing.Image)(resources.GetObject("SaveBtn.Image")));
       this.SaveBtn.Name = "SaveBtn";
-      this.SaveBtn.Size = new System.Drawing.Size(172, 22);
+      this.SaveBtn.Size = new System.Drawing.Size(152, 22);
       this.SaveBtn.Text = "Save";
       this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
       // 
@@ -108,8 +108,8 @@
       // ShowPreGenEffects
       // 
       this.ShowPreGenEffects.Name = "ShowPreGenEffects";
-      this.ShowPreGenEffects.Size = new System.Drawing.Size(172, 22);
-      this.ShowPreGenEffects.Text = "Список эффектов";
+      this.ShowPreGenEffects.Size = new System.Drawing.Size(152, 22);
+      this.ShowPreGenEffects.Text = "Effects...";
       this.ShowPreGenEffects.Click += new System.EventHandler(this.ShowPreGenEffects_Click);
       // 
       // toolStripSeparator3
@@ -169,12 +169,12 @@
       // 
       // ResetBtn
       // 
-      this.ResetBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.ResetBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
       this.ResetBtn.Image = ((System.Drawing.Image)(resources.GetObject("ResetBtn.Image")));
       this.ResetBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.ResetBtn.Name = "ResetBtn";
-      this.ResetBtn.Size = new System.Drawing.Size(23, 22);
-      this.ResetBtn.Text = "Reset Encounter";
+      this.ResetBtn.Size = new System.Drawing.Size(59, 22);
+      this.ResetBtn.Text = "Reset";
       this.ResetBtn.Click += new System.EventHandler(this.ResetBtn_Click);
       // 
       // MainFlow

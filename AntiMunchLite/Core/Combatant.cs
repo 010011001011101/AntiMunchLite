@@ -45,5 +45,17 @@ namespace AntiMunchLite.Core
     {
       Effects.RemoveAll(e => --e.RemainTurns <= 0);
     }
+
+    public void OnReset(bool resetInitiatives, bool resetEffects)
+    {
+      if(resetInitiatives)
+      {
+        Initiative = 0;
+        SubInitiative = 1;
+      }
+
+      if(resetEffects)
+        Effects.Clear();
+    }
   }
 }
