@@ -16,6 +16,7 @@ namespace AntiMunchLite
     private readonly ControlsCache<EffectControl> _ControlsCache;
 
     private bool _Inited;
+    private int _DefaultHeight;
     public Combatant Combatant { get; private set; }
     public bool IsCurrent { get; private set; }
 
@@ -23,6 +24,8 @@ namespace AntiMunchLite
     public CombatantControl()
     {
       InitializeComponent();
+
+      _DefaultHeight = Height;
     }
 
     public CombatantControl(Core.Core core,
@@ -196,7 +199,7 @@ namespace AntiMunchLite
 
       Height = heightMult > 1
         ? EffectsFlow.GetPreferredSize(new Size(EffectsFlow.Width, prSize.Height * heightMult)).Height
-        : 31;
+        : _DefaultHeight;
     }
   }
 

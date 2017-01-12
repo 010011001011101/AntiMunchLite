@@ -49,13 +49,15 @@
       // ToolStripContainer.ContentPanel
       // 
       this.ToolStripContainer.ContentPanel.Controls.Add(this.PreGenEffects);
-      this.ToolStripContainer.ContentPanel.Size = new System.Drawing.Size(217, 290);
+      this.ToolStripContainer.ContentPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.ToolStripContainer.ContentPanel.Size = new System.Drawing.Size(289, 361);
       this.ToolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
       this.ToolStripContainer.LeftToolStripPanelVisible = false;
       this.ToolStripContainer.Location = new System.Drawing.Point(0, 0);
+      this.ToolStripContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.ToolStripContainer.Name = "ToolStripContainer";
       this.ToolStripContainer.RightToolStripPanelVisible = false;
-      this.ToolStripContainer.Size = new System.Drawing.Size(217, 315);
+      this.ToolStripContainer.Size = new System.Drawing.Size(289, 388);
       this.ToolStripContainer.TabIndex = 0;
       this.ToolStripContainer.Text = "toolStripContainer1";
       // 
@@ -67,15 +69,19 @@
       // 
       this.PreGenEffects.CheckOnClick = true;
       this.PreGenEffects.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.PreGenEffects.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.PreGenEffects.FormattingEnabled = true;
       this.PreGenEffects.Location = new System.Drawing.Point(0, 0);
+      this.PreGenEffects.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.PreGenEffects.Name = "PreGenEffects";
-      this.PreGenEffects.Size = new System.Drawing.Size(217, 290);
+      this.PreGenEffects.Size = new System.Drawing.Size(289, 361);
       this.PreGenEffects.TabIndex = 0;
       // 
       // ToolBar
       // 
+      this.ToolBar.Dock = System.Windows.Forms.DockStyle.None;
       this.ToolBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+      this.ToolBar.ImageScalingSize = new System.Drawing.Size(20, 20);
       this.ToolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddBtn,
             this.NewEffectName,
@@ -83,7 +89,7 @@
             this.DelBtn});
       this.ToolBar.Location = new System.Drawing.Point(0, 0);
       this.ToolBar.Name = "ToolBar";
-      this.ToolBar.Size = new System.Drawing.Size(217, 25);
+      this.ToolBar.Size = new System.Drawing.Size(289, 27);
       this.ToolBar.Stretch = true;
       this.ToolBar.TabIndex = 0;
       // 
@@ -93,19 +99,19 @@
       this.AddBtn.Image = ((System.Drawing.Image)(resources.GetObject("AddBtn.Image")));
       this.AddBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.AddBtn.Name = "AddBtn";
-      this.AddBtn.Size = new System.Drawing.Size(23, 22);
+      this.AddBtn.Size = new System.Drawing.Size(24, 24);
       this.AddBtn.Text = "Добавить";
       this.AddBtn.Click += new System.EventHandler(this.AddBtn_Click);
       // 
       // NewEffectName
       // 
       this.NewEffectName.Name = "NewEffectName";
-      this.NewEffectName.Size = new System.Drawing.Size(150, 25);
+      this.NewEffectName.Size = new System.Drawing.Size(150, 27);
       // 
       // toolStripSeparator1
       // 
       this.toolStripSeparator1.Name = "toolStripSeparator1";
-      this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+      this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
       // 
       // DelBtn
       // 
@@ -113,16 +119,17 @@
       this.DelBtn.Image = ((System.Drawing.Image)(resources.GetObject("DelBtn.Image")));
       this.DelBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.DelBtn.Name = "DelBtn";
-      this.DelBtn.Size = new System.Drawing.Size(23, 22);
+      this.DelBtn.Size = new System.Drawing.Size(24, 24);
       this.DelBtn.Text = "Удалить";
       this.DelBtn.Click += new System.EventHandler(this.DelBtn_Click);
       // 
       // PreGenEffectsDialog
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(217, 315);
+      this.ClientSize = new System.Drawing.Size(289, 388);
       this.Controls.Add(this.ToolStripContainer);
+      this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.MinimizeBox = false;
       this.Name = "PreGenEffectsDialog";
       this.ShowIcon = false;
