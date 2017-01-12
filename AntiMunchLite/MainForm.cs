@@ -140,6 +140,8 @@ namespace AntiMunchLite
 
     private void _ControlsSizeRefresh()
     {
+      if (_CombatantControlsCache == null) return;
+
       var newWidth = _GetCombatantControlsWidth();
       foreach (var control in _CombatantControlsCache)
       {
