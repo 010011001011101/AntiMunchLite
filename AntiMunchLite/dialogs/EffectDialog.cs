@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using AntiMunchLite.Core;
 
@@ -6,36 +7,47 @@ namespace AntiMunchLite
 {
   public partial class EffectDialog : Form
   {
-    private readonly List<string> _PreGenEffects;
+    private readonly Core.Core _Core;
 
-    public static Effect GetNewEffect(List<string> preGenEffects, IWin32Window parent)
+    public static List<Combatant> CreateEffect(Core.Core core, Combatant combatant, IWin32Window parent)
     {
-      using (var dialog = new EffectDialog(preGenEffects))
+      using (var dialog = new EffectDialog(core, combatant))
         return dialog.ShowDialog(parent) == DialogResult.OK
-          ? dialog._CreateEffect()
-          : null;
+          ? dialog._CreateEffect().ToList()
+          : new List<Combatant>();
     }
 
-    private Effect _CreateEffect()
+    private IEnumerable<Combatant> _CreateEffect()
     {
-      if (!_PreGenEffects.Contains(EffectName.Text))
-        _PreGenEffects.Add(EffectName.Text);
+      if (Combotants.CheckedItems.Count == 0)
+        yield break;
 
-      return new Effect
+      if (!_Core.PreGenEffects.Contains(EffectName.Text))
+        _Core.PreGenEffects.Add(EffectName.Text);
+
+      foreach (Combatant combatant in Combotants.CheckedItems)
       {
-        Name = EffectName.Text,
-        RemainTurns = (int) RemainTime.Value,
-        Type = IsBuff.Checked ? EffectType.Buff : EffectType.Debuff
-      };
+        combatant.Effects.Add(new Effect
+        {
+          Name = EffectName.Text,
+          RemainTurns = (int) RemainTime.Value,
+          Type = IsBuff.Checked ? EffectType.Buff : EffectType.Debuff
+        });
+
+        yield return combatant;
+      }
     }
 
-    public EffectDialog(List<string> preGenEffects)
+    public EffectDialog(Core.Core core, Combatant combatant)
     {
-      _PreGenEffects = preGenEffects;
+      _Core = core;
 
       InitializeComponent();
 
-      EffectName.Items.AddRange(_PreGenEffects.ToArray());
+      EffectName.Items.AddRange(_Core.PreGenEffects.ToArray());
+      var allCombatants = _Core.Combatants.OrderBy(c => c.Name).ToList();
+      Combotants.Items.AddRange(allCombatants.ToArray());
+      Combotants.SetItemChecked(allCombatants.IndexOf(combatant), true);
     }
   }
 }

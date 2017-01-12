@@ -85,6 +85,16 @@ namespace AntiMunchLite.Core
       _Combatants.Remove(combatant);
     }
 
+    public void Add(Core otherCore)
+    {
+      if (otherCore == null) return;
+
+      _Combatants.AddRange(otherCore._Combatants);
+
+      PreGenEffects.AddRange(otherCore.PreGenEffects);
+      PreGenEffects = PreGenEffects.Distinct().ToList();
+    }
+
     public Combatant CurrentCombatant
     {
       get

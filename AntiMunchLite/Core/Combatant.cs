@@ -57,5 +57,10 @@ namespace AntiMunchLite.Core
       if(resetEffects)
         Effects.Clear();
     }
+
+    public override string ToString()
+    {
+      return Name;
+    }
   }
 }

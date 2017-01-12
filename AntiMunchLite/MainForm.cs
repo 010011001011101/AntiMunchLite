@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -12,7 +13,7 @@ namespace AntiMunchLite
     private readonly ControlsCache<CombatantControl> _CombatantControlsCache;
     private Core.Core _Core = new Core.Core();
 
-    private CheckBox _DropInitiativeOnReset, _DropEffectsOnReset;
+    private readonly CheckBox _DropInitiativeOnReset, _DropEffectsOnReset;
 
 
     public MainForm()
@@ -46,7 +47,7 @@ namespace AntiMunchLite
 
     private CombatantControl _CreateCombatantControl()
     {
-      return new CombatantControl(_Core, _OnInitiativeChange, _DeleteCombatant);
+      return new CombatantControl(_Core, _OnInitiativeChange, _OnEffectAdd, _DeleteCombatant);
     }
 
     public void RefreshCombatants()
@@ -60,10 +61,26 @@ namespace AntiMunchLite
       for (var i = 0; i < combatants.Count; ++i)
         _CombatantControlsCache[i].Initialize(combatants[i], combatants[i] == current);
 
+      RefreshCombatantsCollision();
+
       RoundLbl.Text = @"Round " + _Core.CurrentRound;
 
       _ControlsSizeRefresh();
+
       MainFlow.ResumeLayout();
+    }
+
+    public void RefreshCombatantsCollision()
+    {
+      var initiativeCollision = (from combatant in _Core.Combatants
+                                 group combatant by new { combatant.Initiative, combatant.SubInitiative } into grp
+                                 where grp.Count() > 1
+                                 from combatant in grp
+                                 select combatant
+                                ).ToList();
+
+      foreach (var combatantControl in _CombatantControlsCache)
+        combatantControl.MarkInitiativeCollision(initiativeCollision.Contains(combatantControl.Combatant));
     }
 
     private int _GetCombatantControlsWidth()
@@ -75,6 +92,16 @@ namespace AntiMunchLite
     {
       if(_Core.Started)
         RefreshCombatants();
+      else
+        RefreshCombatantsCollision();
+    }
+
+    private void _OnEffectAdd(IEnumerable<Combatant> combatants)
+    {
+      foreach (var control in from cc in _CombatantControlsCache
+                              join c in combatants on cc.Combatant equals c
+                              select cc)
+        control.RefreshEffects();
     }
 
     private void _DeleteCombatant(Combatant combatant)
@@ -145,9 +172,19 @@ namespace AntiMunchLite
       RefreshCombatants();
     }
 
+    private void LoadAddBtn_Click(object sender, EventArgs e)
+    {
+      var loaded = _SaveLoadManager.Load();
+      if (loaded == null) return;
+
+      _Core.Add(loaded);
+      RefreshCombatants();
+    }
+
     private void ShowPreGenEffects_Click(object sender, EventArgs e)
     {
       PreGenEffectsDialog.Show(_Core.PreGenEffects, this);
     }
+
   }
 }

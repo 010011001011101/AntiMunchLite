@@ -48,6 +48,7 @@
       this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
       this.ResetBtn = new System.Windows.Forms.ToolStripButton();
       this.MainFlow = new System.Windows.Forms.FlowLayoutPanel();
+      this.LoadAddBtn = new System.Windows.Forms.ToolStripMenuItem();
       this.ToolBar.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -76,6 +77,7 @@
       this.MenuList.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SaveBtn,
             this.LoadBtn,
+            this.LoadAddBtn,
             this.toolStripSeparator4,
             this.ShowPreGenEffects});
       this.MenuList.Image = ((System.Drawing.Image)(resources.GetObject("MenuList.Image")));
@@ -96,14 +98,14 @@
       // 
       this.LoadBtn.Image = ((System.Drawing.Image)(resources.GetObject("LoadBtn.Image")));
       this.LoadBtn.Name = "LoadBtn";
-      this.LoadBtn.Size = new System.Drawing.Size(172, 22);
+      this.LoadBtn.Size = new System.Drawing.Size(152, 22);
       this.LoadBtn.Text = "Load";
       this.LoadBtn.Click += new System.EventHandler(this.LoadBtn_Click);
       // 
       // toolStripSeparator4
       // 
       this.toolStripSeparator4.Name = "toolStripSeparator4";
-      this.toolStripSeparator4.Size = new System.Drawing.Size(169, 6);
+      this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
       // 
       // ShowPreGenEffects
       // 
@@ -189,6 +191,14 @@
       this.MainFlow.TabIndex = 1;
       this.MainFlow.WrapContents = false;
       // 
+      // LoadAddBtn
+      // 
+      this.LoadAddBtn.Image = ((System.Drawing.Image)(resources.GetObject("LoadAddBtn.Image")));
+      this.LoadAddBtn.Name = "LoadAddBtn";
+      this.LoadAddBtn.Size = new System.Drawing.Size(152, 22);
+      this.LoadAddBtn.Text = "Load Add";
+      this.LoadAddBtn.Click += new System.EventHandler(this.LoadAddBtn_Click);
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -225,5 +235,6 @@
     private System.Windows.Forms.ToolStripButton NextRoundBtn;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     private System.Windows.Forms.ToolStripMenuItem ShowPreGenEffects;
+    private System.Windows.Forms.ToolStripMenuItem LoadAddBtn;
   }
 }

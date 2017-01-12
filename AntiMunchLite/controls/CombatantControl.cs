@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -10,11 +11,13 @@ namespace AntiMunchLite
   {
     private readonly Core.Core _Core;
     private readonly Action _OnInitiativeChange;
+    private readonly Action<IEnumerable<Combatant>> _OnEffectAdd;
     private readonly Action<Combatant> _DeleteDelegate;
     private readonly ControlsCache<EffectControl> _ControlsCache;
 
     private bool _Inited;
     public Combatant Combatant { get; private set; }
+    public bool IsCurrent { get; private set; }
 
 
     public CombatantControl()
@@ -22,10 +25,12 @@ namespace AntiMunchLite
       InitializeComponent();
     }
 
-    public CombatantControl(Core.Core core, Action onInitiativeChangeDelegate, Action<Combatant> deleteDelegate) : this()
+    public CombatantControl(Core.Core core,
+      Action onInitiativeChangeDelegate, Action<IEnumerable<Combatant>> onEffectAdd, Action<Combatant> deleteDelegate) : this()
     {
       _Core = core;
       _OnInitiativeChange = onInitiativeChangeDelegate;
+      _OnEffectAdd = onEffectAdd;
       _DeleteDelegate = deleteDelegate;
 
       _ControlsCache = new ControlsCache<EffectControl>(EffectsFlow.Controls, _CreateEffectControl);
@@ -35,7 +40,9 @@ namespace AntiMunchLite
 
     public void Initialize(Combatant combatant, bool isCurrent)
     {
-      _SetIsCurrent(isCurrent);
+      IsCurrent = isCurrent;
+
+      _SetIsCurrent();
       _InitializeCombatant(combatant);
       
       RefreshEffects();
@@ -43,8 +50,6 @@ namespace AntiMunchLite
 
     private void _InitializeCombatant(Combatant combatant)
     {
-      if (Combatant == combatant) return;
-
       _Inited = false;
 
       Combatant = combatant;
@@ -58,13 +63,21 @@ namespace AntiMunchLite
       _Inited = true;
     }
 
-    private void _SetIsCurrent(bool isCurrent)
+    private void _SetIsCurrent()
     {
       CombatantName.BackColor =
+      BackColor = IsCurrent ? ColorUtils.Green : ColorUtils.Yellow;
+      ArrowPB.Visible = IsCurrent;
+    }
+
+    public void MarkInitiativeCollision(bool collision)
+    {
       SubInitiative.BackColor =
-      Initiative.BackColor =
-      BackColor = isCurrent ? ColorUtils.Green : ColorUtils.Yellow;
-      ArrowPB.Visible = isCurrent;
+      Initiative.BackColor = collision
+                                ? ColorUtils.Red
+                                : IsCurrent
+                                    ? ColorUtils.Green
+                                    : ColorUtils.Yellow;
     }
 
     #endregion
@@ -133,12 +146,7 @@ namespace AntiMunchLite
 
     private void AddEffectBtn_Click(object sender, EventArgs e)
     {
-      var newEffect = EffectDialog.GetNewEffect(_Core.PreGenEffects,  Parent);
-      if(newEffect == null) return;
-
-      Combatant.Effects.Add(newEffect);
-
-      RefreshEffects();
+      _OnEffectAdd(EffectDialog.CreateEffect(_Core, Combatant, Parent));
     }
 
     #endregion
