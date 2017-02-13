@@ -50,7 +50,7 @@ namespace AntiMunchLite
       return new CombatantControl(_Core, _OnInitiativeChange, _OnEffectAdd, _DeleteCombatant);
     }
 
-    public void RefreshCombatants()
+    public void RefreshCombatants(bool refreshCoreObject = false)
     {
       MainFlow.SuspendLayout();
 
@@ -60,6 +60,10 @@ namespace AntiMunchLite
       var combatants = _Core.Combatants.ToList();
       for (var i = 0; i < combatants.Count; ++i)
         _CombatantControlsCache[i].Initialize(combatants[i], combatants[i] == current);
+
+      if (refreshCoreObject)
+        foreach (var control in _CombatantControlsCache)
+          control.ResetCore(_Core);
 
       RefreshCombatantsCollision();
 
@@ -171,7 +175,7 @@ namespace AntiMunchLite
       if (loaded == null) return;
 
       _Core = loaded;
-      RefreshCombatants();
+      RefreshCombatants(true);
     }
 
     private void LoadAddBtn_Click(object sender, EventArgs e)

@@ -9,7 +9,7 @@ namespace AntiMunchLite
 {
   public partial class CombatantControl : UserControl
   {
-    private readonly Core.Core _Core;
+    private Core.Core _Core;
     private readonly Action _OnInitiativeChange;
     private readonly Action<IEnumerable<Combatant>> _OnEffectAdd;
     private readonly Action<Combatant> _DeleteDelegate;
@@ -37,6 +37,11 @@ namespace AntiMunchLite
       _DeleteDelegate = deleteDelegate;
 
       _ControlsCache = new ControlsCache<EffectControl>(EffectsFlow.Controls, _CreateEffectControl);
+    }
+
+    public void ResetCore(Core.Core core)
+    {
+      _Core = core;
     }
 
     #region Initialize
