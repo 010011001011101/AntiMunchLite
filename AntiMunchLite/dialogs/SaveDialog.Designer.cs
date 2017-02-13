@@ -80,9 +80,10 @@
       // 
       this.TableLayoutPanel.SetColumnSpan(this.SaveFileName, 2);
       this.SaveFileName.Dock = System.Windows.Forms.DockStyle.Top;
+      this.SaveFileName.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.SaveFileName.Location = new System.Drawing.Point(3, 3);
       this.SaveFileName.Name = "SaveFileName";
-      this.SaveFileName.Size = new System.Drawing.Size(202, 20);
+      this.SaveFileName.Size = new System.Drawing.Size(202, 23);
       this.SaveFileName.TabIndex = 3;
       // 
       // SaveDialog
