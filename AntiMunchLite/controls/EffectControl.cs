@@ -37,6 +37,11 @@ namespace AntiMunchLite
       _Inited = true;
     }
 
+    public void SetTextBackColor(Color backColor)
+    {
+      EffectName.BackColor = backColor;
+    }
+
     private void EffectName_TextChanged(object sender, EventArgs e)
     {
       Width -= EffectName.Size.Width - EffectName.PreferredSize.Width;

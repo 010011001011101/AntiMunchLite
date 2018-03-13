@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AntiMunchLite
@@ -48,7 +49,7 @@ namespace AntiMunchLite
     private void _Apply()
     {
       PreGenEffects.Items.Clear();
-      PreGenEffects.Items.AddRange(_PreGenEffects.ToArray());
+      PreGenEffects.Items.AddRange(_PreGenEffects.Cast<object>().ToArray());
     }
   }
 }

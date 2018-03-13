@@ -69,9 +69,7 @@ namespace AntiMunchLite
 
     private string _GenerateFileName(Core.Core core)
     {
-      var pregen = string.Format("Save_R{0}_[{1:MM.dd.yy H.mm.ss}]", core.CurrentRound, DateTime.Now);
-
-      return SaveDialog.GetSaveFileName(pregen, _Parent);
+      return SaveDialog.GetSaveFileName($"Save_R{core.CurrentRound}_[{DateTime.Now:MM.dd.yy H.mm.ss}]", _Parent);
     }
 
     #endregion

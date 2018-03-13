@@ -60,7 +60,7 @@
       this.RemainTime.Location = new System.Drawing.Point(149, 0);
       this.RemainTime.Margin = new System.Windows.Forms.Padding(0);
       this.RemainTime.Maximum = new decimal(new int[] {
-            900,
+            99999,
             0,
             0,
             0});
@@ -99,7 +99,7 @@
       this.EffectName.BorderStyle = System.Windows.Forms.BorderStyle.None;
       this.EffectName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.EffectName.Location = new System.Drawing.Point(2, 5);
-      this.EffectName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.EffectName.Margin = new System.Windows.Forms.Padding(2);
       this.EffectName.Name = "EffectName";
       this.EffectName.Size = new System.Drawing.Size(145, 14);
       this.EffectName.TabIndex = 0;

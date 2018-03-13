@@ -30,12 +30,28 @@ namespace AntiMunchLite
         combatant.Effects.Add(new Effect
         {
           Name = EffectName.Text,
-          RemainTurns = (int) RemainTime.Value,
+          RemainTurns = _GetTime(),
           Type = IsBuff.Checked ? EffectType.Buff : EffectType.Debuff
         });
 
         yield return combatant;
       }
+    }
+
+    private int _GetTime()
+    {
+      var remain = (int) RemainTime.Value;
+
+      if (MinuteTime.Checked)
+        return remain * 10;
+
+      if (TenMinutesTime.Checked)
+        return remain * 10 * 10;
+
+      if (HourTime.Checked)
+        return remain * 10 * 60;
+
+      return remain;
     }
 
     public EffectDialog(Core.Core core, Combatant combatant)
@@ -44,9 +60,9 @@ namespace AntiMunchLite
 
       InitializeComponent();
 
-      EffectName.Items.AddRange(_Core.PreGenEffects.ToArray());
+      EffectName.Items.AddRange(_Core.PreGenEffects.Cast<object>().ToArray());
       var allCombatants = _Core.Combatants.OrderBy(c => c.Name).ToList();
-      Combotants.Items.AddRange(allCombatants.ToArray());
+      Combotants.Items.AddRange(allCombatants.Cast<object>().ToArray());
       Combotants.SetItemChecked(allCombatants.IndexOf(combatant), true);
     }
   }

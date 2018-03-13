@@ -13,11 +13,8 @@ namespace AntiMunchLite
 
     public ControlsCache(Control.ControlCollection hostCollection, Func<T> createNewControlDelegate)
     {
-      if (hostCollection == null) throw new ArgumentNullException("hostCollection");
-      if (createNewControlDelegate == null) throw new ArgumentNullException("createNewControlDelegate");
-
-      _HostCollection = hostCollection;
-      _CreateNewControlDelegate = createNewControlDelegate;
+      _HostCollection = hostCollection ?? throw new ArgumentNullException(nameof(hostCollection));
+      _CreateNewControlDelegate = createNewControlDelegate ?? throw new ArgumentNullException(nameof(createNewControlDelegate));
     }
 
     public void AbjustSize(int newSize)

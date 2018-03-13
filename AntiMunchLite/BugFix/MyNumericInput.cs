@@ -1,11 +1,12 @@
 using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace AntiMunchLite.BugFix
 {
-  public class MyNumericInput : System.Windows.Forms.TextBox
+  public class MyNumericInput : TextBox
   {
     public decimal Minimum { get; set; }
     public decimal Maximum { get; set; }
@@ -23,7 +24,7 @@ namespace AntiMunchLite.BugFix
       }
       set
       {
-        Text = value.ToString();
+        Text = value.ToString(CultureInfo.InvariantCulture);
 
         _OnValueChanged();
       }
@@ -31,15 +32,11 @@ namespace AntiMunchLite.BugFix
 
     private bool _InputError;
     private decimal _PreviousValue;
-    private string _RegEx
-    {
-      get
-      {
-        return RepeatingDigitsCount == 0
-          ? @"^(-?[\s\d]+)?$"
-          : string.Format("^(-?[\\s\\d]+([.,]\\d{{0,{0}}})?)?$", RepeatingDigitsCount);
-      }
-    }
+
+    private string _RegEx =>
+      RepeatingDigitsCount == 0
+        ? @"^(-?[\s\d]+)?$"
+        : $"^(-?[\\s\\d]+([.,]\\d{{0,{RepeatingDigitsCount}}})?)?$";
 
     protected override void OnEnter(EventArgs e)
     {
@@ -58,8 +55,7 @@ namespace AntiMunchLite.BugFix
 
     private void _OnValueChanged()
     {
-      var handler = ValueChanged;
-      if (handler != null) handler(this, new EventArgs());
+      ValueChanged?.Invoke(this, new EventArgs());
     }
 
     protected override void OnValidating(CancelEventArgs e)

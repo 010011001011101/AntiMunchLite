@@ -11,12 +11,12 @@ namespace AntiMunchLite
   {
     private Core.Core _Core;
     private readonly Action _OnInitiativeChange;
-    private readonly Action<IEnumerable<Combatant>> _OnEffectAdd;
+    private readonly Action<IEnumerable<Combatant>> _OnEffectAdd, _OnDamage;
     private readonly Action<Combatant> _DeleteDelegate;
     private readonly ControlsCache<EffectControl> _ControlsCache;
 
     private bool _Inited;
-    private int _DefaultHeight;
+    private readonly int _DefaultHeight;
     public Combatant Combatant { get; private set; }
     public bool IsCurrent { get; private set; }
 
@@ -29,11 +29,16 @@ namespace AntiMunchLite
     }
 
     public CombatantControl(Core.Core core,
-      Action onInitiativeChangeDelegate, Action<IEnumerable<Combatant>> onEffectAdd, Action<Combatant> deleteDelegate) : this()
+                            Action onInitiativeChangeDelegate,
+                            Action<IEnumerable<Combatant>> onEffectAdd,
+                            Action<IEnumerable<Combatant>> onDamage,
+                            Action<Combatant> deleteDelegate)
+      : this()
     {
       _Core = core;
       _OnInitiativeChange = onInitiativeChangeDelegate;
       _OnEffectAdd = onEffectAdd;
+      _OnDamage = onDamage;
       _DeleteDelegate = deleteDelegate;
 
       _ControlsCache = new ControlsCache<EffectControl>(EffectsFlow.Controls, _CreateEffectControl);
@@ -48,12 +53,13 @@ namespace AntiMunchLite
 
     public void Initialize(Combatant combatant, bool isCurrent)
     {
-      IsCurrent = isCurrent;
+      if (Combatant != combatant)
+      {
+        _InitializeCombatant(combatant);
+        RefreshEffects();
+      }
 
-      _SetIsCurrent();
-      _InitializeCombatant(combatant);
-      
-      RefreshEffects();
+      _SetIsCurrent(isCurrent);
     }
 
     private void _InitializeCombatant(Combatant combatant)
@@ -71,10 +77,15 @@ namespace AntiMunchLite
       _Inited = true;
     }
 
-    private void _SetIsCurrent()
+    private void _SetIsCurrent(bool isCurrent)
     {
-      CombatantName.BackColor =
-      BackColor = IsCurrent ? ColorUtils.Green : ColorUtils.Yellow;
+      IsCurrent = isCurrent;
+
+      var backColor = IsCurrent ? ColorUtils.Green : ColorUtils.Yellow;
+      CombatantName.BackColor = BackColor = backColor;
+      foreach (var effectControl in _ControlsCache)
+        effectControl.SetTextBackColor(backColor);
+
       ArrowPB.Visible = IsCurrent;
     }
 
@@ -115,9 +126,10 @@ namespace AntiMunchLite
       Combatant.Name = CombatantName.Text;
     }
 
+    private bool _IgnoreHpValueChange;
     private void CurrentHp_ValueChanged(object sender, EventArgs e)
     {
-      if (!_Inited) return;
+      if (!_Inited || _IgnoreHpValueChange) return;
 
       Combatant.CurrentHp = (int)CurrentHp.Value;
 
@@ -129,7 +141,7 @@ namespace AntiMunchLite
 
     private void MaxHp_ValueChanged(object sender, EventArgs e)
     {
-      if (!_Inited) return;
+      if (!_Inited || _IgnoreHpValueChange) return;
 
       Combatant.MaxHp = (int)MaxHp.Value;
       _RefreshHpStatus();
@@ -139,10 +151,14 @@ namespace AntiMunchLite
     {
       if (!_Inited) return;
 
-      var dmg = DMGDialog.GetNewDmg(Parent);
-      if(!dmg.HasValue) return;
+      _OnDamage(DMGDialog.MakeDamage(_Core, Combatant, false, Parent));
+    }
 
-      CurrentHp.Value -= dmg.Value;
+    private void HealBtn_Click(object sender, EventArgs e)
+    {
+      if (!_Inited) return;
+
+      _OnDamage(DMGDialog.MakeDamage(_Core, Combatant, true, Parent));
     }
 
     private void DelBtn_Click(object sender, EventArgs e)
@@ -159,6 +175,22 @@ namespace AntiMunchLite
 
     #endregion
 
+    public void RefreshHp()
+    {
+      try
+      {
+        _IgnoreHpValueChange = true;
+
+        CurrentHp.Value = Combatant.CurrentHp;
+        MaxHp.Value = Combatant.MaxHp;
+        _RefreshHpStatus();
+      }
+      finally
+      {
+        _IgnoreHpValueChange = false;
+      }
+    }
+
     private void _RefreshHpStatus()
     {
       StatusLbl.Text = Combatant.HpStatus.ToString();
@@ -173,7 +205,7 @@ namespace AntiMunchLite
     {
       EffectsFlow.SuspendLayout();
 
-      _ControlsCache.AbjustSize(Combatant.Effects.Count());
+      _ControlsCache.AbjustSize(Combatant.Effects.Count);
 
       var effects = Combatant.Effects.OrderBy(e => e.Type).ToList();
       for (var i = 0; i < effects.Count; ++i)

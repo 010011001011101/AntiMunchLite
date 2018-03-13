@@ -7,7 +7,7 @@ namespace AntiMunchLite.Core
   [Serializable]
   public class Core
   {
-    public List<string> PreGenEffects { get; private set; }
+    public List<string> PreGenEffects { get; private set; } = new List<string>();
 
     public bool Started { get; private set; }
     public uint CurrentRound { get; private set; }
@@ -18,7 +18,6 @@ namespace AntiMunchLite.Core
 
     public Core()
     {
-      PreGenEffects = new List<string>();
       Reset(false, false);
     }
 
@@ -38,7 +37,7 @@ namespace AntiMunchLite.Core
       if (_Combatants.Count == 0) return;
 
       Started = true;
-      var next = NextCombatant;
+      var next = GetNextCombatant();
       if (next == null)
       {
         _SetNextRound();
@@ -48,7 +47,7 @@ namespace AntiMunchLite.Core
       }
       else
       {
-        var skipOne = CurrentInitiative != int.MaxValue && next == CurrentCombatant;
+        var skipOne = CurrentInitiative != int.MaxValue && next == GetCurrentCombatant();
 
         CurrentSubInitiative = next.SubInitiative;
         CurrentInitiative = next.Initiative;
@@ -91,38 +90,31 @@ namespace AntiMunchLite.Core
 
       _Combatants.AddRange(otherCore._Combatants);
 
-      PreGenEffects.AddRange(otherCore.PreGenEffects);
-      PreGenEffects = PreGenEffects.Distinct().ToList();
+      PreGenEffects = PreGenEffects.Concat(otherCore.PreGenEffects).Distinct().ToList();
     }
 
-    public Combatant CurrentCombatant
+    public Combatant GetCurrentCombatant()
     {
-      get
-      {
-        return Started
-                 ? (from combatant in _Combatants
-                    where combatant.Initiative < CurrentInitiative ||
-                          (combatant.Initiative == CurrentInitiative && combatant.SubInitiative >= CurrentSubInitiative)
-                    orderby combatant.Initiative descending , combatant.SubInitiative
-                    select combatant
-                   ).FirstOrDefault()
-                 : null;
-      }
+      if (!Started) return null;
+
+      return (from combatant in _Combatants
+              where combatant.Initiative < CurrentInitiative ||
+                    combatant.Initiative == CurrentInitiative && combatant.SubInitiative >= CurrentSubInitiative
+              orderby combatant.Initiative descending, combatant.SubInitiative
+              select combatant
+             ).FirstOrDefault();
     }
 
-    public Combatant NextCombatant
+    public Combatant GetNextCombatant()
     {
-      get
-      {
-        return Started
-                 ? (from combatant in _Combatants
-                    where combatant.Initiative < CurrentInitiative ||
-                          (combatant.Initiative == CurrentInitiative && combatant.SubInitiative > CurrentSubInitiative)
-                    orderby combatant.Initiative descending , combatant.SubInitiative
-                    select combatant
-                   ).FirstOrDefault()
-                 : null;
-      }
+      if (!Started) return null;
+
+      return (from combatant in _Combatants
+              where combatant.Initiative < CurrentInitiative ||
+                    combatant.Initiative == CurrentInitiative && combatant.SubInitiative > CurrentSubInitiative
+              orderby combatant.Initiative descending, combatant.SubInitiative
+              select combatant
+             ).FirstOrDefault();
     }
 
 

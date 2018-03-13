@@ -49,15 +49,13 @@
       // ToolStripContainer.ContentPanel
       // 
       this.ToolStripContainer.ContentPanel.Controls.Add(this.PreGenEffects);
-      this.ToolStripContainer.ContentPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-      this.ToolStripContainer.ContentPanel.Size = new System.Drawing.Size(289, 361);
+      this.ToolStripContainer.ContentPanel.Size = new System.Drawing.Size(230, 288);
       this.ToolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
       this.ToolStripContainer.LeftToolStripPanelVisible = false;
       this.ToolStripContainer.Location = new System.Drawing.Point(0, 0);
-      this.ToolStripContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.ToolStripContainer.Name = "ToolStripContainer";
       this.ToolStripContainer.RightToolStripPanelVisible = false;
-      this.ToolStripContainer.Size = new System.Drawing.Size(289, 388);
+      this.ToolStripContainer.Size = new System.Drawing.Size(230, 315);
       this.ToolStripContainer.TabIndex = 0;
       this.ToolStripContainer.Text = "toolStripContainer1";
       // 
@@ -72,9 +70,8 @@
       this.PreGenEffects.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.PreGenEffects.FormattingEnabled = true;
       this.PreGenEffects.Location = new System.Drawing.Point(0, 0);
-      this.PreGenEffects.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.PreGenEffects.Name = "PreGenEffects";
-      this.PreGenEffects.Size = new System.Drawing.Size(289, 361);
+      this.PreGenEffects.Size = new System.Drawing.Size(230, 288);
       this.PreGenEffects.TabIndex = 0;
       // 
       // ToolBar
@@ -89,7 +86,7 @@
             this.DelBtn});
       this.ToolBar.Location = new System.Drawing.Point(0, 0);
       this.ToolBar.Name = "ToolBar";
-      this.ToolBar.Size = new System.Drawing.Size(289, 27);
+      this.ToolBar.Size = new System.Drawing.Size(230, 27);
       this.ToolBar.Stretch = true;
       this.ToolBar.TabIndex = 0;
       // 
@@ -125,11 +122,10 @@
       // 
       // PreGenEffectsDialog
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(289, 388);
+      this.ClientSize = new System.Drawing.Size(230, 315);
       this.Controls.Add(this.ToolStripContainer);
-      this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.MinimizeBox = false;
       this.Name = "PreGenEffectsDialog";
       this.ShowIcon = false;

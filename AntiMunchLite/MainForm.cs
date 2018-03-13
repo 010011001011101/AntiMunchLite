@@ -47,7 +47,7 @@ namespace AntiMunchLite
 
     private CombatantControl _CreateCombatantControl()
     {
-      return new CombatantControl(_Core, _OnInitiativeChange, _OnEffectAdd, _DeleteCombatant);
+      return new CombatantControl(_Core, _OnInitiativeChange, _OnEffectAdd, _OnDamage, _DeleteCombatant);
     }
 
     public void RefreshCombatants(bool refreshCoreObject = false)
@@ -56,7 +56,7 @@ namespace AntiMunchLite
 
       _CombatantControlsCache.AbjustSize(_Core.Combatants.Count());
 
-      var current = _Core.CurrentCombatant;
+      var current = _Core.GetCurrentCombatant();
       var combatants = _Core.Combatants.ToList();
       for (var i = 0; i < combatants.Count; ++i)
         _CombatantControlsCache[i].Initialize(combatants[i], combatants[i] == current);
@@ -106,6 +106,14 @@ namespace AntiMunchLite
                               join c in combatants on cc.Combatant equals c
                               select cc)
         control.RefreshEffects();
+    }
+
+    private void _OnDamage(IEnumerable<Combatant> combatants)
+    {
+      foreach (var control in from cc in _CombatantControlsCache
+                              join c in combatants on cc.Combatant equals c
+                              select cc)
+        control.RefreshHp();
     }
 
     private void _DeleteCombatant(Combatant combatant)
