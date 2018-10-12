@@ -54,18 +54,21 @@ namespace AntiMunchLite
       this.DelBtn = new System.Windows.Forms.Button();
       this.AddEffectBtn = new System.Windows.Forms.Button();
       this.EffectsFlow = new System.Windows.Forms.FlowLayoutPanel();
+      this.DragPB = new System.Windows.Forms.PictureBox();
       this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
       this.TableLayoutPanel.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.ArrowPB)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.DragPB)).BeginInit();
       this.SuspendLayout();
       // 
       // TableLayoutPanel
       // 
-      this.TableLayoutPanel.ColumnCount = 14;
+      this.TableLayoutPanel.ColumnCount = 15;
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+      this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 19F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-      this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+      this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -76,26 +79,26 @@ namespace AntiMunchLite
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-      this.TableLayoutPanel.Controls.Add(this.HealBtn, 7, 0);
+      this.TableLayoutPanel.Controls.Add(this.HealBtn, 8, 0);
       this.TableLayoutPanel.Controls.Add(this.ArrowPB, 0, 0);
-      this.TableLayoutPanel.Controls.Add(this.Initiative, 1, 0);
-      this.TableLayoutPanel.Controls.Add(this.SubInitiative, 2, 0);
-      this.TableLayoutPanel.Controls.Add(this.CombatantName, 3, 0);
-      this.TableLayoutPanel.Controls.Add(this.DmgBtn, 6, 0);
-      this.TableLayoutPanel.Controls.Add(this.label1, 8, 0);
-      this.TableLayoutPanel.Controls.Add(this.CurrentHp, 9, 0);
-      this.TableLayoutPanel.Controls.Add(this.label2, 10, 0);
-      this.TableLayoutPanel.Controls.Add(this.MaxHp, 11, 0);
-      this.TableLayoutPanel.Controls.Add(this.StatusLbl, 12, 0);
-      this.TableLayoutPanel.Controls.Add(this.DelBtn, 13, 0);
-      this.TableLayoutPanel.Controls.Add(this.AddEffectBtn, 4, 0);
-      this.TableLayoutPanel.Controls.Add(this.EffectsFlow, 5, 0);
+      this.TableLayoutPanel.Controls.Add(this.Initiative, 2, 0);
+      this.TableLayoutPanel.Controls.Add(this.SubInitiative, 3, 0);
+      this.TableLayoutPanel.Controls.Add(this.CombatantName, 4, 0);
+      this.TableLayoutPanel.Controls.Add(this.DmgBtn, 7, 0);
+      this.TableLayoutPanel.Controls.Add(this.label1, 9, 0);
+      this.TableLayoutPanel.Controls.Add(this.CurrentHp, 10, 0);
+      this.TableLayoutPanel.Controls.Add(this.label2, 11, 0);
+      this.TableLayoutPanel.Controls.Add(this.MaxHp, 12, 0);
+      this.TableLayoutPanel.Controls.Add(this.StatusLbl, 13, 0);
+      this.TableLayoutPanel.Controls.Add(this.DelBtn, 14, 0);
+      this.TableLayoutPanel.Controls.Add(this.AddEffectBtn, 5, 0);
+      this.TableLayoutPanel.Controls.Add(this.EffectsFlow, 6, 0);
+      this.TableLayoutPanel.Controls.Add(this.DragPB, 1, 0);
       this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
       this.TableLayoutPanel.Name = "TableLayoutPanel";
       this.TableLayoutPanel.RowCount = 1;
       this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
       this.TableLayoutPanel.Size = new System.Drawing.Size(817, 31);
       this.TableLayoutPanel.TabIndex = 0;
       // 
@@ -130,7 +133,7 @@ namespace AntiMunchLite
       this.Initiative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
       this.Initiative.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.Initiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.Initiative.Location = new System.Drawing.Point(29, 4);
+      this.Initiative.Location = new System.Drawing.Point(48, 4);
       this.Initiative.Maximum = new decimal(new int[] {
             100,
             0,
@@ -159,7 +162,7 @@ namespace AntiMunchLite
       this.SubInitiative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
       this.SubInitiative.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.SubInitiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.SubInitiative.Location = new System.Drawing.Point(79, 4);
+      this.SubInitiative.Location = new System.Drawing.Point(98, 4);
       this.SubInitiative.Maximum = new decimal(new int[] {
             100,
             0,
@@ -174,6 +177,7 @@ namespace AntiMunchLite
       this.SubInitiative.RepeatingDigitsCount = ((uint)(0u));
       this.SubInitiative.Size = new System.Drawing.Size(39, 23);
       this.SubInitiative.TabIndex = 1;
+      this.SubInitiative.TabStop = false;
       this.SubInitiative.Text = "1";
       this.ToolTip.SetToolTip(this.SubInitiative, "Порядок в одной инициативе (Очередность хода - по возрастанию)");
       this.SubInitiative.Value = new decimal(new int[] {
@@ -188,9 +192,9 @@ namespace AntiMunchLite
       this.CombatantName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
       this.CombatantName.BorderStyle = System.Windows.Forms.BorderStyle.None;
       this.CombatantName.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.CombatantName.Location = new System.Drawing.Point(124, 7);
+      this.CombatantName.Location = new System.Drawing.Point(143, 7);
       this.CombatantName.Name = "CombatantName";
-      this.CombatantName.Size = new System.Drawing.Size(144, 16);
+      this.CombatantName.Size = new System.Drawing.Size(164, 16);
       this.CombatantName.TabIndex = 2;
       this.ToolTip.SetToolTip(this.CombatantName, "Имя");
       this.CombatantName.TextChanged += new System.EventHandler(this.CombatantName_TextChanged);
@@ -315,11 +319,12 @@ namespace AntiMunchLite
       // 
       this.AddEffectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
       this.AddEffectBtn.Image = ((System.Drawing.Image)(resources.GetObject("AddEffectBtn.Image")));
-      this.AddEffectBtn.Location = new System.Drawing.Point(272, 2);
+      this.AddEffectBtn.Location = new System.Drawing.Point(311, 2);
       this.AddEffectBtn.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
       this.AddEffectBtn.Name = "AddEffectBtn";
       this.AddEffectBtn.Size = new System.Drawing.Size(24, 27);
       this.AddEffectBtn.TabIndex = 10;
+      this.AddEffectBtn.TabStop = false;
       this.AddEffectBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
       this.ToolTip.SetToolTip(this.AddEffectBtn, "Добавить эффект");
       this.AddEffectBtn.UseVisualStyleBackColor = true;
@@ -328,11 +333,24 @@ namespace AntiMunchLite
       // EffectsFlow
       // 
       this.EffectsFlow.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.EffectsFlow.Location = new System.Drawing.Point(297, 0);
+      this.EffectsFlow.Location = new System.Drawing.Point(336, 0);
       this.EffectsFlow.Margin = new System.Windows.Forms.Padding(0);
       this.EffectsFlow.Name = "EffectsFlow";
-      this.EffectsFlow.Size = new System.Drawing.Size(213, 31);
+      this.EffectsFlow.Size = new System.Drawing.Size(174, 31);
       this.EffectsFlow.TabIndex = 11;
+      // 
+      // DragPB
+      // 
+      this.DragPB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.DragPB.Cursor = System.Windows.Forms.Cursors.SizeNS;
+      this.DragPB.Location = new System.Drawing.Point(29, 7);
+      this.DragPB.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+      this.DragPB.Name = "DragPB";
+      this.DragPB.Size = new System.Drawing.Size(16, 16);
+      this.DragPB.TabIndex = 13;
+      this.DragPB.TabStop = false;
+      this.ToolTip.SetToolTip(this.DragPB, "Shift Initiative");
+      this.DragPB.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragPB_MouseDown);
       // 
       // ToolTip
       // 
@@ -342,15 +360,19 @@ namespace AntiMunchLite
       // 
       // CombatantControl
       // 
+      this.AllowDrop = true;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.Controls.Add(this.TableLayoutPanel);
       this.Name = "CombatantControl";
       this.Size = new System.Drawing.Size(817, 31);
+      this.DragOver += new System.Windows.Forms.DragEventHandler(this.CombatantControl_DragOver);
+      this.DragLeave += new System.EventHandler(this.CombatantControl_DragLeave);
       this.TableLayoutPanel.ResumeLayout(false);
       this.TableLayoutPanel.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.ArrowPB)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.DragPB)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -373,5 +395,6 @@ namespace AntiMunchLite
     private Button AddEffectBtn;
     private FlowLayoutPanel EffectsFlow;
     private Button HealBtn;
+    private PictureBox DragPB;
   }
 }

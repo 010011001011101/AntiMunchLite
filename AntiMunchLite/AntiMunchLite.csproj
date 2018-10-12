@@ -156,6 +156,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Up.png" />
+    <None Include="Resources\Move.png" />
+    <None Include="Resources\Down.png" />
+    <None Include="Resources\From.png" />
     <Content Include="shield.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,7 @@ namespace AntiMunchLite
   public partial class CombatantControl : UserControl
   {
     private Core.Core _Core;
-    private readonly Action _OnInitiativeChange;
+    private readonly Action _OnInitiativeChange, _OnShiftStart, _OnShiftEnd;
     private readonly Action<IEnumerable<Combatant>> _OnEffectAdd, _OnDamage;
     private readonly Action<Combatant> _DeleteDelegate;
     private readonly ControlsCache<EffectControl> _ControlsCache;
@@ -19,6 +19,8 @@ namespace AntiMunchLite
     private readonly int _DefaultHeight;
     public Combatant Combatant { get; private set; }
     public bool IsCurrent { get; private set; }
+
+    public ShiftInitiativeMode ShiftMode { get; private set; } = ShiftInitiativeMode.None;
 
 
     public CombatantControl()
@@ -32,7 +34,9 @@ namespace AntiMunchLite
                             Action onInitiativeChangeDelegate,
                             Action<IEnumerable<Combatant>> onEffectAdd,
                             Action<IEnumerable<Combatant>> onDamage,
-                            Action<Combatant> deleteDelegate)
+                            Action<Combatant> deleteDelegate,
+                            Action onShiftStart,
+                            Action onShiftEnd)
       : this()
     {
       _Core = core;
@@ -40,6 +44,8 @@ namespace AntiMunchLite
       _OnEffectAdd = onEffectAdd;
       _OnDamage = onDamage;
       _DeleteDelegate = deleteDelegate;
+      _OnShiftStart = onShiftStart;
+      _OnShiftEnd = onShiftEnd;
 
       _ControlsCache = new ControlsCache<EffectControl>(EffectsFlow.Controls, _CreateEffectControl);
     }
@@ -51,30 +57,36 @@ namespace AntiMunchLite
 
     #region Initialize
 
-    public void Initialize(Combatant combatant, bool isCurrent)
+    public void Initialize(Combatant combatant, bool isCurrent, bool forceInitiativeInit)
     {
+      _Inited = false;
+
       if (Combatant != combatant)
-      {
         _InitializeCombatant(combatant);
-        RefreshEffects();
-      }
+      else if (forceInitiativeInit)
+        _InitializeInitiative(combatant);
+
+      _Inited = true;
 
       _SetIsCurrent(isCurrent);
+      RefreshEffects();
+      _RefreshShiftInitiativeImage();
     }
 
     private void _InitializeCombatant(Combatant combatant)
     {
-      _Inited = false;
-
       Combatant = combatant;
-      Initiative.Value = combatant.Initiative;
-      SubInitiative.Value = combatant.SubInitiative;
+      _InitializeInitiative(combatant);
       CombatantName.Text = combatant.Name;
       CurrentHp.Value = combatant.CurrentHp;
       MaxHp.Value = combatant.MaxHp;
       _RefreshHpStatus();
+    }
 
-      _Inited = true;
+    private void _InitializeInitiative(Combatant combatant)
+    {
+      Initiative.Value = combatant.Initiative;
+      SubInitiative.Value = combatant.SubInitiative;
     }
 
     private void _SetIsCurrent(bool isCurrent)
@@ -165,6 +177,8 @@ namespace AntiMunchLite
     {
       if (!_Inited) return;
 
+      if (DialogResult.Yes != MessageBox.Show($"Confirm Deletion of [{CombatantName.Text}]", @"Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) return;
+
       _DeleteDelegate(Combatant);
     }
 
@@ -238,6 +252,95 @@ namespace AntiMunchLite
         ? EffectsFlow.GetPreferredSize(new Size(EffectsFlow.Width, prSize.Height * heightMult)).Height
         : _DefaultHeight;
     }
+
+    #region Shift Initiative
+
+    private void DragPB_MouseDown(object sender, MouseEventArgs e)
+    {
+      if (ShiftMode != ShiftInitiativeMode.None) return;
+
+      ShiftMode = ShiftInitiativeMode.ShiftFrom;
+      _OnShiftStart();
+
+      DragPB.DoDragDrop(CombatantName.Text, DragDropEffects.Copy);
+
+      _OnShiftEnd();
+    }
+
+    private void CombatantControl_DragOver(object sender, DragEventArgs e)
+    {
+      if(ShiftMode == ShiftInitiativeMode.None ||
+         ShiftMode == ShiftInitiativeMode.ShiftFrom) return;
+
+      e.Effect = DragDropEffects.Copy;
+
+      ShiftMode = PointToClient(new Point(e.X, e.Y)).Y < Height / 2
+        ? ShiftInitiativeMode.ShiftToBefore
+        : ShiftInitiativeMode.ShiftToAfter;
+
+      _RefreshShiftInitiativeImage();
+    }
+
+    private void CombatantControl_DragLeave(object sender, EventArgs e)
+    {
+      if(ShiftMode == ShiftInitiativeMode.None) return;
+
+      if (ShiftMode != ShiftInitiativeMode.ShiftFrom)
+        ShiftMode = ShiftInitiativeMode.NoShift;
+
+      _RefreshShiftInitiativeImage();
+    }
+
+    public void OnShiftStart()
+    {
+      if (ShiftMode != ShiftInitiativeMode.ShiftFrom)
+        ShiftMode = ShiftInitiativeMode.NoShift;
+
+      _RefreshShiftInitiativeImage();
+    }
+
+    public void OnShiftEnd(bool canceled)
+    {
+      ShiftMode = ShiftInitiativeMode.None;
+
+      if(canceled)
+        _RefreshShiftInitiativeImage();
+    }
+
+    private void _RefreshShiftInitiativeImage()
+    {
+      switch (ShiftMode)
+      {
+        case ShiftInitiativeMode.None:
+          DragPB.Image = Properties.Resources.Move;
+          break;
+        case ShiftInitiativeMode.NoShift:
+          DragPB.Image = null;
+          break;
+        case ShiftInitiativeMode.ShiftFrom:
+          DragPB.Image = Properties.Resources.From;
+          break;
+        case ShiftInitiativeMode.ShiftToBefore:
+          DragPB.Image = Properties.Resources.Up;
+          break;
+        case ShiftInitiativeMode.ShiftToAfter:
+          DragPB.Image = Properties.Resources.Down;
+          break;
+        default:
+          throw new ArgumentOutOfRangeException();
+      }
+    }
+
+    public enum ShiftInitiativeMode
+    {
+      None,
+      NoShift,
+      ShiftFrom,
+      ShiftToBefore,
+      ShiftToAfter,
+    }
+
+    #endregion
   }
 
   public static class HpStatusExtensions

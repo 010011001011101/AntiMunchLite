@@ -47,10 +47,10 @@ namespace AntiMunchLite
 
     private CombatantControl _CreateCombatantControl()
     {
-      return new CombatantControl(_Core, _OnInitiativeChange, _OnEffectAdd, _OnDamage, _DeleteCombatant);
+      return new CombatantControl(_Core, _OnInitiativeChange, _OnEffectAdd, _OnDamage, _DeleteCombatant, _OnShiftStart, _OnShiftEnd);
     }
 
-    public void RefreshCombatants(bool refreshCoreObject = false)
+    public void RefreshCombatants(bool refreshCoreObject = false, bool forceInitiativeInit = false)
     {
       MainFlow.SuspendLayout();
 
@@ -59,7 +59,7 @@ namespace AntiMunchLite
       var current = _Core.GetCurrentCombatant();
       var combatants = _Core.Combatants.ToList();
       for (var i = 0; i < combatants.Count; ++i)
-        _CombatantControlsCache[i].Initialize(combatants[i], combatants[i] == current);
+        _CombatantControlsCache[i].Initialize(combatants[i], combatants[i] == current, forceInitiativeInit);
 
       if (refreshCoreObject)
         foreach (var control in _CombatantControlsCache)
@@ -121,6 +121,48 @@ namespace AntiMunchLite
       _Core.RemoveCombatant(combatant);
       RefreshCombatants();
     }
+
+    #region Shift Initiative
+
+    private void _OnShiftStart()
+    {
+      foreach (var combatantControl in _CombatantControlsCache)
+        combatantControl.OnShiftStart();
+    }
+
+    private void _OnShiftEnd()
+    {
+      var shiftFrom = (from combatantControl in _CombatantControlsCache
+                       where combatantControl.ShiftMode == CombatantControl.ShiftInitiativeMode.ShiftFrom
+                       select combatantControl.Combatant
+                      ).FirstOrDefault();
+
+      var shiftAfter = (from combatantControl in _CombatantControlsCache
+                       where combatantControl.ShiftMode == CombatantControl.ShiftInitiativeMode.ShiftToAfter
+                       select combatantControl.Combatant
+                      ).FirstOrDefault();
+
+      var shiftBefore = (from combatantControl in _CombatantControlsCache
+                        where combatantControl.ShiftMode == CombatantControl.ShiftInitiativeMode.ShiftToBefore
+                        select combatantControl.Combatant
+                      ).FirstOrDefault();
+
+      var shiftCanceled = false;
+      if (shiftFrom != null && shiftAfter != null)
+        _Core.ShiftInitiativeAfter(shiftFrom, shiftAfter);
+      else if (shiftFrom != null && shiftBefore != null)
+        _Core.ShiftInitiativeBefore(shiftFrom, shiftBefore);
+      else
+        shiftCanceled = true;
+
+      foreach (var combatantControl in _CombatantControlsCache)
+        combatantControl.OnShiftEnd(shiftCanceled);
+
+      if(!shiftCanceled)
+        RefreshCombatants(forceInitiativeInit: true);
+    }
+
+    #endregion
 
     private void AddBtn_Click(object sender, EventArgs e)
     {

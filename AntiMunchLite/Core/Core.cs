@@ -40,10 +40,7 @@ namespace AntiMunchLite.Core
       var next = GetNextCombatant();
       if (next == null)
       {
-        _SetNextRound();
-        CurrentSubInitiative = 1;
-        CurrentInitiative = int.MaxValue;
-        Next();
+        _EndRound();
       }
       else
       {
@@ -54,6 +51,14 @@ namespace AntiMunchLite.Core
 
         if(skipOne) Next();
       }
+    }
+
+    private void _EndRound()
+    {
+      _SetNextRound();
+      CurrentSubInitiative = 1;
+      CurrentInitiative = int.MaxValue;
+      Next();
     }
 
     public void NextRound()
@@ -126,6 +131,75 @@ namespace AntiMunchLite.Core
                  ? _Combatants.OrderByDescending(c => c.Initiative).ThenBy(c => c.SubInitiative)
                  : _Combatants.AsEnumerable();
       }
+    }
+
+    public void ShiftInitiativeBefore(Combatant from, Combatant before)
+    {
+      var currentCombatant = GetCurrentCombatant();
+      if (from == currentCombatant)
+      {
+        currentCombatant = GetNextCombatant();
+        if (currentCombatant == before)
+          return;
+      }
+
+      _ShiftInitiative(from, before, from, before);
+
+      if (Started)
+      {
+        if (currentCombatant != null)
+        {
+          CurrentInitiative = currentCombatant.Initiative;
+          CurrentSubInitiative = currentCombatant.SubInitiative;
+        }
+        else _EndRound();
+      }
+    }
+
+    public void ShiftInitiativeAfter(Combatant from, Combatant after)
+    {
+      var currentCombatant = GetCurrentCombatant();
+      if (from == currentCombatant)
+        currentCombatant = GetNextCombatant();
+
+      _ShiftInitiative(after, from, from, after);
+
+      if (Started)
+      {
+        if (currentCombatant != null)
+        {
+          CurrentInitiative = currentCombatant.Initiative;
+          CurrentSubInitiative = currentCombatant.SubInitiative;
+        }
+        else _EndRound();
+      }
+    }
+
+    private void _ShiftInitiative(Combatant first, Combatant second, Combatant shiftFrom, Combatant target)
+    {
+      var initiativeList = new List<Combatant>();
+
+      initiativeList.AddRange(from combatant in _Combatants
+                              where combatant != shiftFrom &&
+                                    combatant.Initiative == target.Initiative &&
+                                    combatant.SubInitiative < target.SubInitiative
+                              orderby combatant.SubInitiative
+                              select combatant);
+
+      initiativeList.Add(first);
+      initiativeList.Add(second);
+
+      initiativeList.AddRange(from combatant in _Combatants
+                              where combatant != shiftFrom &&
+                                    combatant.Initiative == target.Initiative &&
+                                    combatant.SubInitiative > target.SubInitiative
+                              orderby combatant.SubInitiative
+                              select combatant);
+
+      shiftFrom.Initiative = target.Initiative;
+
+      for (var i = 0; i < initiativeList.Count; ++i)
+        initiativeList[i].SubInitiative = (uint)(i + 1);
     }
   }
 }
