@@ -11,12 +11,15 @@ namespace AntiMunchLite
   {
     private Core.Core _Core;
     private readonly Action _OnInitiativeChange, _OnShiftStart, _OnShiftEnd;
-    private readonly Action<IEnumerable<Combatant>> _OnEffectAdd, _OnDamage;
+    private readonly Action<IEnumerable<Combatant>> _OnEffectAdd, _OnAbilityAdd, _OnDamage;
     private readonly Action<Combatant> _DeleteDelegate;
-    private readonly ControlsCache<EffectControl> _ControlsCache;
+    private readonly Action _OnManualResize;
+    private readonly ControlsCache<EffectControl> _EffectsControlsCache;
+    private readonly ControlsCache<AbilityControl> _AbilitiesControlsCache;
 
     private bool _Inited;
     private readonly int _DefaultHeight;
+    private readonly float _DefaultEffectsHeight, _DefaultCommentHeight, _DefaultAbilitiesHeight;
     public Combatant Combatant { get; private set; }
     public bool IsCurrent { get; private set; }
 
@@ -28,26 +31,34 @@ namespace AntiMunchLite
       InitializeComponent();
 
       _DefaultHeight = Height;
+      _DefaultEffectsHeight = TableLayoutPanel.RowStyles[1].Height;
+      _DefaultCommentHeight = TableLayoutPanel.RowStyles[2].Height;
+      _DefaultAbilitiesHeight = TableLayoutPanel.RowStyles[3].Height;
     }
 
     public CombatantControl(Core.Core core,
                             Action onInitiativeChangeDelegate,
                             Action<IEnumerable<Combatant>> onEffectAdd,
+                            Action<IEnumerable<Combatant>> onAbilityAdd,
                             Action<IEnumerable<Combatant>> onDamage,
                             Action<Combatant> deleteDelegate,
                             Action onShiftStart,
-                            Action onShiftEnd)
+                            Action onShiftEnd,
+                            Action onManualResize)
       : this()
     {
       _Core = core;
       _OnInitiativeChange = onInitiativeChangeDelegate;
       _OnEffectAdd = onEffectAdd;
+      _OnAbilityAdd = onAbilityAdd;
       _OnDamage = onDamage;
       _DeleteDelegate = deleteDelegate;
       _OnShiftStart = onShiftStart;
       _OnShiftEnd = onShiftEnd;
+      _OnManualResize = onManualResize;
 
-      _ControlsCache = new ControlsCache<EffectControl>(EffectsFlow.Controls, _CreateEffectControl);
+      _EffectsControlsCache = new ControlsCache<EffectControl>(EffectsFlow.Controls, _CreateEffectControl);
+      _AbilitiesControlsCache = new ControlsCache<AbilityControl>(AbilitiesFlow.Controls, _CreateAbilityControl);
     }
 
     public void ResetCore(Core.Core core)
@@ -70,7 +81,9 @@ namespace AntiMunchLite
 
       _SetIsCurrent(isCurrent);
       RefreshEffects();
+      RefreshAbilities();
       _RefreshShiftInitiativeImage();
+      _InitSubBoxesVisibility();
     }
 
     private void _InitializeCombatant(Combatant combatant)
@@ -78,6 +91,7 @@ namespace AntiMunchLite
       Combatant = combatant;
       _InitializeInitiative(combatant);
       CombatantName.Text = combatant.Name;
+      Comment.Text = combatant.Comment;
       CurrentHp.Value = combatant.CurrentHp;
       MaxHp.Value = combatant.MaxHp;
       _RefreshHpStatus();
@@ -95,8 +109,10 @@ namespace AntiMunchLite
 
       var backColor = IsCurrent ? ColorUtils.Green : ColorUtils.Yellow;
       CombatantName.BackColor = BackColor = backColor;
-      foreach (var effectControl in _ControlsCache)
+      foreach (var effectControl in _EffectsControlsCache)
         effectControl.SetTextBackColor(backColor);
+      foreach (var abilityControl in _AbilitiesControlsCache)
+        abilityControl.SetTextBackColor(backColor);
 
       ArrowPB.Visible = IsCurrent;
     }
@@ -109,6 +125,15 @@ namespace AntiMunchLite
                                 : IsCurrent
                                     ? ColorUtils.Green
                                     : ColorUtils.Yellow;
+    }
+
+    private void _InitSubBoxesVisibility()
+    {
+      ShowEffectsCB.Checked = Combatant.ShowEffects;
+      ShowCommentCB.Checked = Combatant.ShowComment;
+      ShowAbilitiesCB.Checked = Combatant.ShowAbilities;
+
+      RefreshSize();
     }
 
     #endregion
@@ -136,6 +161,13 @@ namespace AntiMunchLite
       if (!_Inited) return;
 
       Combatant.Name = CombatantName.Text;
+    }
+
+    private void Comment_TextChanged(object sender, EventArgs e)
+    {
+      if (!_Inited) return;
+
+      Combatant.Comment = Comment.Text;
     }
 
     private bool _IgnoreHpValueChange;
@@ -182,9 +214,41 @@ namespace AntiMunchLite
       _DeleteDelegate(Combatant);
     }
 
+    private void ShowEffectsCB_CheckedChanged(object sender, EventArgs e)
+    {
+      if (!_Inited) return;
+
+      Combatant.ShowEffects = ShowEffectsCB.Checked;
+      RefreshSize();
+      _OnManualResize();
+    }
+
+    private void ShowCommentCB_CheckedChanged(object sender, EventArgs e)
+    {
+      if (!_Inited) return;
+
+      Combatant.ShowComment = ShowCommentCB.Checked;
+      RefreshSize();
+      _OnManualResize();
+    }
+
+    private void ShowAbilitiesCB_CheckedChanged(object sender, EventArgs e)
+    {
+      if (!_Inited) return;
+
+      Combatant.ShowAbilities = ShowAbilitiesCB.Checked;
+      RefreshSize();
+      _OnManualResize();
+    }
+
     private void AddEffectBtn_Click(object sender, EventArgs e)
     {
       _OnEffectAdd(EffectDialog.CreateEffect(_Core, Combatant, Parent));
+    }
+
+    private void AddAbilityBtn_Click(object sender, EventArgs e)
+    {
+      _OnAbilityAdd(AbilityDialog.CreateAbility(_Core, Combatant, Parent));
     }
 
     #endregion
@@ -219,11 +283,11 @@ namespace AntiMunchLite
     {
       EffectsFlow.SuspendLayout();
 
-      _ControlsCache.AbjustSize(Combatant.Effects.Count);
+      _EffectsControlsCache.AbjustSize(Combatant.Effects.Count);
 
       var effects = Combatant.Effects.OrderBy(e => e.Type).ToList();
       for (var i = 0; i < effects.Count; ++i)
-        _ControlsCache[i].Initialize(effects[i], BackColor);
+        _EffectsControlsCache[i].Initialize(effects[i], BackColor);
 
       RefreshSize();
       EffectsFlow.ResumeLayout();
@@ -243,14 +307,58 @@ namespace AntiMunchLite
 
     #endregion
 
+    #region Abilities
+
+    public void RefreshAbilities()
+    {
+      AbilitiesFlow.SuspendLayout();
+
+      _AbilitiesControlsCache.AbjustSize(Combatant.Abilities.Count);
+
+      var abilities = Combatant.Abilities.ToList();
+      for (var i = 0; i < abilities.Count; ++i)
+        _AbilitiesControlsCache[i].Initialize(abilities[i], BackColor);
+
+      RefreshSize();
+      AbilitiesFlow.ResumeLayout();
+    }
+
+    private AbilityControl _CreateAbilityControl()
+    {
+      return new AbilityControl(_DeleteAbility);
+    }
+
+    private void _DeleteAbility(Ability ability)
+    {
+      Combatant.Abilities.Remove(ability);
+
+      RefreshAbilities();
+    }
+
+    #endregion
+
     public void RefreshSize()
     {
-      var prSize = EffectsFlow.PreferredSize;
-      var heightMult = (int)((double)prSize.Width / EffectsFlow.Width) + 1;
+      var effectsDelta = GetFlowDelta(EffectsFlow, Combatant.ShowEffects, _DefaultEffectsHeight);
+      var commentDelta = Combatant.ShowComment ? 0 : -_DefaultCommentHeight;
+      var abilitiesDelta = GetFlowDelta(AbilitiesFlow, Combatant.ShowAbilities, _DefaultAbilitiesHeight);
 
-      Height = heightMult > 1
-        ? EffectsFlow.GetPreferredSize(new Size(EffectsFlow.Width, prSize.Height * heightMult)).Height
-        : _DefaultHeight;
+      TableLayoutPanel.RowStyles[1].Height = _DefaultEffectsHeight + effectsDelta;
+      TableLayoutPanel.RowStyles[2].Height = _DefaultCommentHeight + commentDelta;
+      TableLayoutPanel.RowStyles[3].Height = _DefaultAbilitiesHeight + abilitiesDelta;
+
+      Height = (int)(_DefaultHeight + effectsDelta + commentDelta + abilitiesDelta);
+
+      float GetFlowDelta(FlowLayoutPanel flow, bool showFlag, float totalBoxHeight)
+      {
+        var prSize = flow.PreferredSize;
+        var heightMult = (int)((double)prSize.Width / flow.Width) + 1;
+        return showFlag
+          ? heightMult > 1
+            ? flow.GetPreferredSize(new Size(flow.Width, prSize.Height * heightMult)).Height - prSize.Height
+            : 0
+          : -totalBoxHeight;
+      }
     }
 
     #region Shift Initiative

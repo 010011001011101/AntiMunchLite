@@ -8,6 +8,7 @@ namespace AntiMunchLite.Core
   public class Core
   {
     public List<string> PreGenEffects { get; private set; } = new List<string>();
+    public List<string> PreGenAbilities { get; private set; } = new List<string>();
 
     public bool Started { get; private set; }
     public uint CurrentRound { get; private set; }
@@ -96,6 +97,7 @@ namespace AntiMunchLite.Core
       _Combatants.AddRange(otherCore._Combatants);
 
       PreGenEffects = PreGenEffects.Concat(otherCore.PreGenEffects).Distinct().ToList();
+      PreGenAbilities = PreGenAbilities.Concat(otherCore.PreGenAbilities).Distinct().ToList();
     }
 
     public Combatant GetCurrentCombatant()

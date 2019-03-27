@@ -47,7 +47,11 @@ namespace AntiMunchLite
 
     private CombatantControl _CreateCombatantControl()
     {
-      return new CombatantControl(_Core, _OnInitiativeChange, _OnEffectAdd, _OnDamage, _DeleteCombatant, _OnShiftStart, _OnShiftEnd);
+      return new CombatantControl(_Core,
+                                  _OnInitiativeChange, _OnEffectAdd, _OnAbilityAdd,
+                                  _OnDamage, _DeleteCombatant,
+                                  _OnShiftStart, _OnShiftEnd,
+                                  _OnCombatantManualResize);
     }
 
     public void RefreshCombatants(bool refreshCoreObject = false, bool forceInitiativeInit = false)
@@ -106,6 +110,14 @@ namespace AntiMunchLite
                               join c in combatants on cc.Combatant equals c
                               select cc)
         control.RefreshEffects();
+    }
+
+    private void _OnAbilityAdd(IEnumerable<Combatant> combatants)
+    {
+      foreach (var control in from cc in _CombatantControlsCache
+                              join c in combatants on cc.Combatant equals c
+                              select cc)
+        control.RefreshAbilities();
     }
 
     private void _OnDamage(IEnumerable<Combatant> combatants)
@@ -196,12 +208,24 @@ namespace AntiMunchLite
     {
       if (_CombatantControlsCache == null) return;
 
+      foreach (var control in _CombatantControlsCache)
+        control.RefreshSize();
+
+      _FixCombatantControlsWidth();
+    }
+
+    private void _OnCombatantManualResize()
+    {
+      _FixCombatantControlsWidth();
+    }
+
+    private void _FixCombatantControlsWidth()
+    {
+      if (_CombatantControlsCache == null) return;
+
       var newWidth = _GetCombatantControlsWidth();
       foreach (var control in _CombatantControlsCache)
-      {
         control.Width = newWidth;
-        control.RefreshSize();
-      }
     }
 
     private void ResetBtn_Click(object sender, EventArgs e)
@@ -237,10 +261,14 @@ namespace AntiMunchLite
       RefreshCombatants();
     }
 
+    private void abilitiesToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      PreGenAbilitiesDialog.Show(_Core.PreGenAbilities, this);
+    }
+
     private void ShowPreGenEffects_Click(object sender, EventArgs e)
     {
       PreGenEffectsDialog.Show(_Core.PreGenEffects, this);
     }
-
   }
 }

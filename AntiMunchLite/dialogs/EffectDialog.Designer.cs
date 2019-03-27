@@ -29,14 +29,14 @@
     private void InitializeComponent()
     {
       this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-      this.RemainTime = new AntiMunchLite.BugFix.MyNumericInput();
-      this.TypePanel = new System.Windows.Forms.FlowLayoutPanel();
-      this.IsDebuff = new System.Windows.Forms.RadioButton();
-      this.IsBuff = new System.Windows.Forms.RadioButton();
       this.OkBtn = new System.Windows.Forms.Button();
       this.CancelBtn = new System.Windows.Forms.Button();
       this.EffectName = new System.Windows.Forms.ComboBox();
       this.Combotants = new System.Windows.Forms.CheckedListBox();
+      this.TypePanel = new System.Windows.Forms.FlowLayoutPanel();
+      this.IsDebuff = new System.Windows.Forms.RadioButton();
+      this.IsBuff = new System.Windows.Forms.RadioButton();
+      this.RemainTime = new AntiMunchLite.BugFix.MyNumericInput();
       this.TimeFlow = new System.Windows.Forms.FlowLayoutPanel();
       this.RoundTime = new System.Windows.Forms.RadioButton();
       this.MinuteTime = new System.Windows.Forms.RadioButton();
@@ -71,70 +71,6 @@
       this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
       this.TableLayoutPanel.Size = new System.Drawing.Size(339, 244);
       this.TableLayoutPanel.TabIndex = 0;
-      // 
-      // RemainTime
-      // 
-      this.RemainTime.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.RemainTime.Location = new System.Drawing.Point(3, 189);
-      this.RemainTime.Maximum = new decimal(new int[] {
-            99999,
-            0,
-            0,
-            0});
-      this.RemainTime.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-      this.RemainTime.Name = "RemainTime";
-      this.RemainTime.RepeatingDigitsCount = ((uint)(0u));
-      this.RemainTime.Size = new System.Drawing.Size(42, 20);
-      this.RemainTime.TabIndex = 2;
-      this.RemainTime.Text = "10";
-      this.RemainTime.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-      // 
-      // TypePanel
-      // 
-      this.TableLayoutPanel.SetColumnSpan(this.TypePanel, 2);
-      this.TypePanel.Controls.Add(this.IsDebuff);
-      this.TypePanel.Controls.Add(this.IsBuff);
-      this.TypePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.TypePanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-      this.TypePanel.Location = new System.Drawing.Point(209, 159);
-      this.TypePanel.Margin = new System.Windows.Forms.Padding(0);
-      this.TypePanel.Name = "TypePanel";
-      this.TypePanel.Size = new System.Drawing.Size(130, 27);
-      this.TypePanel.TabIndex = 1;
-      // 
-      // IsDebuff
-      // 
-      this.IsDebuff.AutoSize = true;
-      this.IsDebuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.IsDebuff.ForeColor = System.Drawing.Color.DarkRed;
-      this.IsDebuff.Location = new System.Drawing.Point(64, 3);
-      this.IsDebuff.Name = "IsDebuff";
-      this.IsDebuff.Size = new System.Drawing.Size(63, 17);
-      this.IsDebuff.TabIndex = 1;
-      this.IsDebuff.Text = "Debuff";
-      this.IsDebuff.UseVisualStyleBackColor = true;
-      // 
-      // IsBuff
-      // 
-      this.IsBuff.AutoSize = true;
-      this.IsBuff.Checked = true;
-      this.IsBuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.IsBuff.ForeColor = System.Drawing.Color.Green;
-      this.IsBuff.Location = new System.Drawing.Point(10, 3);
-      this.IsBuff.Name = "IsBuff";
-      this.IsBuff.Size = new System.Drawing.Size(48, 17);
-      this.IsBuff.TabIndex = 0;
-      this.IsBuff.TabStop = true;
-      this.IsBuff.Text = "Buff";
-      this.IsBuff.UseVisualStyleBackColor = true;
       // 
       // OkBtn
       // 
@@ -183,6 +119,70 @@
       this.Combotants.TabIndex = 5;
       this.Combotants.TabStop = false;
       // 
+      // TypePanel
+      // 
+      this.TableLayoutPanel.SetColumnSpan(this.TypePanel, 2);
+      this.TypePanel.Controls.Add(this.IsDebuff);
+      this.TypePanel.Controls.Add(this.IsBuff);
+      this.TypePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.TypePanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+      this.TypePanel.Location = new System.Drawing.Point(209, 159);
+      this.TypePanel.Margin = new System.Windows.Forms.Padding(0);
+      this.TypePanel.Name = "TypePanel";
+      this.TypePanel.Size = new System.Drawing.Size(130, 27);
+      this.TypePanel.TabIndex = 1;
+      // 
+      // IsDebuff
+      // 
+      this.IsDebuff.AutoSize = true;
+      this.IsDebuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.IsDebuff.ForeColor = System.Drawing.Color.DarkRed;
+      this.IsDebuff.Location = new System.Drawing.Point(64, 3);
+      this.IsDebuff.Name = "IsDebuff";
+      this.IsDebuff.Size = new System.Drawing.Size(63, 17);
+      this.IsDebuff.TabIndex = 1;
+      this.IsDebuff.Text = "Debuff";
+      this.IsDebuff.UseVisualStyleBackColor = true;
+      // 
+      // IsBuff
+      // 
+      this.IsBuff.AutoSize = true;
+      this.IsBuff.Checked = true;
+      this.IsBuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.IsBuff.ForeColor = System.Drawing.Color.Green;
+      this.IsBuff.Location = new System.Drawing.Point(10, 3);
+      this.IsBuff.Name = "IsBuff";
+      this.IsBuff.Size = new System.Drawing.Size(48, 17);
+      this.IsBuff.TabIndex = 0;
+      this.IsBuff.TabStop = true;
+      this.IsBuff.Text = "Buff";
+      this.IsBuff.UseVisualStyleBackColor = true;
+      // 
+      // RemainTime
+      // 
+      this.RemainTime.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.RemainTime.Location = new System.Drawing.Point(3, 189);
+      this.RemainTime.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+      this.RemainTime.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+      this.RemainTime.Name = "RemainTime";
+      this.RemainTime.RepeatingDigitsCount = ((uint)(0u));
+      this.RemainTime.Size = new System.Drawing.Size(42, 20);
+      this.RemainTime.TabIndex = 2;
+      this.RemainTime.Text = "10";
+      this.RemainTime.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+      // 
       // TimeFlow
       // 
       this.TableLayoutPanel.SetColumnSpan(this.TimeFlow, 3);
@@ -205,6 +205,7 @@
       this.RoundTime.Name = "RoundTime";
       this.RoundTime.Size = new System.Drawing.Size(66, 17);
       this.RoundTime.TabIndex = 0;
+      this.RoundTime.TabStop = true;
       this.RoundTime.Text = "1 Round";
       this.RoundTime.UseVisualStyleBackColor = true;
       // 

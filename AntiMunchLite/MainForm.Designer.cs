@@ -49,6 +49,7 @@
       this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
       this.ResetBtn = new System.Windows.Forms.ToolStripButton();
       this.MainFlow = new System.Windows.Forms.FlowLayoutPanel();
+      this.abilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.ToolBar.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -79,7 +80,8 @@
             this.LoadBtn,
             this.LoadAddBtn,
             this.toolStripSeparator4,
-            this.ShowPreGenEffects});
+            this.ShowPreGenEffects,
+            this.abilitiesToolStripMenuItem});
       this.MenuList.Image = ((System.Drawing.Image)(resources.GetObject("MenuList.Image")));
       this.MenuList.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.MenuList.Name = "MenuList";
@@ -90,7 +92,7 @@
       // 
       this.SaveBtn.Image = ((System.Drawing.Image)(resources.GetObject("SaveBtn.Image")));
       this.SaveBtn.Name = "SaveBtn";
-      this.SaveBtn.Size = new System.Drawing.Size(125, 22);
+      this.SaveBtn.Size = new System.Drawing.Size(180, 22);
       this.SaveBtn.Text = "Save";
       this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
       // 
@@ -98,7 +100,7 @@
       // 
       this.LoadBtn.Image = ((System.Drawing.Image)(resources.GetObject("LoadBtn.Image")));
       this.LoadBtn.Name = "LoadBtn";
-      this.LoadBtn.Size = new System.Drawing.Size(125, 22);
+      this.LoadBtn.Size = new System.Drawing.Size(180, 22);
       this.LoadBtn.Text = "Load";
       this.LoadBtn.Click += new System.EventHandler(this.LoadBtn_Click);
       // 
@@ -106,19 +108,19 @@
       // 
       this.LoadAddBtn.Image = ((System.Drawing.Image)(resources.GetObject("LoadAddBtn.Image")));
       this.LoadAddBtn.Name = "LoadAddBtn";
-      this.LoadAddBtn.Size = new System.Drawing.Size(125, 22);
+      this.LoadAddBtn.Size = new System.Drawing.Size(180, 22);
       this.LoadAddBtn.Text = "Load Add";
       this.LoadAddBtn.Click += new System.EventHandler(this.LoadAddBtn_Click);
       // 
       // toolStripSeparator4
       // 
       this.toolStripSeparator4.Name = "toolStripSeparator4";
-      this.toolStripSeparator4.Size = new System.Drawing.Size(122, 6);
+      this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
       // 
       // ShowPreGenEffects
       // 
       this.ShowPreGenEffects.Name = "ShowPreGenEffects";
-      this.ShowPreGenEffects.Size = new System.Drawing.Size(125, 22);
+      this.ShowPreGenEffects.Size = new System.Drawing.Size(180, 22);
       this.ShowPreGenEffects.Text = "Effects...";
       this.ShowPreGenEffects.Click += new System.EventHandler(this.ShowPreGenEffects_Click);
       // 
@@ -199,6 +201,13 @@
       this.MainFlow.TabIndex = 1;
       this.MainFlow.WrapContents = false;
       // 
+      // abilitiesToolStripMenuItem
+      // 
+      this.abilitiesToolStripMenuItem.Name = "abilitiesToolStripMenuItem";
+      this.abilitiesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.abilitiesToolStripMenuItem.Text = "Abilities...";
+      this.abilitiesToolStripMenuItem.Click += new System.EventHandler(this.abilitiesToolStripMenuItem_Click);
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -236,5 +245,6 @@
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     private System.Windows.Forms.ToolStripMenuItem ShowPreGenEffects;
     private System.Windows.Forms.ToolStripMenuItem LoadAddBtn;
+    private System.Windows.Forms.ToolStripMenuItem abilitiesToolStripMenuItem;
   }
 }

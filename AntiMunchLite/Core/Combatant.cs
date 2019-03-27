@@ -11,13 +11,14 @@ namespace AntiMunchLite.Core
     public int CurrentHp { get; set; }
     public int Initiative { get; set; }
     public int SubInitiative { get; set; }
+    public string Comment { get; set; }
 
-    public List<Effect> Effects { get; }
+    public List<Effect> Effects { get; } = new List<Effect>();
+    public List<Ability> Abilities { get; } = new List<Ability>();
 
-    public Combatant()
-    {
-      Effects = new List<Effect>();
-    }
+    public bool ShowComment { get; set; }
+    public bool ShowEffects { get; set; }
+    public bool ShowAbilities { get; set; }
 
     private const float LightPercent = 60;
     private const float MediumPercent = 30;

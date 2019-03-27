@@ -73,6 +73,25 @@
     <Compile Include="BugFix\MyNumericInput.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="controls\AbilityControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\AbilityControl.Designer.cs">
+      <DependentUpon>AbilityControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Ability.cs" />
+    <Compile Include="dialogs\AbilityDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dialogs\AbilityDialog.Designer.cs">
+      <DependentUpon>AbilityDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dialogs\PreGenAbilitiesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dialogs\PreGenAbilitiesDialog.Designer.cs">
+      <DependentUpon>PreGenAbilitiesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="dialogs\SaveDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,10 +146,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SaveLoadManager.cs" />
+    <Compile Include="utils\SaveLoadManager.cs" />
     <Compile Include="utils\ControlsCache.cs" />
+    <EmbeddedResource Include="controls\AbilityControl.resx">
+      <DependentUpon>AbilityControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="controls\CombatantControl.resx">
       <DependentUpon>CombatantControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dialogs\AbilityDialog.resx">
+      <DependentUpon>AbilityDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dialogs\DMGDialog.resx">
       <DependentUpon>DMGDialog.cs</DependentUpon>
@@ -140,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="dialogs\EffectDialog.resx">
       <DependentUpon>EffectDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dialogs\PreGenAbilitiesDialog.resx">
+      <DependentUpon>PreGenAbilitiesDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dialogs\PreGenEffectsDialog.resx">
       <DependentUpon>PreGenEffectsDialog.cs</DependentUpon>
