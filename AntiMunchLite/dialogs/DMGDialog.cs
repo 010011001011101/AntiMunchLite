@@ -36,17 +36,17 @@ namespace AntiMunchLite
     private IEnumerable<Combatant> _MakeDamage()
     {
       var dmg = (int)DmgCounter.Value;
-      if (IsHeal.Checked)
-        dmg *= -1;
+      if (dmg == 0) yield break;
 
-      if (Combotants.CheckedItems.Count == 0 && dmg != 0)
-        yield break;
+      if (IsHeal.Checked) dmg *= -1;
 
       foreach (Combatant combatant in Combotants.CheckedItems)
       {
         combatant.CurrentHp -= dmg;
 
-        if (NoOverheal.Checked && combatant.CurrentHp > combatant.MaxHp && dmg < 0)
+        if (NoOverheal.Checked &&
+            combatant.CurrentHp > combatant.MaxHp &&
+            dmg < 0)
           combatant.CurrentHp = combatant.MaxHp;
 
         yield return combatant;
