@@ -127,7 +127,7 @@ namespace AntiMunchLite
     {
       if (!_Inited) return;
 
-      Combatant.SubInitiative = (uint)SubInitiative.Value;
+      Combatant.SubInitiative = (int)SubInitiative.Value;
       _OnInitiativeChange();
     }
 

@@ -12,7 +12,7 @@ namespace AntiMunchLite.Core
     public bool Started { get; private set; }
     public uint CurrentRound { get; private set; }
     public int CurrentInitiative { get; private set; }
-    public uint CurrentSubInitiative { get; private set; }
+    public int CurrentSubInitiative { get; private set; }
 
     private readonly List<Combatant> _Combatants = new List<Combatant>();
 
@@ -199,7 +199,7 @@ namespace AntiMunchLite.Core
       shiftFrom.Initiative = target.Initiative;
 
       for (var i = 0; i < initiativeList.Count; ++i)
-        initiativeList[i].SubInitiative = (uint)(i + 1);
+        initiativeList[i].SubInitiative = i + 1;
     }
   }
 }

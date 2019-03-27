@@ -6,23 +6,22 @@ namespace AntiMunchLite.Core
   [Serializable]
   public class Combatant
   {
-    private const float LightPercent = 60;
-    private const float MediumPercent = 30;
-    private const float HeavyPercent = 5; 
-
     public string Name { get; set; }
     public int MaxHp { get; set; }
     public int CurrentHp { get; set; }
     public int Initiative { get; set; }
-    public uint SubInitiative { get; set; }
+    public int SubInitiative { get; set; }
 
-    public List<Effect> Effects { get; set; }
+    public List<Effect> Effects { get; }
 
     public Combatant()
     {
       Effects = new List<Effect>();
     }
 
+    private const float LightPercent = 60;
+    private const float MediumPercent = 30;
+    private const float HeavyPercent = 5;
     public HpStatus HpStatus
     {
       get

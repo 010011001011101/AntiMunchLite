@@ -169,10 +169,10 @@ namespace AntiMunchLite
             0,
             0});
       this.SubInitiative.Minimum = new decimal(new int[] {
-            1,
+            100,
             0,
             0,
-            0});
+            -2147483648});
       this.SubInitiative.Name = "SubInitiative";
       this.SubInitiative.RepeatingDigitsCount = ((uint)(0u));
       this.SubInitiative.Size = new System.Drawing.Size(39, 23);
