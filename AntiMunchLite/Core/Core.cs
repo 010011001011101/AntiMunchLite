@@ -26,7 +26,7 @@ namespace AntiMunchLite.Core
     {
       Started = false;
       CurrentRound = 1;
-      CurrentSubInitiative = 1;
+      CurrentSubInitiative = int.MaxValue;
       CurrentInitiative = int.MaxValue;
 
       foreach (var combatant in _Combatants)
@@ -57,7 +57,7 @@ namespace AntiMunchLite.Core
     private void _EndRound()
     {
       _SetNextRound();
-      CurrentSubInitiative = 1;
+      CurrentSubInitiative = int.MaxValue;
       CurrentInitiative = int.MaxValue;
       Next();
     }
@@ -106,8 +106,8 @@ namespace AntiMunchLite.Core
 
       return (from combatant in _Combatants
               where combatant.Initiative < CurrentInitiative ||
-                    combatant.Initiative == CurrentInitiative && combatant.SubInitiative >= CurrentSubInitiative
-              orderby combatant.Initiative descending, combatant.SubInitiative
+                    combatant.Initiative == CurrentInitiative && combatant.SubInitiative <= CurrentSubInitiative
+              orderby combatant.Initiative descending, combatant.SubInitiative descending 
               select combatant
              ).FirstOrDefault();
     }
@@ -118,8 +118,8 @@ namespace AntiMunchLite.Core
 
       return (from combatant in _Combatants
               where combatant.Initiative < CurrentInitiative ||
-                    combatant.Initiative == CurrentInitiative && combatant.SubInitiative > CurrentSubInitiative
-              orderby combatant.Initiative descending, combatant.SubInitiative
+                    combatant.Initiative == CurrentInitiative && combatant.SubInitiative < CurrentSubInitiative
+              orderby combatant.Initiative descending, combatant.SubInitiative descending 
               select combatant
              ).FirstOrDefault();
     }
@@ -130,7 +130,7 @@ namespace AntiMunchLite.Core
       get
       {
         return Started
-                 ? _Combatants.OrderByDescending(c => c.Initiative).ThenBy(c => c.SubInitiative)
+                 ? _Combatants.OrderByDescending(c => c.Initiative).ThenByDescending(c => c.SubInitiative)
                  : _Combatants.AsEnumerable();
       }
     }
@@ -184,8 +184,8 @@ namespace AntiMunchLite.Core
       initiativeList.AddRange(from combatant in _Combatants
                               where combatant != shiftFrom &&
                                     combatant.Initiative == target.Initiative &&
-                                    combatant.SubInitiative < target.SubInitiative
-                              orderby combatant.SubInitiative
+                                    combatant.SubInitiative > target.SubInitiative
+                              orderby combatant.SubInitiative descending 
                               select combatant);
 
       initiativeList.Add(first);
@@ -194,14 +194,14 @@ namespace AntiMunchLite.Core
       initiativeList.AddRange(from combatant in _Combatants
                               where combatant != shiftFrom &&
                                     combatant.Initiative == target.Initiative &&
-                                    combatant.SubInitiative > target.SubInitiative
-                              orderby combatant.SubInitiative
+                                    combatant.SubInitiative < target.SubInitiative
+                              orderby combatant.SubInitiative descending 
                               select combatant);
 
       shiftFrom.Initiative = target.Initiative;
 
       for (var i = 0; i < initiativeList.Count; ++i)
-        initiativeList[i].SubInitiative = i + 1;
+        initiativeList[i].SubInitiative = initiativeList.Count - i;
     }
   }
 }

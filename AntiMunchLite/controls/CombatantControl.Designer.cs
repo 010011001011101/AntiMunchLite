@@ -172,7 +172,7 @@ namespace AntiMunchLite
       this.Initiative.Size = new System.Drawing.Size(44, 23);
       this.Initiative.TabIndex = 0;
       this.Initiative.Text = "0";
-      this.ToolTip.SetToolTip(this.Initiative, "Инициатива (Очередность хода - по убыванию)");
+      this.ToolTip.SetToolTip(this.Initiative, "Initiative Order (desc)");
       this.Initiative.Value = new decimal(new int[] {
             0,
             0,
@@ -202,7 +202,7 @@ namespace AntiMunchLite
       this.SubInitiative.TabIndex = 1;
       this.SubInitiative.TabStop = false;
       this.SubInitiative.Text = "1";
-      this.ToolTip.SetToolTip(this.SubInitiative, "Порядок в одной инициативе (Очередность хода - по возрастанию)");
+      this.ToolTip.SetToolTip(this.SubInitiative, "SubInitiative Order (desc)");
       this.SubInitiative.Value = new decimal(new int[] {
             1,
             0,
