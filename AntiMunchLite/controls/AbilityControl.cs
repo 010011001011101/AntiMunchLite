@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using AntiMunchLite.Core;
 
-namespace AntiMunchLite
+namespace AntiMunchLite.Controls
 {
   public partial class AbilityControl : UserControl
   {

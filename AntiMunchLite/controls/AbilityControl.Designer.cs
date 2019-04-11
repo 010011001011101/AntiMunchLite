@@ -1,4 +1,6 @@
-﻿namespace AntiMunchLite
+﻿using AntiMunchLite.BaseControls;
+
+namespace AntiMunchLite.Controls
 {
   partial class AbilityControl
   {
@@ -31,10 +33,10 @@
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.DelBtn = new System.Windows.Forms.Button();
       this.AbilityNameTB = new System.Windows.Forms.TextBox();
-      this.RemainNum = new AntiMunchLite.BugFix.MyNumericInput();
+      this.RemainNum = new CustomNumericInput();
       this.SpendOneBtn = new System.Windows.Forms.Button();
       this.label1 = new System.Windows.Forms.Label();
-      this.TotalNum = new AntiMunchLite.BugFix.MyNumericInput();
+      this.TotalNum = new CustomNumericInput();
       this.tableLayoutPanel1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -182,9 +184,9 @@
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     private System.Windows.Forms.Button DelBtn;
     private System.Windows.Forms.TextBox AbilityNameTB;
-    private BugFix.MyNumericInput RemainNum;
+    private CustomNumericInput RemainNum;
     private System.Windows.Forms.Button SpendOneBtn;
     private System.Windows.Forms.Label label1;
-    private BugFix.MyNumericInput TotalNum;
+    private CustomNumericInput TotalNum;
   }
 }

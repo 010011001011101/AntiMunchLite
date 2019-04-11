@@ -1,4 +1,6 @@
-﻿namespace AntiMunchLite
+﻿using AntiMunchLite.BaseControls;
+
+namespace AntiMunchLite.Dialogs
 {
   partial class EffectDialog
   {
@@ -36,7 +38,7 @@
       this.TypePanel = new System.Windows.Forms.FlowLayoutPanel();
       this.IsDebuff = new System.Windows.Forms.RadioButton();
       this.IsBuff = new System.Windows.Forms.RadioButton();
-      this.RemainTime = new AntiMunchLite.BugFix.MyNumericInput();
+      this.RemainTime = new CustomNumericInput();
       this.TimeFlow = new System.Windows.Forms.FlowLayoutPanel();
       this.RoundTime = new System.Windows.Forms.RadioButton();
       this.MinuteTime = new System.Windows.Forms.RadioButton();
@@ -268,7 +270,7 @@
     #endregion
 
     private System.Windows.Forms.TableLayoutPanel TableLayoutPanel;
-    private BugFix.MyNumericInput RemainTime;
+    private CustomNumericInput RemainTime;
     private System.Windows.Forms.FlowLayoutPanel TypePanel;
     private System.Windows.Forms.RadioButton IsDebuff;
     private System.Windows.Forms.RadioButton IsBuff;

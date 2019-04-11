@@ -1,4 +1,6 @@
-﻿namespace AntiMunchLite
+﻿using AntiMunchLite.BaseControls;
+
+namespace AntiMunchLite.Dialogs
 {
   partial class AbilityDialog
   {
@@ -34,9 +36,9 @@
       this.Combotants = new System.Windows.Forms.CheckedListBox();
       this.NameCB = new System.Windows.Forms.ComboBox();
       this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-      this.RemainNum = new AntiMunchLite.BugFix.MyNumericInput();
+      this.RemainNum = new CustomNumericInput();
       this.label1 = new System.Windows.Forms.Label();
-      this.TotalNum = new AntiMunchLite.BugFix.MyNumericInput();
+      this.TotalNum = new CustomNumericInput();
       this.tableLayoutPanel1.SuspendLayout();
       this.flowLayoutPanel1.SuspendLayout();
       this.SuspendLayout();
@@ -208,8 +210,8 @@
     private System.Windows.Forms.CheckedListBox Combotants;
     private System.Windows.Forms.ComboBox NameCB;
     private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-    private BugFix.MyNumericInput RemainNum;
+    private CustomNumericInput RemainNum;
     private System.Windows.Forms.Label label1;
-    private BugFix.MyNumericInput TotalNum;
+    private CustomNumericInput TotalNum;
   }
 }

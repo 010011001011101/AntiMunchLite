@@ -3,7 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using AntiMunchLite.Core;
 
-namespace AntiMunchLite
+namespace AntiMunchLite.Dialogs
 {
   public partial class EffectDialog : Form
   {

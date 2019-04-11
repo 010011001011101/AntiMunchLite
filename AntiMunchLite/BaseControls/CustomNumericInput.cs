@@ -4,9 +4,9 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace AntiMunchLite.BugFix
+namespace AntiMunchLite.BaseControls
 {
-  public class MyNumericInput : TextBox
+  public class CustomNumericInput : TextBox
   {
     public decimal Minimum { get; set; }
     public decimal Maximum { get; set; }
@@ -16,12 +16,9 @@ namespace AntiMunchLite.BugFix
 
     public decimal Value
     {
-      get
-      {
-        return string.IsNullOrWhiteSpace(Text)
-          ? 0
-          : Convert.ToDecimal(Text);
-      }
+      get => string.IsNullOrWhiteSpace(Text)
+        ? 0
+        : Convert.ToDecimal(Text);
       set
       {
         Text = value.ToString(CultureInfo.InvariantCulture);

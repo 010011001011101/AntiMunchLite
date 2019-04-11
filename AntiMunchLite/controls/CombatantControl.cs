@@ -4,8 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using AntiMunchLite.Core;
+using AntiMunchLite.Dialogs;
 
-namespace AntiMunchLite
+namespace AntiMunchLite.Controls
 {
   public partial class CombatantControl : UserControl
   {
@@ -195,14 +196,14 @@ namespace AntiMunchLite
     {
       if (!_Inited) return;
 
-      _OnDamage(DMGDialog.MakeDamage(_Core, Combatant, false, Parent));
+      _OnDamage(DmgDialog.MakeDamage(_Core, Combatant, false, Parent));
     }
 
     private void HealBtn_Click(object sender, EventArgs e)
     {
       if (!_Inited) return;
 
-      _OnDamage(DMGDialog.MakeDamage(_Core, Combatant, true, Parent));
+      _OnDamage(DmgDialog.MakeDamage(_Core, Combatant, true, Parent));
     }
 
     private void DelBtn_Click(object sender, EventArgs e)

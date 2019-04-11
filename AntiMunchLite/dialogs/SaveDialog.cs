@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace AntiMunchLite
+namespace AntiMunchLite.Dialogs
 {
   public partial class SaveDialog : Form
   {

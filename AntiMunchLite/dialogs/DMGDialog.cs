@@ -6,17 +6,17 @@ using AntiMunchLite.Core;
 
 namespace AntiMunchLite
 {
-  public partial class DMGDialog : Form
+  public partial class DmgDialog : Form
   {
     public static List<Combatant> MakeDamage(Core.Core core, Combatant combatant, bool heal, IWin32Window parent)
     {
-      using (var dialog = new DMGDialog(core, combatant, heal))
+      using (var dialog = new DmgDialog(core, combatant, heal))
         return dialog.ShowDialog(parent) == DialogResult.OK
           ? dialog._MakeDamage().ToList()
           : new List<Combatant>();
     }
 
-    public DMGDialog(Core.Core core, Combatant combatant, bool heal)
+    public DmgDialog(Core.Core core, Combatant combatant, bool heal)
     {
       InitializeComponent();
 

@@ -1,4 +1,4 @@
-﻿namespace AntiMunchLite
+﻿namespace AntiMunchLite.Dialogs
 {
   partial class SaveDialog
   {

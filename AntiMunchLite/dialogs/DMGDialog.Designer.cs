@@ -1,6 +1,6 @@
 ﻿namespace AntiMunchLite
 {
-  partial class DMGDialog
+  partial class DmgDialog
   {
     /// <summary>
     /// Required designer variable.
@@ -183,7 +183,7 @@
       this.Margin = new System.Windows.Forms.Padding(2);
       this.MaximizeBox = false;
       this.MinimizeBox = false;
-      this.Name = "DMGDialog";
+      this.Name = "DmgDialog";
       this.ShowIcon = false;
       this.ShowInTaskbar = false;
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

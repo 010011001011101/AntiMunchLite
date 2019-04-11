@@ -1,9 +1,7 @@
-﻿using System;
-using System.Windows.Forms;
-using AntiMunchLite.BugFix;
-using Microsoft.Win32;
+﻿using System.Windows.Forms;
+using AntiMunchLite.BaseControls;
 
-namespace AntiMunchLite
+namespace AntiMunchLite.Controls
 {
   partial class CombatantControl
   {
@@ -42,14 +40,14 @@ namespace AntiMunchLite
       this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
       this.HealBtn = new System.Windows.Forms.Button();
       this.ArrowPB = new System.Windows.Forms.PictureBox();
-      this.Initiative = new AntiMunchLite.BugFix.MyNumericInput();
-      this.SubInitiative = new AntiMunchLite.BugFix.MyNumericInput();
+      this.Initiative = new CustomNumericInput();
+      this.SubInitiative = new CustomNumericInput();
       this.CombatantName = new System.Windows.Forms.TextBox();
       this.DmgBtn = new System.Windows.Forms.Button();
       this.label1 = new System.Windows.Forms.Label();
-      this.CurrentHp = new AntiMunchLite.BugFix.MyNumericInput();
+      this.CurrentHp = new CustomNumericInput();
       this.label2 = new System.Windows.Forms.Label();
-      this.MaxHp = new AntiMunchLite.BugFix.MyNumericInput();
+      this.MaxHp = new CustomNumericInput();
       this.StatusLbl = new System.Windows.Forms.Label();
       this.DelBtn = new System.Windows.Forms.Button();
       this.DragPB = new System.Windows.Forms.PictureBox();
@@ -563,14 +561,14 @@ namespace AntiMunchLite
     private System.Windows.Forms.TableLayoutPanel TableLayoutPanel;
     private System.Windows.Forms.TextBox CombatantName;
     private System.Windows.Forms.Label label1;
-    private MyNumericInput CurrentHp;
+    private CustomNumericInput CurrentHp;
     private System.Windows.Forms.Label label2;
-    private MyNumericInput MaxHp;
+    private CustomNumericInput MaxHp;
     private System.Windows.Forms.Button DelBtn;
-    private MyNumericInput Initiative;
+    private CustomNumericInput Initiative;
     private System.Windows.Forms.Label StatusLbl;
     private System.Windows.Forms.Button DmgBtn;
-    private MyNumericInput SubInitiative;
+    private CustomNumericInput SubInitiative;
     private ToolTip ToolTip;
     private PictureBox ArrowPB;
     private Button AddEffectBtn;

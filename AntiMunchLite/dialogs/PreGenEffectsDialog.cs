@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace AntiMunchLite
+namespace AntiMunchLite.Dialogs
 {
   public partial class PreGenEffectsDialog : Form
   {

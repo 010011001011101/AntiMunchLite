@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using AntiMunchLite.Controls;
 using AntiMunchLite.Core;
+using AntiMunchLite.Dialogs;
 
 namespace AntiMunchLite
 {

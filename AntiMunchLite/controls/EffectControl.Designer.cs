@@ -1,4 +1,6 @@
-﻿namespace AntiMunchLite
+﻿using AntiMunchLite.BaseControls;
+
+namespace AntiMunchLite.Controls
 {
   partial class EffectControl
   {
@@ -29,7 +31,7 @@
     private void InitializeComponent()
     {
       this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-      this.RemainTime = new AntiMunchLite.BugFix.MyNumericInput();
+      this.RemainTime = new CustomNumericInput();
       this.DelBtn = new System.Windows.Forms.Button();
       this.EffectName = new System.Windows.Forms.TextBox();
       this.TableLayoutPanel.SuspendLayout();
@@ -124,7 +126,7 @@
 
     private System.Windows.Forms.TableLayoutPanel TableLayoutPanel;
     private System.Windows.Forms.TextBox EffectName;
-    private BugFix.MyNumericInput RemainTime;
+    private CustomNumericInput RemainTime;
     private System.Windows.Forms.Button DelBtn;
   }
 }

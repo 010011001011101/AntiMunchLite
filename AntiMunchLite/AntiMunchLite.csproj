@@ -70,39 +70,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BugFix\MyNumericInput.cs">
+    <Compile Include="BaseControls\CustomNumericInput.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="controls\AbilityControl.cs">
+    <Compile Include="Controls\AbilityControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="controls\AbilityControl.Designer.cs">
+    <Compile Include="Controls\AbilityControl.Designer.cs">
       <DependentUpon>AbilityControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\Ability.cs" />
-    <Compile Include="dialogs\AbilityDialog.cs">
+    <Compile Include="Dialogs\AbilityDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dialogs\AbilityDialog.Designer.cs">
+    <Compile Include="Dialogs\AbilityDialog.Designer.cs">
       <DependentUpon>AbilityDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="dialogs\PreGenAbilitiesDialog.cs">
+    <Compile Include="Dialogs\PreGenAbilitiesDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dialogs\PreGenAbilitiesDialog.Designer.cs">
+    <Compile Include="Dialogs\PreGenAbilitiesDialog.Designer.cs">
       <DependentUpon>PreGenAbilitiesDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="dialogs\SaveDialog.cs">
+    <Compile Include="Dialogs\SaveDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dialogs\SaveDialog.Designer.cs">
+    <Compile Include="Dialogs\SaveDialog.Designer.cs">
       <DependentUpon>SaveDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="utils\ColorUtils.cs" />
-    <Compile Include="controls\CombatantControl.cs">
+    <Compile Include="Controls\CombatantControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="controls\CombatantControl.Designer.cs">
+    <Compile Include="Controls\CombatantControl.Designer.cs">
       <DependentUpon>CombatantControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\Combatant.cs" />
@@ -110,28 +110,28 @@
     <Compile Include="Core\Effect.cs" />
     <Compile Include="Core\EffectType.cs" />
     <Compile Include="Core\HpStatus.cs" />
-    <Compile Include="dialogs\DMGDialog.cs">
+    <Compile Include="Dialogs\DMGDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dialogs\DMGDialog.Designer.cs">
+    <Compile Include="Dialogs\DMGDialog.Designer.cs">
       <DependentUpon>DMGDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="controls\EffectControl.cs">
+    <Compile Include="Controls\EffectControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="controls\EffectControl.Designer.cs">
+    <Compile Include="Controls\EffectControl.Designer.cs">
       <DependentUpon>EffectControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="dialogs\EffectDialog.cs">
+    <Compile Include="Dialogs\EffectDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dialogs\EffectDialog.Designer.cs">
+    <Compile Include="Dialogs\EffectDialog.Designer.cs">
       <DependentUpon>EffectDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="dialogs\PreGenEffectsDialog.cs">
+    <Compile Include="Dialogs\PreGenEffectsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dialogs\PreGenEffectsDialog.Designer.cs">
+    <Compile Include="Dialogs\PreGenEffectsDialog.Designer.cs">
       <DependentUpon>PreGenEffectsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -148,31 +148,31 @@
     </Compile>
     <Compile Include="utils\SaveLoadManager.cs" />
     <Compile Include="utils\ControlsCache.cs" />
-    <EmbeddedResource Include="controls\AbilityControl.resx">
+    <EmbeddedResource Include="Controls\AbilityControl.resx">
       <DependentUpon>AbilityControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="controls\CombatantControl.resx">
+    <EmbeddedResource Include="Controls\CombatantControl.resx">
       <DependentUpon>CombatantControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="dialogs\AbilityDialog.resx">
+    <EmbeddedResource Include="Dialogs\AbilityDialog.resx">
       <DependentUpon>AbilityDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="dialogs\DMGDialog.resx">
+    <EmbeddedResource Include="Dialogs\DMGDialog.resx">
       <DependentUpon>DMGDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="controls\EffectControl.resx">
+    <EmbeddedResource Include="Controls\EffectControl.resx">
       <DependentUpon>EffectControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="dialogs\EffectDialog.resx">
+    <EmbeddedResource Include="Dialogs\EffectDialog.resx">
       <DependentUpon>EffectDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="dialogs\PreGenAbilitiesDialog.resx">
+    <EmbeddedResource Include="Dialogs\PreGenAbilitiesDialog.resx">
       <DependentUpon>PreGenAbilitiesDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="dialogs\PreGenEffectsDialog.resx">
+    <EmbeddedResource Include="Dialogs\PreGenEffectsDialog.resx">
       <DependentUpon>PreGenEffectsDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="dialogs\SaveDialog.resx">
+    <EmbeddedResource Include="Dialogs\SaveDialog.resx">
       <DependentUpon>SaveDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
