@@ -97,7 +97,7 @@
       this.AddBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.AddBtn.Name = "AddBtn";
       this.AddBtn.Size = new System.Drawing.Size(24, 24);
-      this.AddBtn.Text = "Добавить";
+      this.AddBtn.Text = "Add";
       this.AddBtn.Click += new System.EventHandler(this.AddBtn_Click);
       // 
       // NewEffectName
@@ -117,7 +117,7 @@
       this.DelBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.DelBtn.Name = "DelBtn";
       this.DelBtn.Size = new System.Drawing.Size(24, 24);
-      this.DelBtn.Text = "Удалить";
+      this.DelBtn.Text = "Delete";
       this.DelBtn.Click += new System.EventHandler(this.DelBtn_Click);
       // 
       // PreGenEffectsDialog
@@ -131,7 +131,7 @@
       this.ShowIcon = false;
       this.ShowInTaskbar = false;
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-      this.Text = "Известные эффекты";
+      this.Text = "Effects list";
       this.ToolStripContainer.ContentPanel.ResumeLayout(false);
       this.ToolStripContainer.TopToolStripPanel.ResumeLayout(false);
       this.ToolStripContainer.TopToolStripPanel.PerformLayout();

@@ -62,7 +62,7 @@
       this.OkBtn.Name = "OkBtn";
       this.OkBtn.Size = new System.Drawing.Size(56, 23);
       this.OkBtn.TabIndex = 1;
-      this.OkBtn.Text = "Ok";
+      this.OkBtn.Text = "OK";
       this.OkBtn.UseVisualStyleBackColor = true;
       // 
       // CancelBtn
@@ -73,7 +73,7 @@
       this.CancelBtn.Name = "CancelBtn";
       this.CancelBtn.Size = new System.Drawing.Size(56, 23);
       this.CancelBtn.TabIndex = 2;
-      this.CancelBtn.Text = "Отмена";
+      this.CancelBtn.Text = "Cancel";
       this.CancelBtn.UseVisualStyleBackColor = true;
       // 
       // SaveFileName
@@ -102,7 +102,7 @@
       this.ShowIcon = false;
       this.ShowInTaskbar = false;
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-      this.Text = "Сохранить как...";
+      this.Text = "Save as...";
       this.Load += new System.EventHandler(this.SaveDialog_Load);
       this.TableLayoutPanel.ResumeLayout(false);
       this.TableLayoutPanel.PerformLayout();

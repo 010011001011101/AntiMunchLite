@@ -135,7 +135,7 @@ namespace AntiMunchLite
       this.HealBtn.Size = new System.Drawing.Size(23, 26);
       this.HealBtn.TabIndex = 4;
       this.HealBtn.TabStop = false;
-      this.ToolTip.SetToolTip(this.HealBtn, "Полечить");
+      this.ToolTip.SetToolTip(this.HealBtn, "Heal");
       this.HealBtn.UseVisualStyleBackColor = true;
       this.HealBtn.Click += new System.EventHandler(this.HealBtn_Click);
       // 
@@ -219,7 +219,7 @@ namespace AntiMunchLite
       this.CombatantName.Name = "CombatantName";
       this.CombatantName.Size = new System.Drawing.Size(164, 16);
       this.CombatantName.TabIndex = 2;
-      this.ToolTip.SetToolTip(this.CombatantName, "Имя");
+      this.ToolTip.SetToolTip(this.CombatantName, "Name");
       this.CombatantName.TextChanged += new System.EventHandler(this.CombatantName_TextChanged);
       // 
       // DmgBtn
@@ -232,7 +232,7 @@ namespace AntiMunchLite
       this.DmgBtn.Size = new System.Drawing.Size(23, 26);
       this.DmgBtn.TabIndex = 3;
       this.DmgBtn.TabStop = false;
-      this.ToolTip.SetToolTip(this.DmgBtn, "Нанести урон");
+      this.ToolTip.SetToolTip(this.DmgBtn, "Deal Damage");
       this.DmgBtn.UseVisualStyleBackColor = true;
       this.DmgBtn.Click += new System.EventHandler(this.DmgBtn_Click);
       // 
@@ -266,7 +266,7 @@ namespace AntiMunchLite
       this.CurrentHp.Size = new System.Drawing.Size(44, 23);
       this.CurrentHp.TabIndex = 6;
       this.CurrentHp.Text = "0";
-      this.ToolTip.SetToolTip(this.CurrentHp, "Текущие НР");
+      this.ToolTip.SetToolTip(this.CurrentHp, "Current HP");
       this.CurrentHp.Value = new decimal(new int[] {
             0,
             0,
@@ -305,7 +305,7 @@ namespace AntiMunchLite
       this.MaxHp.Size = new System.Drawing.Size(44, 23);
       this.MaxHp.TabIndex = 8;
       this.MaxHp.Text = "0";
-      this.ToolTip.SetToolTip(this.MaxHp, "Максимальные НР");
+      this.ToolTip.SetToolTip(this.MaxHp, "Maximum HP");
       this.MaxHp.Value = new decimal(new int[] {
             0,
             0,
@@ -334,7 +334,7 @@ namespace AntiMunchLite
       this.DelBtn.Size = new System.Drawing.Size(24, 26);
       this.DelBtn.TabIndex = 14;
       this.DelBtn.TabStop = false;
-      this.ToolTip.SetToolTip(this.DelBtn, "Удалить");
+      this.ToolTip.SetToolTip(this.DelBtn, "Delete");
       this.DelBtn.UseVisualStyleBackColor = true;
       this.DelBtn.Click += new System.EventHandler(this.DelBtn_Click);
       // 

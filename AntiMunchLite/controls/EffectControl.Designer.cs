@@ -103,7 +103,6 @@
       this.EffectName.Name = "EffectName";
       this.EffectName.Size = new System.Drawing.Size(145, 14);
       this.EffectName.TabIndex = 0;
-      this.EffectName.Text = "jkjkjkjkl";
       this.EffectName.TextChanged += new System.EventHandler(this.EffectName_TextChanged);
       // 
       // EffectControl

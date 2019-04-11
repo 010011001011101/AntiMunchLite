@@ -29,14 +29,14 @@
     private void InitializeComponent()
     {
       this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-      this.DmgCounter = new System.Windows.Forms.NumericUpDown();
       this.OkBtn = new System.Windows.Forms.Button();
       this.CancelBtn = new System.Windows.Forms.Button();
+      this.DmgCounter = new System.Windows.Forms.NumericUpDown();
       this.Combotants = new System.Windows.Forms.CheckedListBox();
       this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-      this.NoOverheal = new System.Windows.Forms.CheckBox();
       this.IsDmg = new System.Windows.Forms.RadioButton();
       this.IsHeal = new System.Windows.Forms.RadioButton();
+      this.NoOverheal = new System.Windows.Forms.CheckBox();
       this.TableLayoutPanel.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.DmgCounter)).BeginInit();
       this.flowLayoutPanel1.SuspendLayout();
@@ -66,6 +66,29 @@
       this.TableLayoutPanel.Size = new System.Drawing.Size(211, 266);
       this.TableLayoutPanel.TabIndex = 0;
       // 
+      // OkBtn
+      // 
+      this.OkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.OkBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
+      this.OkBtn.Location = new System.Drawing.Point(92, 241);
+      this.OkBtn.Margin = new System.Windows.Forms.Padding(2);
+      this.OkBtn.Name = "OkBtn";
+      this.OkBtn.Size = new System.Drawing.Size(56, 23);
+      this.OkBtn.TabIndex = 3;
+      this.OkBtn.Text = "OK";
+      this.OkBtn.UseVisualStyleBackColor = true;
+      // 
+      // CancelBtn
+      // 
+      this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+      this.CancelBtn.Location = new System.Drawing.Point(152, 241);
+      this.CancelBtn.Margin = new System.Windows.Forms.Padding(2);
+      this.CancelBtn.Name = "CancelBtn";
+      this.CancelBtn.Size = new System.Drawing.Size(56, 23);
+      this.CancelBtn.TabIndex = 4;
+      this.CancelBtn.Text = "Cancel";
+      this.CancelBtn.UseVisualStyleBackColor = true;
+      // 
       // DmgCounter
       // 
       this.DmgCounter.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -84,29 +107,6 @@
       this.DmgCounter.Name = "DmgCounter";
       this.DmgCounter.Size = new System.Drawing.Size(67, 20);
       this.DmgCounter.TabIndex = 1;
-      // 
-      // OkBtn
-      // 
-      this.OkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.OkBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-      this.OkBtn.Location = new System.Drawing.Point(92, 241);
-      this.OkBtn.Margin = new System.Windows.Forms.Padding(2);
-      this.OkBtn.Name = "OkBtn";
-      this.OkBtn.Size = new System.Drawing.Size(56, 23);
-      this.OkBtn.TabIndex = 3;
-      this.OkBtn.Text = "Ok";
-      this.OkBtn.UseVisualStyleBackColor = true;
-      // 
-      // CancelBtn
-      // 
-      this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-      this.CancelBtn.Location = new System.Drawing.Point(152, 241);
-      this.CancelBtn.Margin = new System.Windows.Forms.Padding(2);
-      this.CancelBtn.Name = "CancelBtn";
-      this.CancelBtn.Size = new System.Drawing.Size(56, 23);
-      this.CancelBtn.TabIndex = 4;
-      this.CancelBtn.Text = "Отмена";
-      this.CancelBtn.UseVisualStyleBackColor = true;
       // 
       // Combotants
       // 
@@ -131,19 +131,6 @@
       this.flowLayoutPanel1.Name = "flowLayoutPanel1";
       this.flowLayoutPanel1.Size = new System.Drawing.Size(140, 23);
       this.flowLayoutPanel1.TabIndex = 4;
-      // 
-      // NoOverheal
-      // 
-      this.NoOverheal.AutoSize = true;
-      this.NoOverheal.Checked = true;
-      this.NoOverheal.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.TableLayoutPanel.SetColumnSpan(this.NoOverheal, 3);
-      this.NoOverheal.Location = new System.Drawing.Point(3, 220);
-      this.NoOverheal.Name = "NoOverheal";
-      this.NoOverheal.Size = new System.Drawing.Size(174, 16);
-      this.NoOverheal.TabIndex = 2;
-      this.NoOverheal.Text = "Не превышать максимум HP";
-      this.NoOverheal.UseVisualStyleBackColor = true;
       // 
       // IsDmg
       // 
@@ -171,6 +158,19 @@
       this.IsHeal.Text = "Heal";
       this.IsHeal.UseVisualStyleBackColor = true;
       // 
+      // NoOverheal
+      // 
+      this.NoOverheal.AutoSize = true;
+      this.NoOverheal.Checked = true;
+      this.NoOverheal.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.TableLayoutPanel.SetColumnSpan(this.NoOverheal, 3);
+      this.NoOverheal.Location = new System.Drawing.Point(3, 220);
+      this.NoOverheal.Name = "NoOverheal";
+      this.NoOverheal.Size = new System.Drawing.Size(84, 16);
+      this.NoOverheal.TabIndex = 2;
+      this.NoOverheal.Text = "No overheal";
+      this.NoOverheal.UseVisualStyleBackColor = true;
+      // 
       // DMGDialog
       // 
       this.AcceptButton = this.OkBtn;
@@ -187,7 +187,7 @@
       this.ShowIcon = false;
       this.ShowInTaskbar = false;
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-      this.Text = "Нанести урон";
+      this.Text = "Deal Damage / Heal";
       this.Load += new System.EventHandler(this.DMGDialog_Load);
       this.TableLayoutPanel.ResumeLayout(false);
       this.TableLayoutPanel.PerformLayout();

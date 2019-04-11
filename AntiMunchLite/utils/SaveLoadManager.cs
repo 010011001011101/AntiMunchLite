@@ -8,6 +8,7 @@ namespace AntiMunchLite
   public class SaveLoadManager
   {
     private const string SavesFolder = "Saves";
+    private const string SaveFilesExtension = "alms";
     private readonly IWin32Window _Parent;
 
 
@@ -50,7 +51,7 @@ namespace AntiMunchLite
       if (string.IsNullOrWhiteSpace(fileName))
         return;
 
-      using (var file = new FileStream(Path.Combine(directory.ToString(), fileName + ".amls"), FileMode.Create))
+      using (var file = new FileStream(Path.Combine(directory.ToString(), fileName + $".{SaveFilesExtension}"), FileMode.Create))
       {
         var formetter = new BinaryFormatter();
         formetter.Serialize(file, core);
@@ -90,7 +91,7 @@ namespace AntiMunchLite
       using (var dialog = new OpenFileDialog())
       {
         dialog.CheckFileExists = true;
-        dialog.Filter = @"AntiMunchLite Save | *.amls";
+        dialog.Filter = $"AntiMunchLite Save | *.{SaveFilesExtension}";
         dialog.InitialDirectory = _GetSavesDirectory().ToString();
 
         return dialog.ShowDialog(_Parent) == DialogResult.OK

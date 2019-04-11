@@ -79,12 +79,11 @@
       this.AbilityNameTB.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.AbilityNameTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
       this.AbilityNameTB.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.AbilityNameTB.Location = new System.Drawing.Point(2, 5);
+      this.AbilityNameTB.Location = new System.Drawing.Point(2, 6);
       this.AbilityNameTB.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
       this.AbilityNameTB.Name = "AbilityNameTB";
       this.AbilityNameTB.Size = new System.Drawing.Size(137, 14);
       this.AbilityNameTB.TabIndex = 0;
-      this.AbilityNameTB.Text = "hjhjhjhjhjkhj";
       this.AbilityNameTB.TextChanged += new System.EventHandler(this.AbilityNameTB_TextChanged);
       // 
       // RemainNum
@@ -106,6 +105,7 @@
       this.RemainNum.RepeatingDigitsCount = ((uint)(0u));
       this.RemainNum.Size = new System.Drawing.Size(33, 20);
       this.RemainNum.TabIndex = 1;
+      this.RemainNum.Text = "0";
       this.RemainNum.Value = new decimal(new int[] {
             0,
             0,
@@ -155,6 +155,7 @@
       this.TotalNum.RepeatingDigitsCount = ((uint)(0u));
       this.TotalNum.Size = new System.Drawing.Size(33, 20);
       this.TotalNum.TabIndex = 3;
+      this.TotalNum.Text = "0";
       this.TotalNum.Value = new decimal(new int[] {
             0,
             0,

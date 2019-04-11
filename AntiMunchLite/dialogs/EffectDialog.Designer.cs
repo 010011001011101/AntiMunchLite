@@ -80,7 +80,7 @@
       this.OkBtn.Name = "OkBtn";
       this.OkBtn.Size = new System.Drawing.Size(54, 23);
       this.OkBtn.TabIndex = 3;
-      this.OkBtn.Text = "Ок";
+      this.OkBtn.Text = "OK";
       this.OkBtn.UseVisualStyleBackColor = true;
       // 
       // CancelBtn
@@ -90,7 +90,7 @@
       this.CancelBtn.Name = "CancelBtn";
       this.CancelBtn.Size = new System.Drawing.Size(54, 23);
       this.CancelBtn.TabIndex = 4;
-      this.CancelBtn.Text = "Отмена";
+      this.CancelBtn.Text = "Cancel";
       this.CancelBtn.UseVisualStyleBackColor = true;
       // 
       // EffectName
@@ -254,7 +254,7 @@
       this.ShowIcon = false;
       this.ShowInTaskbar = false;
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-      this.Text = "Создать эффект";
+      this.Text = "Create Effect";
       this.TableLayoutPanel.ResumeLayout(false);
       this.TableLayoutPanel.PerformLayout();
       this.TypePanel.ResumeLayout(false);

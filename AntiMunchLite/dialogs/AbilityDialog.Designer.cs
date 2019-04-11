@@ -68,7 +68,7 @@
       this.OkBtn.Name = "OkBtn";
       this.OkBtn.Size = new System.Drawing.Size(54, 23);
       this.OkBtn.TabIndex = 4;
-      this.OkBtn.Text = "Ок";
+      this.OkBtn.Text = "OK";
       this.OkBtn.UseVisualStyleBackColor = true;
       // 
       // CancelBtn
@@ -78,7 +78,7 @@
       this.CancelBtn.Name = "CancelBtn";
       this.CancelBtn.Size = new System.Drawing.Size(54, 23);
       this.CancelBtn.TabIndex = 5;
-      this.CancelBtn.Text = "Отмена";
+      this.CancelBtn.Text = "Cancel";
       this.CancelBtn.UseVisualStyleBackColor = true;
       // 
       // Combotants
