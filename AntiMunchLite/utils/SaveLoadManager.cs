@@ -9,7 +9,7 @@ namespace AntiMunchLite
   public class SaveLoadManager
   {
     private const string SavesFolder = "Saves";
-    private const string SaveFilesExtension = "alms";
+    private const string SaveFilesExtension = "amls";
     private readonly IWin32Window _Parent;
 
 
