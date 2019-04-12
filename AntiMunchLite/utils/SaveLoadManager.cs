@@ -2,13 +2,11 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
-using AntiMunchLite.Dialogs;
 
 namespace AntiMunchLite
 {
   public class SaveLoadManager
   {
-    private const string SavesFolder = "Saves";
     private const string SaveFilesExtension = "amls";
     private readonly IWin32Window _Parent;
 
@@ -43,64 +41,37 @@ namespace AntiMunchLite
       }
     }
 
-    #region Save
-
     private void _Save(Core.Core core)
     {
-      var directory = _GetSavesDirectory();
-      var fileName = _GenerateFileName(core);
-      if (string.IsNullOrWhiteSpace(fileName))
-        return;
-
-      using (var file = new FileStream(Path.Combine(directory.ToString(), fileName + $".{SaveFilesExtension}"), FileMode.Create))
+      using (var dialog = new SaveFileDialog())
       {
-        var formetter = new BinaryFormatter();
-        formetter.Serialize(file, core);
+        dialog.FileName = $"Save_R{core.CurrentRound}_[{DateTime.Now:MM.dd.yy H.mm.ss}].{SaveFilesExtension}";
+        dialog.Filter = $"AntiMunchLite Save | *.{SaveFilesExtension}";
+        dialog.RestoreDirectory = true;
+
+        if(dialog.ShowDialog(_Parent) == DialogResult.OK)
+          using (var file = dialog.OpenFile())
+          {
+            var formetter = new BinaryFormatter();
+            formetter.Serialize(file, core);
+          }
       }
     }
 
-    private static DirectoryInfo _GetSavesDirectory()
-    {
-      var directory = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, SavesFolder));
-
-      if(!directory.Exists)
-        directory.Create();
-
-      return directory;
-    }
-
-    private string _GenerateFileName(Core.Core core)
-    {
-      return SaveDialog.GetSaveFileName($"Save_R{core.CurrentRound}_[{DateTime.Now:MM.dd.yy H.mm.ss}]", _Parent);
-    }
-
-    #endregion
-
-    #region Load
-
     private Core.Core _Load()
-    {
-      var fileName = _SelectFile();
-      if (fileName == null) return null;
-
-      using (var file = new FileStream(fileName, FileMode.Open))
-        return new BinaryFormatter().Deserialize(file) as Core.Core;
-    }
-
-    private string _SelectFile()
     {
       using (var dialog = new OpenFileDialog())
       {
         dialog.CheckFileExists = true;
         dialog.Filter = $"AntiMunchLite Save | *.{SaveFilesExtension}";
-        dialog.InitialDirectory = _GetSavesDirectory().ToString();
+        dialog.RestoreDirectory = true;
 
-        return dialog.ShowDialog(_Parent) == DialogResult.OK
-                 ? dialog.FileName
-                 : null;
+        if (dialog.ShowDialog(_Parent) == DialogResult.OK)
+          using (var file = dialog.OpenFile())
+            return new BinaryFormatter().Deserialize(file) as Core.Core;
+
+        return null;
       }
     }
-
-    #endregion
   }
 }
