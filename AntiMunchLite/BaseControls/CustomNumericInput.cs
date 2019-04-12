@@ -1,6 +1,6 @@
 using System;
-using System.ComponentModel;
-using System.Globalization;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -8,74 +8,69 @@ namespace AntiMunchLite.BaseControls
 {
   public class CustomNumericInput : TextBox
   {
-    public decimal Minimum { get; set; }
-    public decimal Maximum { get; set; }
-    public uint RepeatingDigitsCount { get; set; }
+    public int? Minimum { get; set; }
+    public int? Maximum { get; set; }
+
+    private readonly ToolTip _ToolTip = new ToolTip();
+
+    private string _ToolTipStr;
+    public string ToolTip
+    {
+      get => _ToolTipStr;
+      set => _ToolTip.SetToolTip(this, _ToolTipStr = value);
+    }
 
     public event EventHandler ValueChanged;
+    private void _OnValueChanged() => ValueChanged?.Invoke(this, new EventArgs());
 
-    public decimal Value
+    private int _Value;
+    public int Value
     {
-      get => string.IsNullOrWhiteSpace(Text)
-        ? 0
-        : Convert.ToDecimal(Text);
+      get => _Value;
       set
       {
-        Text = value.ToString(CultureInfo.InvariantCulture);
+        Text = value.ToString();
 
-        _OnValueChanged();
-      }
-    }
-
-    private bool _InputError;
-    private decimal _PreviousValue;
-
-    private string _RegEx =>
-      RepeatingDigitsCount == 0
-        ? @"^(-?[\s\d]+)?$"
-        : $"^(-?[\\s\\d]+([.,]\\d{{0,{RepeatingDigitsCount}}})?)?$";
-
-    protected override void OnEnter(EventArgs e)
-    {
-      if (!_InputError)
-        _PreviousValue = Value;
-      base.OnEnter(e);
-    }
-
-    protected override void OnValidated(EventArgs e)
-    {
-      base.OnValidated(e);
-
-      if (_PreviousValue != Value)
-        _OnValueChanged();
-    }
-
-    private void _OnValueChanged()
-    {
-      ValueChanged?.Invoke(this, new EventArgs());
-    }
-
-    protected override void OnValidating(CancelEventArgs e)
-    {
-      base.OnValidating(e);
-
-      if (Regex.IsMatch(Text, _RegEx))
-      {
-        var value = Value;
-
-        if (value > Maximum)
-          Value = Maximum;
-        else if (value < Minimum)
-          Value = Minimum;
-        else
+        if (_Value != value)
         {
-          _InputError = false;
-          return;
+          _Value = value;
+          _OnValueChanged();
         }
       }
+    }
 
-      e.Cancel = true;
-      _InputError = true;
+    private int _Parse(string str, out string parseDescription)
+    {
+      if (int.TryParse(str, out var intValue))
+        parseDescription = intValue.ToString();
+      else
+        intValue = SimpleParser.Parse(str, out parseDescription);
+        
+      return _ApplyRange(intValue, ref parseDescription);
+    }
+
+    private int _ApplyRange(int intValue, ref string parseDescription)
+    {
+      if (Maximum.HasValue && intValue > Maximum.Value)
+      {
+        parseDescription += $" > MAX[{Maximum.Value}] = {Maximum.Value}";
+        return Maximum.Value;
+      }
+      if (Minimum.HasValue && intValue < Minimum.Value)
+      {
+        parseDescription += $" < MIN[{Minimum.Value}] = {Minimum.Value}";
+        return Minimum.Value;
+      }
+
+      return intValue;
+    }
+
+    protected override void OnLostFocus(EventArgs e)
+    {
+      Value = _Parse(Text, out var parseDescription);
+      _ToolTip.SetToolTip(this, $"{_ToolTipStr} [{parseDescription}]");
+
+      base.OnLostFocus(e);
     }
 
     protected override void OnKeyUp(KeyEventArgs e)
@@ -89,5 +84,12 @@ namespace AntiMunchLite.BaseControls
       base.OnKeyUp(e);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+      if (disposing)
+        _ToolTip.Dispose();
+
+      base.Dispose(disposing);
+    }
   }
 }

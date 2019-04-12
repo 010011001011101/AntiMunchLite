@@ -40,14 +40,14 @@ namespace AntiMunchLite.Controls
       this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
       this.HealBtn = new System.Windows.Forms.Button();
       this.ArrowPB = new System.Windows.Forms.PictureBox();
-      this.Initiative = new CustomNumericInput();
-      this.SubInitiative = new CustomNumericInput();
+      this.Initiative = new AntiMunchLite.BaseControls.CustomNumericInput();
+      this.SubInitiative = new AntiMunchLite.BaseControls.CustomNumericInput();
       this.CombatantName = new System.Windows.Forms.TextBox();
       this.DmgBtn = new System.Windows.Forms.Button();
       this.label1 = new System.Windows.Forms.Label();
-      this.CurrentHp = new CustomNumericInput();
+      this.CurrentHp = new AntiMunchLite.BaseControls.CustomNumericInput();
       this.label2 = new System.Windows.Forms.Label();
-      this.MaxHp = new CustomNumericInput();
+      this.MaxHp = new AntiMunchLite.BaseControls.CustomNumericInput();
       this.StatusLbl = new System.Windows.Forms.Label();
       this.DelBtn = new System.Windows.Forms.Button();
       this.DragPB = new System.Windows.Forms.PictureBox();
@@ -155,27 +155,14 @@ namespace AntiMunchLite.Controls
       this.Initiative.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.Initiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.Initiative.Location = new System.Drawing.Point(48, 4);
-      this.Initiative.Maximum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-      this.Initiative.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
+      this.Initiative.Maximum = null;
+      this.Initiative.Minimum = null;
       this.Initiative.Name = "Initiative";
-      this.Initiative.RepeatingDigitsCount = ((uint)(0u));
       this.Initiative.Size = new System.Drawing.Size(44, 23);
       this.Initiative.TabIndex = 0;
       this.Initiative.Text = "0";
-      this.ToolTip.SetToolTip(this.Initiative, "Initiative Order (desc)");
-      this.Initiative.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
+      this.Initiative.ToolTip = "Initiative Order (desc)";
+      this.Initiative.Value = 0;
       this.Initiative.ValueChanged += new System.EventHandler(this.Initiative_ValueChanged);
       // 
       // SubInitiative
@@ -184,28 +171,15 @@ namespace AntiMunchLite.Controls
       this.SubInitiative.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.SubInitiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.SubInitiative.Location = new System.Drawing.Point(98, 4);
-      this.SubInitiative.Maximum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-      this.SubInitiative.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
+      this.SubInitiative.Maximum = null;
+      this.SubInitiative.Minimum = null;
       this.SubInitiative.Name = "SubInitiative";
-      this.SubInitiative.RepeatingDigitsCount = ((uint)(0u));
       this.SubInitiative.Size = new System.Drawing.Size(39, 23);
       this.SubInitiative.TabIndex = 1;
       this.SubInitiative.TabStop = false;
       this.SubInitiative.Text = "1";
-      this.ToolTip.SetToolTip(this.SubInitiative, "SubInitiative Order (desc)");
-      this.SubInitiative.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+      this.SubInitiative.ToolTip = "SubInitiative Order (desc)";
+      this.SubInitiative.Value = 1;
       this.SubInitiative.ValueChanged += new System.EventHandler(this.SubInitiative_ValueChanged);
       // 
       // CombatantName
@@ -249,27 +223,14 @@ namespace AntiMunchLite.Controls
       this.CurrentHp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
       this.CurrentHp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.CurrentHp.Location = new System.Drawing.Point(399, 4);
-      this.CurrentHp.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-      this.CurrentHp.Minimum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            -2147483648});
+      this.CurrentHp.Maximum = null;
+      this.CurrentHp.Minimum = null;
       this.CurrentHp.Name = "CurrentHp";
-      this.CurrentHp.RepeatingDigitsCount = ((uint)(0u));
       this.CurrentHp.Size = new System.Drawing.Size(44, 23);
       this.CurrentHp.TabIndex = 6;
       this.CurrentHp.Text = "0";
-      this.ToolTip.SetToolTip(this.CurrentHp, "Current HP");
-      this.CurrentHp.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
+      this.CurrentHp.ToolTip = "Current HP";
+      this.CurrentHp.Value = 0;
       this.CurrentHp.ValueChanged += new System.EventHandler(this.CurrentHp_ValueChanged);
       // 
       // label2
@@ -288,27 +249,14 @@ namespace AntiMunchLite.Controls
       this.MaxHp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
       this.MaxHp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.MaxHp.Location = new System.Drawing.Point(459, 4);
-      this.MaxHp.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-      this.MaxHp.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
+      this.MaxHp.Maximum = null;
+      this.MaxHp.Minimum = 0;
       this.MaxHp.Name = "MaxHp";
-      this.MaxHp.RepeatingDigitsCount = ((uint)(0u));
       this.MaxHp.Size = new System.Drawing.Size(44, 23);
       this.MaxHp.TabIndex = 8;
       this.MaxHp.Text = "0";
-      this.ToolTip.SetToolTip(this.MaxHp, "Maximum HP");
-      this.MaxHp.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
+      this.MaxHp.ToolTip = "Maximum HP";
+      this.MaxHp.Value = 0;
       this.MaxHp.ValueChanged += new System.EventHandler(this.MaxHp_ValueChanged);
       // 
       // StatusLbl

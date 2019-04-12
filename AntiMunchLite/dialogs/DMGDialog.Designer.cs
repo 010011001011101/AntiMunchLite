@@ -31,14 +31,13 @@
       this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
       this.OkBtn = new System.Windows.Forms.Button();
       this.CancelBtn = new System.Windows.Forms.Button();
-      this.DmgCounter = new System.Windows.Forms.NumericUpDown();
       this.Combotants = new System.Windows.Forms.CheckedListBox();
       this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
       this.IsDmg = new System.Windows.Forms.RadioButton();
       this.IsHeal = new System.Windows.Forms.RadioButton();
       this.NoOverheal = new System.Windows.Forms.CheckBox();
+      this.DmgCounter = new AntiMunchLite.BaseControls.CustomNumericInput();
       this.TableLayoutPanel.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.DmgCounter)).BeginInit();
       this.flowLayoutPanel1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -50,10 +49,10 @@
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
       this.TableLayoutPanel.Controls.Add(this.OkBtn, 1, 3);
       this.TableLayoutPanel.Controls.Add(this.CancelBtn, 2, 3);
-      this.TableLayoutPanel.Controls.Add(this.DmgCounter, 0, 1);
       this.TableLayoutPanel.Controls.Add(this.Combotants, 0, 0);
       this.TableLayoutPanel.Controls.Add(this.flowLayoutPanel1, 1, 1);
       this.TableLayoutPanel.Controls.Add(this.NoOverheal, 0, 2);
+      this.TableLayoutPanel.Controls.Add(this.DmgCounter, 0, 1);
       this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
       this.TableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
@@ -74,7 +73,7 @@
       this.OkBtn.Margin = new System.Windows.Forms.Padding(2);
       this.OkBtn.Name = "OkBtn";
       this.OkBtn.Size = new System.Drawing.Size(56, 23);
-      this.OkBtn.TabIndex = 3;
+      this.OkBtn.TabIndex = 4;
       this.OkBtn.Text = "OK";
       this.OkBtn.UseVisualStyleBackColor = true;
       // 
@@ -85,28 +84,9 @@
       this.CancelBtn.Margin = new System.Windows.Forms.Padding(2);
       this.CancelBtn.Name = "CancelBtn";
       this.CancelBtn.Size = new System.Drawing.Size(56, 23);
-      this.CancelBtn.TabIndex = 4;
+      this.CancelBtn.TabIndex = 5;
       this.CancelBtn.Text = "Cancel";
       this.CancelBtn.UseVisualStyleBackColor = true;
-      // 
-      // DmgCounter
-      // 
-      this.DmgCounter.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.DmgCounter.Location = new System.Drawing.Point(2, 196);
-      this.DmgCounter.Margin = new System.Windows.Forms.Padding(2);
-      this.DmgCounter.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-      this.DmgCounter.Minimum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            -2147483648});
-      this.DmgCounter.Name = "DmgCounter";
-      this.DmgCounter.Size = new System.Drawing.Size(67, 20);
-      this.DmgCounter.TabIndex = 1;
       // 
       // Combotants
       // 
@@ -130,7 +110,7 @@
       this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
       this.flowLayoutPanel1.Name = "flowLayoutPanel1";
       this.flowLayoutPanel1.Size = new System.Drawing.Size(140, 23);
-      this.flowLayoutPanel1.TabIndex = 4;
+      this.flowLayoutPanel1.TabIndex = 2;
       // 
       // IsDmg
       // 
@@ -167,11 +147,23 @@
       this.NoOverheal.Location = new System.Drawing.Point(3, 220);
       this.NoOverheal.Name = "NoOverheal";
       this.NoOverheal.Size = new System.Drawing.Size(84, 16);
-      this.NoOverheal.TabIndex = 2;
+      this.NoOverheal.TabIndex = 3;
       this.NoOverheal.Text = "No overheal";
       this.NoOverheal.UseVisualStyleBackColor = true;
       // 
-      // DMGDialog
+      // DmgCounter
+      // 
+      this.DmgCounter.Location = new System.Drawing.Point(3, 197);
+      this.DmgCounter.Maximum = null;
+      this.DmgCounter.Minimum = null;
+      this.DmgCounter.Name = "DmgCounter";
+      this.DmgCounter.Size = new System.Drawing.Size(65, 20);
+      this.DmgCounter.TabIndex = 1;
+      this.DmgCounter.Text = "0";
+      this.DmgCounter.ToolTip = null;
+      this.DmgCounter.Value = 0;
+      // 
+      // DmgDialog
       // 
       this.AcceptButton = this.OkBtn;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,7 +183,6 @@
       this.Load += new System.EventHandler(this.DMGDialog_Load);
       this.TableLayoutPanel.ResumeLayout(false);
       this.TableLayoutPanel.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.DmgCounter)).EndInit();
       this.flowLayoutPanel1.ResumeLayout(false);
       this.flowLayoutPanel1.PerformLayout();
       this.ResumeLayout(false);
@@ -203,11 +194,11 @@
     private System.Windows.Forms.TableLayoutPanel TableLayoutPanel;
     private System.Windows.Forms.Button OkBtn;
     private System.Windows.Forms.Button CancelBtn;
-    public System.Windows.Forms.NumericUpDown DmgCounter;
     private System.Windows.Forms.CheckedListBox Combotants;
     private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     private System.Windows.Forms.RadioButton IsDmg;
     private System.Windows.Forms.RadioButton IsHeal;
     private System.Windows.Forms.CheckBox NoOverheal;
+    private BaseControls.CustomNumericInput DmgCounter;
   }
 }

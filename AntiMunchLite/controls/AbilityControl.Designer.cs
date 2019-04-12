@@ -93,26 +93,9 @@ namespace AntiMunchLite.Controls
       this.RemainNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
       this.RemainNum.Location = new System.Drawing.Point(141, 2);
       this.RemainNum.Margin = new System.Windows.Forms.Padding(0);
-      this.RemainNum.Maximum = new decimal(new int[] {
-            99999,
-            0,
-            0,
-            0});
-      this.RemainNum.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
       this.RemainNum.Name = "RemainNum";
-      this.RemainNum.RepeatingDigitsCount = ((uint)(0u));
       this.RemainNum.Size = new System.Drawing.Size(33, 20);
       this.RemainNum.TabIndex = 1;
-      this.RemainNum.Text = "0";
-      this.RemainNum.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
       this.RemainNum.ValueChanged += new System.EventHandler(this.RemainNum_ValueChanged);
       // 
       // SpendOneBtn
@@ -143,26 +126,9 @@ namespace AntiMunchLite.Controls
       this.TotalNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
       this.TotalNum.Location = new System.Drawing.Point(200, 2);
       this.TotalNum.Margin = new System.Windows.Forms.Padding(0);
-      this.TotalNum.Maximum = new decimal(new int[] {
-            99999,
-            0,
-            0,
-            0});
-      this.TotalNum.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
       this.TotalNum.Name = "TotalNum";
-      this.TotalNum.RepeatingDigitsCount = ((uint)(0u));
       this.TotalNum.Size = new System.Drawing.Size(33, 20);
       this.TotalNum.TabIndex = 3;
-      this.TotalNum.Text = "0";
-      this.TotalNum.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
       this.TotalNum.ValueChanged += new System.EventHandler(this.TotalNum_ValueChanged);
       // 
       // AbilityControl

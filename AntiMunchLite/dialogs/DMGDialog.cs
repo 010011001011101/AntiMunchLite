@@ -35,7 +35,7 @@ namespace AntiMunchLite
 
     private IEnumerable<Combatant> _MakeDamage()
     {
-      var dmg = (int)DmgCounter.Value;
+      var dmg = DmgCounter.Value;
       if (dmg == 0) yield break;
 
       if (IsHeal.Checked) dmg *= -1;

@@ -38,7 +38,7 @@ namespace AntiMunchLite.Dialogs
       this.TypePanel = new System.Windows.Forms.FlowLayoutPanel();
       this.IsDebuff = new System.Windows.Forms.RadioButton();
       this.IsBuff = new System.Windows.Forms.RadioButton();
-      this.RemainTime = new CustomNumericInput();
+      this.RemainTime = new AntiMunchLite.BaseControls.CustomNumericInput();
       this.TimeFlow = new System.Windows.Forms.FlowLayoutPanel();
       this.RoundTime = new System.Windows.Forms.RadioButton();
       this.MinuteTime = new System.Windows.Forms.RadioButton();
@@ -164,26 +164,14 @@ namespace AntiMunchLite.Dialogs
       // 
       this.RemainTime.Dock = System.Windows.Forms.DockStyle.Fill;
       this.RemainTime.Location = new System.Drawing.Point(3, 189);
-      this.RemainTime.Maximum = new decimal(new int[] {
-            99999,
-            0,
-            0,
-            0});
-      this.RemainTime.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+      this.RemainTime.Maximum = null;
+      this.RemainTime.Minimum = null;
       this.RemainTime.Name = "RemainTime";
-      this.RemainTime.RepeatingDigitsCount = ((uint)(0u));
       this.RemainTime.Size = new System.Drawing.Size(42, 20);
       this.RemainTime.TabIndex = 2;
-      this.RemainTime.Text = "10";
-      this.RemainTime.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
+      this.RemainTime.Text = "0";
+      this.RemainTime.ToolTip = null;
+      this.RemainTime.Value = 0;
       // 
       // TimeFlow
       // 

@@ -31,14 +31,14 @@ namespace AntiMunchLite.Dialogs
     private void InitializeComponent()
     {
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-      this.OkBtn = new System.Windows.Forms.Button();
       this.CancelBtn = new System.Windows.Forms.Button();
       this.Combotants = new System.Windows.Forms.CheckedListBox();
-      this.NameCB = new System.Windows.Forms.ComboBox();
       this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-      this.RemainNum = new CustomNumericInput();
+      this.NameCB = new System.Windows.Forms.ComboBox();
+      this.RemainNum = new AntiMunchLite.BaseControls.CustomNumericInput();
       this.label1 = new System.Windows.Forms.Label();
-      this.TotalNum = new CustomNumericInput();
+      this.TotalNum = new AntiMunchLite.BaseControls.CustomNumericInput();
+      this.OkBtn = new System.Windows.Forms.Button();
       this.tableLayoutPanel1.SuspendLayout();
       this.flowLayoutPanel1.SuspendLayout();
       this.SuspendLayout();
@@ -62,17 +62,6 @@ namespace AntiMunchLite.Dialogs
       this.tableLayoutPanel1.Size = new System.Drawing.Size(333, 255);
       this.tableLayoutPanel1.TabIndex = 0;
       // 
-      // OkBtn
-      // 
-      this.OkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.OkBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-      this.OkBtn.Location = new System.Drawing.Point(216, 226);
-      this.OkBtn.Name = "OkBtn";
-      this.OkBtn.Size = new System.Drawing.Size(54, 23);
-      this.OkBtn.TabIndex = 4;
-      this.OkBtn.Text = "OK";
-      this.OkBtn.UseVisualStyleBackColor = true;
-      // 
       // CancelBtn
       // 
       this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -93,15 +82,6 @@ namespace AntiMunchLite.Dialogs
       this.Combotants.Size = new System.Drawing.Size(327, 189);
       this.Combotants.TabIndex = 6;
       // 
-      // NameCB
-      // 
-      this.NameCB.Anchor = System.Windows.Forms.AnchorStyles.Left;
-      this.NameCB.FormattingEnabled = true;
-      this.NameCB.Location = new System.Drawing.Point(3, 3);
-      this.NameCB.Name = "NameCB";
-      this.NameCB.Size = new System.Drawing.Size(240, 21);
-      this.NameCB.TabIndex = 7;
-      // 
       // flowLayoutPanel1
       // 
       this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 2);
@@ -116,31 +96,27 @@ namespace AntiMunchLite.Dialogs
       this.flowLayoutPanel1.Size = new System.Drawing.Size(333, 28);
       this.flowLayoutPanel1.TabIndex = 8;
       // 
+      // NameCB
+      // 
+      this.NameCB.Anchor = System.Windows.Forms.AnchorStyles.Left;
+      this.NameCB.FormattingEnabled = true;
+      this.NameCB.Location = new System.Drawing.Point(3, 3);
+      this.NameCB.Name = "NameCB";
+      this.NameCB.Size = new System.Drawing.Size(240, 21);
+      this.NameCB.TabIndex = 7;
+      // 
       // RemainNum
       // 
       this.RemainNum.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.RemainNum.Location = new System.Drawing.Point(249, 3);
       this.RemainNum.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
-      this.RemainNum.Maximum = new decimal(new int[] {
-            99999,
-            0,
-            0,
-            0});
-      this.RemainNum.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
+      this.RemainNum.Maximum = null;
+      this.RemainNum.Minimum = null;
       this.RemainNum.Name = "RemainNum";
-      this.RemainNum.RepeatingDigitsCount = ((uint)(0u));
       this.RemainNum.Size = new System.Drawing.Size(33, 20);
       this.RemainNum.TabIndex = 8;
       this.RemainNum.Text = "3";
-      this.RemainNum.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
+      this.RemainNum.Value = 3;
       // 
       // label1
       // 
@@ -158,26 +134,24 @@ namespace AntiMunchLite.Dialogs
       this.TotalNum.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.TotalNum.Location = new System.Drawing.Point(296, 3);
       this.TotalNum.Margin = new System.Windows.Forms.Padding(1, 3, 3, 3);
-      this.TotalNum.Maximum = new decimal(new int[] {
-            99999,
-            0,
-            0,
-            0});
-      this.TotalNum.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
+      this.TotalNum.Maximum = null;
+      this.TotalNum.Minimum = 0;
       this.TotalNum.Name = "TotalNum";
-      this.TotalNum.RepeatingDigitsCount = ((uint)(0u));
       this.TotalNum.Size = new System.Drawing.Size(33, 20);
       this.TotalNum.TabIndex = 10;
       this.TotalNum.Text = "3";
-      this.TotalNum.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
+      this.TotalNum.Value = 3;
+      // 
+      // OkBtn
+      // 
+      this.OkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.OkBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
+      this.OkBtn.Location = new System.Drawing.Point(216, 226);
+      this.OkBtn.Name = "OkBtn";
+      this.OkBtn.Size = new System.Drawing.Size(54, 23);
+      this.OkBtn.TabIndex = 4;
+      this.OkBtn.Text = "OK";
+      this.OkBtn.UseVisualStyleBackColor = true;
       // 
       // AbilityDialog
       // 

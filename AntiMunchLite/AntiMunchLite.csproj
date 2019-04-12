@@ -60,6 +60,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AntiMunchLite, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,6 +74,7 @@
     <Compile Include="BaseControls\CustomNumericInput.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="BaseControls\SimpleParser.cs" />
     <Compile Include="Controls\AbilityControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -153,6 +155,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\CombatantControl.resx">
       <DependentUpon>CombatantControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AbilityDialog.resx">
       <DependentUpon>AbilityDialog.cs</DependentUpon>

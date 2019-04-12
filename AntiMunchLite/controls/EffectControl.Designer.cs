@@ -61,26 +61,9 @@ namespace AntiMunchLite.Controls
       this.RemainTime.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.RemainTime.Location = new System.Drawing.Point(149, 0);
       this.RemainTime.Margin = new System.Windows.Forms.Padding(0);
-      this.RemainTime.Maximum = new decimal(new int[] {
-            99999,
-            0,
-            0,
-            0});
-      this.RemainTime.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
       this.RemainTime.Name = "RemainTime";
-      this.RemainTime.RepeatingDigitsCount = ((uint)(0u));
       this.RemainTime.Size = new System.Drawing.Size(33, 23);
       this.RemainTime.TabIndex = 1;
-      this.RemainTime.Text = "0";
-      this.RemainTime.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
       this.RemainTime.ValueChanged += new System.EventHandler(this.RemainTime_ValueChanged);
       // 
       // DelBtn
