@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace AntiMunchLite.BaseControls
@@ -21,6 +18,7 @@ namespace AntiMunchLite.BaseControls
     }
 
     public event EventHandler ValueChanged;
+
     private void _OnValueChanged() => ValueChanged?.Invoke(this, new EventArgs());
 
     private int _Value;

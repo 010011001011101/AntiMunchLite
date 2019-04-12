@@ -40,6 +40,7 @@
       this.LoadAddBtn = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
       this.ShowPreGenEffects = new System.Windows.Forms.ToolStripMenuItem();
+      this.abilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
       this.AddBtn = new System.Windows.Forms.ToolStripButton();
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -49,7 +50,6 @@
       this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
       this.ResetBtn = new System.Windows.Forms.ToolStripButton();
       this.MainFlow = new System.Windows.Forms.FlowLayoutPanel();
-      this.abilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.ToolBar.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -92,6 +92,7 @@
       // 
       this.SaveBtn.Image = ((System.Drawing.Image)(resources.GetObject("SaveBtn.Image")));
       this.SaveBtn.Name = "SaveBtn";
+      this.SaveBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
       this.SaveBtn.Size = new System.Drawing.Size(180, 22);
       this.SaveBtn.Text = "Save";
       this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
@@ -100,6 +101,7 @@
       // 
       this.LoadBtn.Image = ((System.Drawing.Image)(resources.GetObject("LoadBtn.Image")));
       this.LoadBtn.Name = "LoadBtn";
+      this.LoadBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
       this.LoadBtn.Size = new System.Drawing.Size(180, 22);
       this.LoadBtn.Text = "Load";
       this.LoadBtn.Click += new System.EventHandler(this.LoadBtn_Click);
@@ -108,6 +110,7 @@
       // 
       this.LoadAddBtn.Image = ((System.Drawing.Image)(resources.GetObject("LoadAddBtn.Image")));
       this.LoadAddBtn.Name = "LoadAddBtn";
+      this.LoadAddBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
       this.LoadAddBtn.Size = new System.Drawing.Size(180, 22);
       this.LoadAddBtn.Text = "Load Add";
       this.LoadAddBtn.Click += new System.EventHandler(this.LoadAddBtn_Click);
@@ -123,6 +126,13 @@
       this.ShowPreGenEffects.Size = new System.Drawing.Size(180, 22);
       this.ShowPreGenEffects.Text = "Effects...";
       this.ShowPreGenEffects.Click += new System.EventHandler(this.ShowPreGenEffects_Click);
+      // 
+      // abilitiesToolStripMenuItem
+      // 
+      this.abilitiesToolStripMenuItem.Name = "abilitiesToolStripMenuItem";
+      this.abilitiesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.abilitiesToolStripMenuItem.Text = "Abilities...";
+      this.abilitiesToolStripMenuItem.Click += new System.EventHandler(this.abilitiesToolStripMenuItem_Click);
       // 
       // toolStripSeparator3
       // 
@@ -200,13 +210,6 @@
       this.MainFlow.Size = new System.Drawing.Size(905, 341);
       this.MainFlow.TabIndex = 1;
       this.MainFlow.WrapContents = false;
-      // 
-      // abilitiesToolStripMenuItem
-      // 
-      this.abilitiesToolStripMenuItem.Name = "abilitiesToolStripMenuItem";
-      this.abilitiesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-      this.abilitiesToolStripMenuItem.Text = "Abilities...";
-      this.abilitiesToolStripMenuItem.Click += new System.EventHandler(this.abilitiesToolStripMenuItem_Click);
       // 
       // MainForm
       // 
