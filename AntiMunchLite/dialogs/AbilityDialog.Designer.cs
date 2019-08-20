@@ -45,55 +45,57 @@ namespace AntiMunchLite.Dialogs
       // 
       // tableLayoutPanel1
       // 
-      this.tableLayoutPanel1.ColumnCount = 2;
+      this.tableLayoutPanel1.ColumnCount = 3;
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-      this.tableLayoutPanel1.Controls.Add(this.CancelBtn, 1, 2);
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+      this.tableLayoutPanel1.Controls.Add(this.CancelBtn, 2, 2);
       this.tableLayoutPanel1.Controls.Add(this.Combotants, 0, 0);
       this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
-      this.tableLayoutPanel1.Controls.Add(this.OkBtn, 0, 2);
+      this.tableLayoutPanel1.Controls.Add(this.OkBtn, 1, 2);
       this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
       this.tableLayoutPanel1.Name = "tableLayoutPanel1";
       this.tableLayoutPanel1.RowCount = 3;
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-      this.tableLayoutPanel1.Size = new System.Drawing.Size(333, 255);
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+      this.tableLayoutPanel1.Size = new System.Drawing.Size(344, 262);
       this.tableLayoutPanel1.TabIndex = 0;
       // 
       // CancelBtn
       // 
       this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-      this.CancelBtn.Location = new System.Drawing.Point(276, 226);
+      this.CancelBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.CancelBtn.Location = new System.Drawing.Point(277, 238);
       this.CancelBtn.Name = "CancelBtn";
-      this.CancelBtn.Size = new System.Drawing.Size(54, 23);
+      this.CancelBtn.Size = new System.Drawing.Size(64, 21);
       this.CancelBtn.TabIndex = 5;
       this.CancelBtn.Text = "Cancel";
       this.CancelBtn.UseVisualStyleBackColor = true;
       // 
       // Combotants
       // 
-      this.tableLayoutPanel1.SetColumnSpan(this.Combotants, 2);
+      this.tableLayoutPanel1.SetColumnSpan(this.Combotants, 3);
       this.Combotants.Dock = System.Windows.Forms.DockStyle.Fill;
       this.Combotants.FormattingEnabled = true;
       this.Combotants.Location = new System.Drawing.Point(3, 3);
       this.Combotants.Name = "Combotants";
-      this.Combotants.Size = new System.Drawing.Size(327, 189);
+      this.Combotants.Size = new System.Drawing.Size(338, 201);
       this.Combotants.TabIndex = 6;
       // 
       // flowLayoutPanel1
       // 
-      this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 2);
+      this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 3);
       this.flowLayoutPanel1.Controls.Add(this.NameCB);
       this.flowLayoutPanel1.Controls.Add(this.RemainNum);
       this.flowLayoutPanel1.Controls.Add(this.label1);
       this.flowLayoutPanel1.Controls.Add(this.TotalNum);
       this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 195);
+      this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 207);
       this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
       this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-      this.flowLayoutPanel1.Size = new System.Drawing.Size(333, 28);
+      this.flowLayoutPanel1.Size = new System.Drawing.Size(344, 28);
       this.flowLayoutPanel1.TabIndex = 8;
       // 
       // NameCB
@@ -116,6 +118,7 @@ namespace AntiMunchLite.Dialogs
       this.RemainNum.Size = new System.Drawing.Size(33, 20);
       this.RemainNum.TabIndex = 8;
       this.RemainNum.Text = "3";
+      this.RemainNum.ToolTip = null;
       this.RemainNum.Value = 3;
       // 
       // label1
@@ -140,15 +143,16 @@ namespace AntiMunchLite.Dialogs
       this.TotalNum.Size = new System.Drawing.Size(33, 20);
       this.TotalNum.TabIndex = 10;
       this.TotalNum.Text = "3";
+      this.TotalNum.ToolTip = null;
       this.TotalNum.Value = 3;
       // 
       // OkBtn
       // 
-      this.OkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.OkBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-      this.OkBtn.Location = new System.Drawing.Point(216, 226);
+      this.OkBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.OkBtn.Location = new System.Drawing.Point(207, 238);
       this.OkBtn.Name = "OkBtn";
-      this.OkBtn.Size = new System.Drawing.Size(54, 23);
+      this.OkBtn.Size = new System.Drawing.Size(64, 21);
       this.OkBtn.TabIndex = 4;
       this.OkBtn.Text = "OK";
       this.OkBtn.UseVisualStyleBackColor = true;
@@ -159,7 +163,7 @@ namespace AntiMunchLite.Dialogs
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.CancelBtn;
-      this.ClientSize = new System.Drawing.Size(333, 255);
+      this.ClientSize = new System.Drawing.Size(344, 262);
       this.Controls.Add(this.tableLayoutPanel1);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
       this.MaximizeBox = false;

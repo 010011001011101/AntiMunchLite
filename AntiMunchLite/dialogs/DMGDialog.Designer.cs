@@ -43,12 +43,13 @@
       // 
       // TableLayoutPanel
       // 
-      this.TableLayoutPanel.ColumnCount = 3;
+      this.TableLayoutPanel.ColumnCount = 4;
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
-      this.TableLayoutPanel.Controls.Add(this.OkBtn, 1, 3);
-      this.TableLayoutPanel.Controls.Add(this.CancelBtn, 2, 3);
+      this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+      this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+      this.TableLayoutPanel.Controls.Add(this.OkBtn, 2, 3);
+      this.TableLayoutPanel.Controls.Add(this.CancelBtn, 3, 3);
       this.TableLayoutPanel.Controls.Add(this.Combotants, 0, 0);
       this.TableLayoutPanel.Controls.Add(this.flowLayoutPanel1, 1, 1);
       this.TableLayoutPanel.Controls.Add(this.NoOverheal, 0, 2);
@@ -62,17 +63,17 @@
       this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
       this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
       this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-      this.TableLayoutPanel.Size = new System.Drawing.Size(211, 266);
+      this.TableLayoutPanel.Size = new System.Drawing.Size(284, 262);
       this.TableLayoutPanel.TabIndex = 0;
       // 
       // OkBtn
       // 
-      this.OkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.OkBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-      this.OkBtn.Location = new System.Drawing.Point(92, 241);
+      this.OkBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.OkBtn.Location = new System.Drawing.Point(146, 237);
       this.OkBtn.Margin = new System.Windows.Forms.Padding(2);
       this.OkBtn.Name = "OkBtn";
-      this.OkBtn.Size = new System.Drawing.Size(56, 23);
+      this.OkBtn.Size = new System.Drawing.Size(66, 23);
       this.OkBtn.TabIndex = 4;
       this.OkBtn.Text = "OK";
       this.OkBtn.UseVisualStyleBackColor = true;
@@ -80,10 +81,10 @@
       // CancelBtn
       // 
       this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-      this.CancelBtn.Location = new System.Drawing.Point(152, 241);
-      this.CancelBtn.Margin = new System.Windows.Forms.Padding(2);
+      this.CancelBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.CancelBtn.Location = new System.Drawing.Point(217, 238);
       this.CancelBtn.Name = "CancelBtn";
-      this.CancelBtn.Size = new System.Drawing.Size(56, 23);
+      this.CancelBtn.Size = new System.Drawing.Size(64, 21);
       this.CancelBtn.TabIndex = 5;
       this.CancelBtn.Text = "Cancel";
       this.CancelBtn.UseVisualStyleBackColor = true;
@@ -91,25 +92,25 @@
       // Combotants
       // 
       this.Combotants.CheckOnClick = true;
-      this.TableLayoutPanel.SetColumnSpan(this.Combotants, 3);
+      this.TableLayoutPanel.SetColumnSpan(this.Combotants, 4);
       this.Combotants.Dock = System.Windows.Forms.DockStyle.Fill;
       this.Combotants.FormattingEnabled = true;
       this.Combotants.Location = new System.Drawing.Point(3, 3);
       this.Combotants.Name = "Combotants";
-      this.Combotants.Size = new System.Drawing.Size(205, 188);
+      this.Combotants.Size = new System.Drawing.Size(278, 184);
       this.Combotants.TabIndex = 0;
       this.Combotants.TabStop = false;
       // 
       // flowLayoutPanel1
       // 
-      this.TableLayoutPanel.SetColumnSpan(this.flowLayoutPanel1, 2);
+      this.TableLayoutPanel.SetColumnSpan(this.flowLayoutPanel1, 3);
       this.flowLayoutPanel1.Controls.Add(this.IsDmg);
       this.flowLayoutPanel1.Controls.Add(this.IsHeal);
       this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.flowLayoutPanel1.Location = new System.Drawing.Point(71, 194);
+      this.flowLayoutPanel1.Location = new System.Drawing.Point(71, 190);
       this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
       this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-      this.flowLayoutPanel1.Size = new System.Drawing.Size(140, 23);
+      this.flowLayoutPanel1.Size = new System.Drawing.Size(213, 23);
       this.flowLayoutPanel1.TabIndex = 2;
       // 
       // IsDmg
@@ -143,8 +144,8 @@
       this.NoOverheal.AutoSize = true;
       this.NoOverheal.Checked = true;
       this.NoOverheal.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.TableLayoutPanel.SetColumnSpan(this.NoOverheal, 3);
-      this.NoOverheal.Location = new System.Drawing.Point(3, 220);
+      this.TableLayoutPanel.SetColumnSpan(this.NoOverheal, 4);
+      this.NoOverheal.Location = new System.Drawing.Point(3, 216);
       this.NoOverheal.Name = "NoOverheal";
       this.NoOverheal.Size = new System.Drawing.Size(84, 16);
       this.NoOverheal.TabIndex = 3;
@@ -153,7 +154,7 @@
       // 
       // DmgCounter
       // 
-      this.DmgCounter.Location = new System.Drawing.Point(3, 197);
+      this.DmgCounter.Location = new System.Drawing.Point(3, 193);
       this.DmgCounter.Maximum = null;
       this.DmgCounter.Minimum = null;
       this.DmgCounter.Name = "DmgCounter";
@@ -169,7 +170,7 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.CancelBtn;
-      this.ClientSize = new System.Drawing.Size(211, 266);
+      this.ClientSize = new System.Drawing.Size(284, 262);
       this.Controls.Add(this.TableLayoutPanel);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
       this.Margin = new System.Windows.Forms.Padding(2);

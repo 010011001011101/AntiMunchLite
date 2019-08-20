@@ -55,7 +55,7 @@ namespace AntiMunchLite.Dialogs
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-      this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+      this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
       this.TableLayoutPanel.Controls.Add(this.OkBtn, 2, 3);
       this.TableLayoutPanel.Controls.Add(this.CancelBtn, 3, 3);
       this.TableLayoutPanel.Controls.Add(this.EffectName, 0, 1);
@@ -70,17 +70,17 @@ namespace AntiMunchLite.Dialogs
       this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
       this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-      this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-      this.TableLayoutPanel.Size = new System.Drawing.Size(339, 244);
+      this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+      this.TableLayoutPanel.Size = new System.Drawing.Size(344, 262);
       this.TableLayoutPanel.TabIndex = 0;
       // 
       // OkBtn
       // 
-      this.OkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.OkBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-      this.OkBtn.Location = new System.Drawing.Point(222, 215);
+      this.OkBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.OkBtn.Location = new System.Drawing.Point(207, 238);
       this.OkBtn.Name = "OkBtn";
-      this.OkBtn.Size = new System.Drawing.Size(54, 23);
+      this.OkBtn.Size = new System.Drawing.Size(64, 21);
       this.OkBtn.TabIndex = 3;
       this.OkBtn.Text = "OK";
       this.OkBtn.UseVisualStyleBackColor = true;
@@ -88,9 +88,10 @@ namespace AntiMunchLite.Dialogs
       // CancelBtn
       // 
       this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-      this.CancelBtn.Location = new System.Drawing.Point(282, 215);
+      this.CancelBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.CancelBtn.Location = new System.Drawing.Point(277, 238);
       this.CancelBtn.Name = "CancelBtn";
-      this.CancelBtn.Size = new System.Drawing.Size(54, 23);
+      this.CancelBtn.Size = new System.Drawing.Size(64, 21);
       this.CancelBtn.TabIndex = 4;
       this.CancelBtn.Text = "Cancel";
       this.CancelBtn.UseVisualStyleBackColor = true;
@@ -103,9 +104,9 @@ namespace AntiMunchLite.Dialogs
       this.EffectName.Dock = System.Windows.Forms.DockStyle.Top;
       this.EffectName.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.EffectName.FormattingEnabled = true;
-      this.EffectName.Location = new System.Drawing.Point(3, 162);
+      this.EffectName.Location = new System.Drawing.Point(3, 185);
       this.EffectName.Name = "EffectName";
-      this.EffectName.Size = new System.Drawing.Size(203, 22);
+      this.EffectName.Size = new System.Drawing.Size(198, 22);
       this.EffectName.TabIndex = 0;
       // 
       // Combotants
@@ -117,7 +118,7 @@ namespace AntiMunchLite.Dialogs
       this.Combotants.FormattingEnabled = true;
       this.Combotants.Location = new System.Drawing.Point(3, 3);
       this.Combotants.Name = "Combotants";
-      this.Combotants.Size = new System.Drawing.Size(333, 153);
+      this.Combotants.Size = new System.Drawing.Size(338, 176);
       this.Combotants.TabIndex = 5;
       this.Combotants.TabStop = false;
       // 
@@ -128,10 +129,10 @@ namespace AntiMunchLite.Dialogs
       this.TypePanel.Controls.Add(this.IsBuff);
       this.TypePanel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.TypePanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-      this.TypePanel.Location = new System.Drawing.Point(209, 159);
+      this.TypePanel.Location = new System.Drawing.Point(204, 182);
       this.TypePanel.Margin = new System.Windows.Forms.Padding(0);
       this.TypePanel.Name = "TypePanel";
-      this.TypePanel.Size = new System.Drawing.Size(130, 27);
+      this.TypePanel.Size = new System.Drawing.Size(140, 27);
       this.TypePanel.TabIndex = 1;
       // 
       // IsDebuff
@@ -139,7 +140,7 @@ namespace AntiMunchLite.Dialogs
       this.IsDebuff.AutoSize = true;
       this.IsDebuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.IsDebuff.ForeColor = System.Drawing.Color.DarkRed;
-      this.IsDebuff.Location = new System.Drawing.Point(64, 3);
+      this.IsDebuff.Location = new System.Drawing.Point(74, 3);
       this.IsDebuff.Name = "IsDebuff";
       this.IsDebuff.Size = new System.Drawing.Size(63, 17);
       this.IsDebuff.TabIndex = 1;
@@ -152,7 +153,7 @@ namespace AntiMunchLite.Dialogs
       this.IsBuff.Checked = true;
       this.IsBuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.IsBuff.ForeColor = System.Drawing.Color.Green;
-      this.IsBuff.Location = new System.Drawing.Point(10, 3);
+      this.IsBuff.Location = new System.Drawing.Point(20, 3);
       this.IsBuff.Name = "IsBuff";
       this.IsBuff.Size = new System.Drawing.Size(48, 17);
       this.IsBuff.TabIndex = 0;
@@ -163,7 +164,7 @@ namespace AntiMunchLite.Dialogs
       // RemainTime
       // 
       this.RemainTime.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.RemainTime.Location = new System.Drawing.Point(3, 189);
+      this.RemainTime.Location = new System.Drawing.Point(3, 212);
       this.RemainTime.Maximum = null;
       this.RemainTime.Minimum = null;
       this.RemainTime.Name = "RemainTime";
@@ -181,10 +182,10 @@ namespace AntiMunchLite.Dialogs
       this.TimeFlow.Controls.Add(this.TenMinutesTime);
       this.TimeFlow.Controls.Add(this.HourTime);
       this.TimeFlow.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.TimeFlow.Location = new System.Drawing.Point(48, 186);
+      this.TimeFlow.Location = new System.Drawing.Point(48, 209);
       this.TimeFlow.Margin = new System.Windows.Forms.Padding(0);
       this.TimeFlow.Name = "TimeFlow";
-      this.TimeFlow.Size = new System.Drawing.Size(291, 26);
+      this.TimeFlow.Size = new System.Drawing.Size(296, 26);
       this.TimeFlow.TabIndex = 5;
       // 
       // RoundTime
@@ -235,7 +236,7 @@ namespace AntiMunchLite.Dialogs
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.CancelBtn;
-      this.ClientSize = new System.Drawing.Size(339, 244);
+      this.ClientSize = new System.Drawing.Size(344, 262);
       this.Controls.Add(this.TableLayoutPanel);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
       this.MaximizeBox = false;

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using AntiMunchLite.Controls;
@@ -15,8 +14,6 @@ namespace AntiMunchLite
     private readonly ControlsCache<CombatantControl> _CombatantControlsCache;
     private Core.Core _Core = new Core.Core();
 
-    private readonly CheckBox _DropInitiativeOnReset, _DropEffectsOnReset;
-
 
     public MainForm()
     {
@@ -24,27 +21,6 @@ namespace AntiMunchLite
 
       _SaveLoadManager = new SaveLoadManager(this);
       _CombatantControlsCache = new ControlsCache<CombatantControl>(MainFlow.Controls, _CreateCombatantControl);
-
-      ToolBar.Items.AddRange(new[]
-      {
-        _CreateToolBarCheckBox(out _DropInitiativeOnReset, @"Drop Initiative", true),
-        _CreateToolBarCheckBox(out _DropEffectsOnReset, @"Drop Effects", true)    
-      });
-    }
-
-    private ToolStripItem _CreateToolBarCheckBox(out CheckBox dropEffectsOnReset, string text, bool initial)
-    {
-      dropEffectsOnReset = new CheckBox
-      {
-        Text = text,
-        Anchor =  AnchorStyles.Left,
-        BackColor = Color.Transparent,
-        Checked = initial
-      };
-
-      dropEffectsOnReset.CheckedChanged += (s, e) => ToolBar.Focus();
-
-      return new ToolStripControlHost(dropEffectsOnReset) {Margin = new Padding( 3, 3, 0, 2)};
     }
 
     private CombatantControl _CreateCombatantControl()
@@ -232,12 +208,8 @@ namespace AntiMunchLite
 
     private void ResetBtn_Click(object sender, EventArgs e)
     {
-      if (_Core.Started && 
-          DialogResult.Yes != MessageBox.Show(@"Confirm Encounter Reset", @"Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
-        return;
-
-      _Core.Reset(_DropInitiativeOnReset.Checked, _DropEffectsOnReset.Checked);
-      RefreshCombatants();
+      if (ResetDialog.ResetEncounter(_Core, this))
+        RefreshCombatants(forceInitiativeInit: true);
     }
 
     private void SaveBtn_Click(object sender, EventArgs e)
