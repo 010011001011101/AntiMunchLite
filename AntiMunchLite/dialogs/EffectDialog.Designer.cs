@@ -169,9 +169,9 @@ namespace AntiMunchLite.Dialogs
       this.RemainTime.Name = "RemainTime";
       this.RemainTime.Size = new System.Drawing.Size(42, 20);
       this.RemainTime.TabIndex = 2;
-      this.RemainTime.Text = "0";
+      this.RemainTime.Text = "1";
       this.RemainTime.ToolTip = null;
-      this.RemainTime.Value = 0;
+      this.RemainTime.Value = 1;
       // 
       // TimeFlow
       // 
