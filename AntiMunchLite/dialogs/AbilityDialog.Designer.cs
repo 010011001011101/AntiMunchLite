@@ -76,6 +76,7 @@ namespace AntiMunchLite.Dialogs
       // 
       // Combotants
       // 
+      this.Combotants.CheckOnClick = true;
       this.tableLayoutPanel1.SetColumnSpan(this.Combotants, 3);
       this.Combotants.Dock = System.Windows.Forms.DockStyle.Fill;
       this.Combotants.FormattingEnabled = true;

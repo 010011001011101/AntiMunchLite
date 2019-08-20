@@ -85,6 +85,11 @@ namespace AntiMunchLite.Core
       _Combatants.Add(new Combatant { Name = "<Name>", SubInitiative = 1});
     }
 
+    public void CloneCombatants(IEnumerable<Combatant> combatants, bool dropInit, bool dropHp)
+    {
+      _Combatants.AddRange(combatants.Select(c => c.Clone(dropInit, dropHp)));
+    }
+
     public void RemoveCombatant(Combatant combatant)
     {
       _Combatants.Remove(combatant);

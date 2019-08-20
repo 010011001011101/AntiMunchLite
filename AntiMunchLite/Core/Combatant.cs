@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AntiMunchLite.Core
 {
@@ -61,6 +62,34 @@ namespace AntiMunchLite.Core
     public override string ToString()
     {
       return Name;
+    }
+
+    public Combatant Clone(bool dropInit, bool dropHp)
+    {
+      var clone = new Combatant
+      {
+        Name = Name,
+        Comment = Comment,
+        ShowComment = ShowComment,
+        ShowAbilities = ShowAbilities,
+        ShowEffects = ShowEffects
+      };
+      clone.Effects.AddRange(Effects.Select(e => e.Clone()));
+      clone.Abilities.AddRange(Abilities.Select(e => e.Clone()));
+
+      if (!dropInit)
+      {
+        clone.Initiative = Initiative;
+        clone.SubInitiative = SubInitiative;
+      }
+
+      if (!dropHp)
+      {
+        clone.CurrentHp = CurrentHp;
+        clone.MaxHp = MaxHp;
+      }
+
+      return clone;
     }
   }
 }

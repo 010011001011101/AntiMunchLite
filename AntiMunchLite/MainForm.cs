@@ -160,6 +160,12 @@ namespace AntiMunchLite
       RefreshCombatants();
     }
 
+    private void CloneBtn_Click(object sender, EventArgs e)
+    {
+      if (CloneDialog.ResetEncounter(_Core, this))
+        RefreshCombatants();
+    }
+
     private void NextBtn_Click(object sender, EventArgs e)
     {
       _Core.Next();
@@ -252,6 +258,9 @@ namespace AntiMunchLite
         {
           case Keys.A:
             AddBtn.PerformClick();
+            break;
+          case Keys.P:
+            CloneBtn.PerformClick();
             break;
           case Keys.N:
             NextBtn.PerformClick();
