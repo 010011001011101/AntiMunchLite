@@ -36,11 +36,11 @@
       this.ToolBar = new System.Windows.Forms.ToolStrip();
       this.MenuList = new System.Windows.Forms.ToolStripDropDownButton();
       this.SaveBtn = new System.Windows.Forms.ToolStripMenuItem();
-      this.LoadBtn = new System.Windows.Forms.ToolStripMenuItem();
+      this.OpenBtn = new System.Windows.Forms.ToolStripMenuItem();
       this.LoadAddBtn = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
       this.ShowPreGenEffects = new System.Windows.Forms.ToolStripMenuItem();
-      this.abilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.AbilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
       this.AddBtn = new System.Windows.Forms.ToolStripButton();
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -77,11 +77,11 @@
       this.MenuList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
       this.MenuList.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SaveBtn,
-            this.LoadBtn,
+            this.OpenBtn,
             this.LoadAddBtn,
             this.toolStripSeparator4,
             this.ShowPreGenEffects,
-            this.abilitiesToolStripMenuItem});
+            this.AbilitiesToolStripMenuItem});
       this.MenuList.Image = ((System.Drawing.Image)(resources.GetObject("MenuList.Image")));
       this.MenuList.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.MenuList.Name = "MenuList";
@@ -97,14 +97,14 @@
       this.SaveBtn.Text = "Save";
       this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
       // 
-      // LoadBtn
+      // OpenBtn
       // 
-      this.LoadBtn.Image = ((System.Drawing.Image)(resources.GetObject("LoadBtn.Image")));
-      this.LoadBtn.Name = "LoadBtn";
-      this.LoadBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-      this.LoadBtn.Size = new System.Drawing.Size(180, 22);
-      this.LoadBtn.Text = "Load";
-      this.LoadBtn.Click += new System.EventHandler(this.LoadBtn_Click);
+      this.OpenBtn.Image = ((System.Drawing.Image)(resources.GetObject("OpenBtn.Image")));
+      this.OpenBtn.Name = "OpenBtn";
+      this.OpenBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+      this.OpenBtn.Size = new System.Drawing.Size(180, 22);
+      this.OpenBtn.Text = "Open";
+      this.OpenBtn.Click += new System.EventHandler(this.OpenBtn_Click);
       // 
       // LoadAddBtn
       // 
@@ -127,12 +127,12 @@
       this.ShowPreGenEffects.Text = "Effects...";
       this.ShowPreGenEffects.Click += new System.EventHandler(this.ShowPreGenEffects_Click);
       // 
-      // abilitiesToolStripMenuItem
+      // AbilitiesToolStripMenuItem
       // 
-      this.abilitiesToolStripMenuItem.Name = "abilitiesToolStripMenuItem";
-      this.abilitiesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-      this.abilitiesToolStripMenuItem.Text = "Abilities...";
-      this.abilitiesToolStripMenuItem.Click += new System.EventHandler(this.abilitiesToolStripMenuItem_Click);
+      this.AbilitiesToolStripMenuItem.Name = "AbilitiesToolStripMenuItem";
+      this.AbilitiesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.AbilitiesToolStripMenuItem.Text = "Abilities...";
+      this.AbilitiesToolStripMenuItem.Click += new System.EventHandler(this.AbilitiesToolStripMenuItem_Click);
       // 
       // toolStripSeparator3
       // 
@@ -147,6 +147,7 @@
       this.AddBtn.Name = "AddBtn";
       this.AddBtn.Size = new System.Drawing.Size(23, 22);
       this.AddBtn.Text = "Add Combatant";
+      this.AddBtn.ToolTipText = "Add Combatant (Ctrl+A)";
       this.AddBtn.Click += new System.EventHandler(this.AddBtn_Click);
       // 
       // toolStripSeparator1
@@ -162,6 +163,7 @@
       this.NextBtn.Name = "NextBtn";
       this.NextBtn.Size = new System.Drawing.Size(55, 22);
       this.NextBtn.Text = "Next";
+      this.NextBtn.ToolTipText = "Next (Ctrl+N)";
       this.NextBtn.Click += new System.EventHandler(this.NextBtn_Click);
       // 
       // NextRoundBtn
@@ -197,6 +199,7 @@
       this.ResetBtn.Name = "ResetBtn";
       this.ResetBtn.Size = new System.Drawing.Size(59, 22);
       this.ResetBtn.Text = "Reset";
+      this.ResetBtn.ToolTipText = "Reset (Ctrl+R)";
       this.ResetBtn.Click += new System.EventHandler(this.ResetBtn_Click);
       // 
       // MainFlow
@@ -219,10 +222,12 @@
       this.Controls.Add(this.MainFlow);
       this.Controls.Add(this.ToolBar);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+      this.KeyPreview = true;
       this.Name = "MainForm";
       this.Text = "AntiMunch Lite";
       this.Load += new System.EventHandler(this.MainForm_Load);
       this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
+      this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
       this.ToolBar.ResumeLayout(false);
       this.ToolBar.PerformLayout();
       this.ResumeLayout(false);
@@ -242,12 +247,12 @@
     private System.Windows.Forms.ToolStripButton ResetBtn;
     private System.Windows.Forms.ToolStripDropDownButton MenuList;
     private System.Windows.Forms.ToolStripMenuItem SaveBtn;
-    private System.Windows.Forms.ToolStripMenuItem LoadBtn;
+    private System.Windows.Forms.ToolStripMenuItem OpenBtn;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     private System.Windows.Forms.ToolStripButton NextRoundBtn;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     private System.Windows.Forms.ToolStripMenuItem ShowPreGenEffects;
     private System.Windows.Forms.ToolStripMenuItem LoadAddBtn;
-    private System.Windows.Forms.ToolStripMenuItem abilitiesToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem AbilitiesToolStripMenuItem;
   }
 }

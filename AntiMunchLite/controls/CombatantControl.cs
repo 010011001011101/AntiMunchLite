@@ -450,6 +450,24 @@ namespace AntiMunchLite.Controls
     }
 
     #endregion
+
+    public void ShowDamageDialog()
+    {
+      DmgBtn.PerformClick();
+    }
+
+    public void ShowHealDialog()
+    {
+      HealBtn.PerformClick();
+    }
+
+    public void ShowAddEffectDialog()
+    {
+      if (!ShowEffectsCB.Checked)
+        ShowEffectsCB.Checked = true;
+
+      AddEffectBtn.PerformClick();
+    }
   }
 
   public static class HpStatusExtensions

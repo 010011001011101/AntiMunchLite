@@ -245,7 +245,7 @@ namespace AntiMunchLite
       _SaveLoadManager.Save(_Core);
     }
 
-    private void LoadBtn_Click(object sender, EventArgs e)
+    private void OpenBtn_Click(object sender, EventArgs e)
     {
       var loaded = _SaveLoadManager.Load();
       if (loaded == null) return;
@@ -263,7 +263,7 @@ namespace AntiMunchLite
       RefreshCombatants();
     }
 
-    private void abilitiesToolStripMenuItem_Click(object sender, EventArgs e)
+    private void AbilitiesToolStripMenuItem_Click(object sender, EventArgs e)
     {
       PreGenAbilitiesDialog.Show(_Core.PreGenAbilities, this);
     }
@@ -271,6 +271,39 @@ namespace AntiMunchLite
     private void ShowPreGenEffects_Click(object sender, EventArgs e)
     {
       PreGenEffectsDialog.Show(_Core.PreGenEffects, this);
+    }
+
+    private void MainForm_KeyDown(object sender, KeyEventArgs e)
+    {
+      if (e.Control)
+        switch (e.KeyCode)
+        {
+          case Keys.A:
+            AddBtn.PerformClick();
+            break;
+          case Keys.N:
+            NextBtn.PerformClick();
+            break;
+          case Keys.R:
+            ResetBtn.PerformClick();
+            break;
+          case Keys.D:
+            OnCurrentCombatantControl(c => c.ShowDamageDialog());
+            break;
+          case Keys.H:
+            OnCurrentCombatantControl(c => c.ShowHealDialog());
+            break;
+          case Keys.E:
+            OnCurrentCombatantControl(c => c.ShowAddEffectDialog());
+            break;
+        }
+
+      void OnCurrentCombatantControl(Action<CombatantControl> action)
+      {
+        var currentControl = _CombatantControlsCache.FirstOrDefault(c => c.IsCurrent);
+        if (currentControl != null)
+          action(currentControl);
+      }
     }
   }
 }

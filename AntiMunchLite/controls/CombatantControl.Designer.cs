@@ -133,7 +133,7 @@ namespace AntiMunchLite.Controls
       this.HealBtn.Size = new System.Drawing.Size(23, 26);
       this.HealBtn.TabIndex = 4;
       this.HealBtn.TabStop = false;
-      this.ToolTip.SetToolTip(this.HealBtn, "Heal");
+      this.ToolTip.SetToolTip(this.HealBtn, "Heal (Ctrl+H)");
       this.HealBtn.UseVisualStyleBackColor = true;
       this.HealBtn.Click += new System.EventHandler(this.HealBtn_Click);
       // 
@@ -204,7 +204,7 @@ namespace AntiMunchLite.Controls
       this.DmgBtn.Size = new System.Drawing.Size(23, 26);
       this.DmgBtn.TabIndex = 3;
       this.DmgBtn.TabStop = false;
-      this.ToolTip.SetToolTip(this.DmgBtn, "Deal Damage");
+      this.ToolTip.SetToolTip(this.DmgBtn, "Deal Damage (Ctrl+D)");
       this.DmgBtn.UseVisualStyleBackColor = true;
       this.DmgBtn.Click += new System.EventHandler(this.DmgBtn_Click);
       // 
@@ -336,7 +336,7 @@ namespace AntiMunchLite.Controls
       this.AddEffectBtn.TabIndex = 0;
       this.AddEffectBtn.TabStop = false;
       this.AddEffectBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-      this.ToolTip.SetToolTip(this.AddEffectBtn, "Add Effect");
+      this.ToolTip.SetToolTip(this.AddEffectBtn, "Add Effect  (Ctrl+E)");
       this.AddEffectBtn.UseVisualStyleBackColor = true;
       this.AddEffectBtn.Click += new System.EventHandler(this.AddEffectBtn_Click);
       // 
