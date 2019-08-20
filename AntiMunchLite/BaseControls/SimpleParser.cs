@@ -24,13 +24,13 @@ namespace AntiMunchLite.BaseControls
       var signs = string.Join(null, Operations.Select(i => '\\' + i.Sign));
 
       var matchFirst = Regex.Match(str, $"^([^{signs}]*)");
-      chain.AddLast(new ElementNode(matchFirst.Groups[1].Captures[0].Value, Random));
+      chain.AddLast(new ElementNode(matchFirst.Groups[1].Captures[0].Value, Random.Value));
 
       var match = Regex.Match(str, $"([{signs}])([^{signs}]*)");
       while (match.Success)
       {
         chain.AddLast(new OperationNode(match.Groups[1].Captures[0].Value));
-        chain.AddLast(new ElementNode(match.Groups[2].Captures[0].Value, Random));
+        chain.AddLast(new ElementNode(match.Groups[2].Captures[0].Value, Random.Value));
         match = match.NextMatch();
       }
 
@@ -65,20 +65,23 @@ namespace AntiMunchLite.BaseControls
       public int Value { get; private set; }
       public string Description { get; private set; }
 
-      public ElementNode(string str, Lazy<Random> random)
+      public ElementNode(string str, Random random)
       {
         try
         {
-          var matchDice = Regex.Match(str, "^\\s*(\\d+)[dD](\\d+)");
+          var matchDice = Regex.Match(str, "^\\s*(\\d*)[dD](\\d+)");
           if (matchDice.Success)
           {
-            var count = Convert.ToInt32(matchDice.Groups[1].Captures[0].Value);
+            var countStr = matchDice.Groups[1].Captures[0].Value;
+            var count = string.IsNullOrWhiteSpace(countStr)
+              ? 1
+              : Convert.ToInt32(countStr);
             var dice = Convert.ToInt32(matchDice.Groups[2].Captures[0].Value);
 
             var sb = new StringBuilder("(");
             for (var i = 0; i < count; ++i)
             {
-              var diceThrow = random.Value.Next(1, dice + 1);
+              var diceThrow = random.Next(1, dice + 1);
               Value += diceThrow;
 
               if (i > 0) sb.Append("+");
