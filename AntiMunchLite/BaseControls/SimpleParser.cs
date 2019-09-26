@@ -69,19 +69,20 @@ namespace AntiMunchLite.BaseControls
       {
         try
         {
-          var matchDice = Regex.Match(str, "^\\s*(\\d*)[dD](\\d+)");
+          var matchDice = Regex.Match(str, "^\\s*(\\d*)([dDhH])(\\d+)");
           if (matchDice.Success)
           {
             var countStr = matchDice.Groups[1].Captures[0].Value;
             var count = string.IsNullOrWhiteSpace(countStr)
               ? 1
               : Convert.ToInt32(countStr);
-            var dice = Convert.ToInt32(matchDice.Groups[2].Captures[0].Value);
+            var type = matchDice.Groups[2].Captures[0].Value.ToLower();
+            var dice = Convert.ToInt32(matchDice.Groups[3].Captures[0].Value);
 
             var sb = new StringBuilder("(");
             for (var i = 0; i < count; ++i)
             {
-              var diceThrow = random.Next(1, dice + 1);
+              var diceThrow = _ThrowDice(type, i, dice, random);
               Value += diceThrow;
 
               if (i > 0) sb.Append("+");
@@ -106,6 +107,31 @@ namespace AntiMunchLite.BaseControls
         {
           Description = "[Overflow]";
         }
+      }
+
+      private int _ThrowDice(string type, int diceNum, int dice, Random random)
+      {
+        switch (type)
+        {
+          case "d":
+            return _NormalDice(diceNum, dice, random);
+          case "h":
+            return _MaxFirstDice(diceNum, dice, random);
+          default:
+            throw new ArgumentOutOfRangeException(nameof(type));
+        }
+      }
+
+      private static int _NormalDice(int diceNum, int dice, Random random)
+      {
+        return random.Next(1, dice + 1);
+      }
+
+      private static int _MaxFirstDice(int diceNum, int dice, Random random)
+      {
+        return diceNum == 0
+          ? dice
+          : random.Next(1, dice + 1);
       }
 
       public void ApplyOpeartion(ElementNode otherElement, string sign, Func<int, int, int> operation)
