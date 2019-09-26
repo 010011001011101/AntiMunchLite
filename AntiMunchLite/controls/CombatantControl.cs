@@ -21,6 +21,7 @@ namespace AntiMunchLite.Controls
     private bool _Inited;
     private readonly int _DefaultHeight;
     private readonly float _DefaultEffectsHeight, _DefaultCommentHeight, _DefaultAbilitiesHeight;
+    private readonly float _MinCommentHeight;
     public Combatant Combatant { get; private set; }
     public bool IsCurrent { get; private set; }
 
@@ -35,6 +36,7 @@ namespace AntiMunchLite.Controls
       _DefaultEffectsHeight = TableLayoutPanel.RowStyles[1].Height;
       _DefaultCommentHeight = TableLayoutPanel.RowStyles[2].Height;
       _DefaultAbilitiesHeight = TableLayoutPanel.RowStyles[3].Height;
+      _MinCommentHeight = Comment.Height;
     }
 
     public CombatantControl(Core.Core core,
@@ -169,6 +171,9 @@ namespace AntiMunchLite.Controls
       if (!_Inited) return;
 
       Combatant.Comment = Comment.Text;
+
+      if (RefreshSize())
+        _OnManualResize();
     }
 
     private bool _IgnoreHpValueChange;
@@ -220,8 +225,8 @@ namespace AntiMunchLite.Controls
       if (!_Inited) return;
 
       Combatant.ShowEffects = ShowEffectsCB.Checked;
-      RefreshSize();
-      _OnManualResize();
+      if (RefreshSize())
+        _OnManualResize();
     }
 
     private void ShowCommentCB_CheckedChanged(object sender, EventArgs e)
@@ -229,8 +234,8 @@ namespace AntiMunchLite.Controls
       if (!_Inited) return;
 
       Combatant.ShowComment = ShowCommentCB.Checked;
-      RefreshSize();
-      _OnManualResize();
+      if (RefreshSize())
+        _OnManualResize();
     }
 
     private void ShowAbilitiesCB_CheckedChanged(object sender, EventArgs e)
@@ -238,8 +243,8 @@ namespace AntiMunchLite.Controls
       if (!_Inited) return;
 
       Combatant.ShowAbilities = ShowAbilitiesCB.Checked;
-      RefreshSize();
-      _OnManualResize();
+      if (RefreshSize())
+        _OnManualResize();
     }
 
     private void AddEffectBtn_Click(object sender, EventArgs e)
@@ -338,27 +343,43 @@ namespace AntiMunchLite.Controls
 
     #endregion
 
-    public void RefreshSize()
+    public bool RefreshSize()
     {
       var effectsDelta = GetFlowDelta(EffectsFlow, Combatant.ShowEffects, _DefaultEffectsHeight);
-      var commentDelta = Combatant.ShowComment ? 0 : -_DefaultCommentHeight;
+      var commentDelta = GetCommentDelta(Comment, Combatant.ShowComment, _MinCommentHeight, _DefaultCommentHeight);
       var abilitiesDelta = GetFlowDelta(AbilitiesFlow, Combatant.ShowAbilities, _DefaultAbilitiesHeight);
-
+      
       TableLayoutPanel.RowStyles[1].Height = _DefaultEffectsHeight + effectsDelta;
       TableLayoutPanel.RowStyles[2].Height = _DefaultCommentHeight + commentDelta;
       TableLayoutPanel.RowStyles[3].Height = _DefaultAbilitiesHeight + abilitiesDelta;
 
-      Height = (int)(_DefaultHeight + effectsDelta + commentDelta + abilitiesDelta);
+      var newHeight = (int) (_DefaultHeight + effectsDelta + commentDelta + abilitiesDelta);
+      if (Height != newHeight)
+      {
+        Height = newHeight;
+        return true;
+      }
+      return false;
 
       float GetFlowDelta(FlowLayoutPanel flow, bool showFlag, float totalBoxHeight)
       {
+        if (!showFlag) return -totalBoxHeight;
+
         var prSize = flow.PreferredSize;
-        var heightMult = (int)((double)prSize.Width / flow.Width) + 1;
-        return showFlag
-          ? heightMult > 1
-            ? flow.GetPreferredSize(new Size(flow.Width, prSize.Height * heightMult)).Height - prSize.Height
-            : 0
-          : -totalBoxHeight;
+        var heightMult = (int) ((double) prSize.Width / flow.Width) + 1;
+        return heightMult > 1
+          ? flow.GetPreferredSize(new Size(flow.Width, prSize.Height * heightMult)).Height - prSize.Height
+          : 0;
+      }
+
+      float GetCommentDelta(TextBox textBox, bool showFlag, float min, float totalBoxHeight)
+      {
+        if (!showFlag) return -totalBoxHeight;
+
+        var prSize = textBox.GetPreferredSize(new Size(textBox.Width, 0));
+        return prSize.Height <= min
+          ? 0
+          : prSize.Height - min;
       }
     }
 

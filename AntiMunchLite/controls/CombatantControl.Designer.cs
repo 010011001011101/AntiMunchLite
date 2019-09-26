@@ -363,6 +363,7 @@ namespace AntiMunchLite.Controls
       // 
       // Comment
       // 
+      this.Comment.BorderStyle = System.Windows.Forms.BorderStyle.None;
       this.Comment.Dock = System.Windows.Forms.DockStyle.Fill;
       this.Comment.Location = new System.Drawing.Point(3, 16);
       this.Comment.Multiline = true;
