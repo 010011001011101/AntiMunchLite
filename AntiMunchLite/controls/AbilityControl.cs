@@ -8,17 +8,18 @@ namespace AntiMunchLite.Controls
   public partial class AbilityControl : UserControl
   {
     private bool _Inited;
-    private readonly Action<Ability> _DeleteDelegate;
     public Ability Ability { get; private set; }
+
+    #region Events
+
+    public event Action<Ability> NeedDeleteAbility;
+    private void _OnNeedDeleteAbility(Ability ability) => NeedDeleteAbility?.Invoke(ability);
+
+    #endregion
 
     public AbilityControl()
     {
       InitializeComponent();
-    }
-
-    public AbilityControl(Action<Ability> deleteDelegate) : this()
-    {
-      _DeleteDelegate = deleteDelegate;
     }
 
     public void Initialize(Ability ability, Color backColor)
@@ -49,7 +50,7 @@ namespace AntiMunchLite.Controls
     {
       if (!_Inited) return;
 
-      _DeleteDelegate(Ability);
+      _OnNeedDeleteAbility(Ability);
     }
 
     private void AbilityNameTB_TextChanged(object sender, EventArgs e)

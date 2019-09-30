@@ -8,18 +8,19 @@ namespace AntiMunchLite.Controls
   public partial class EffectControl : UserControl
   {
     private bool _Inited;
-    private readonly Action<Effect> _DeleteDelegate;
     public Effect Effect { get; private set; }
+
+    #region Events
+
+    public event Action<Effect> NeedDeleteEffect;
+    private void _OnNeedDeleteCombatant(Effect effect) => NeedDeleteEffect?.Invoke(effect);
+
+    #endregion
 
 
     public EffectControl()
     {
       InitializeComponent();
-    }
-
-    public EffectControl(Action<Effect> deleteDelegate) : this()
-    {
-      _DeleteDelegate = deleteDelegate;
     }
 
     public void Initialize(Effect effect, Color backColor)
@@ -62,7 +63,7 @@ namespace AntiMunchLite.Controls
     {
       if (!_Inited) return;
 
-      _DeleteDelegate(Effect);
+      _OnNeedDeleteCombatant(Effect);
     }
   }
 }

@@ -12,7 +12,7 @@ namespace AntiMunchLite
   {
     private readonly SaveLoadManager _SaveLoadManager;
     private readonly ControlsCache<CombatantControl> _CombatantControlsCache;
-    private Core.Core _Core = new Core.Core();
+    public Core.Core Core { get; private set; } = new Core.Core();
 
 
     public MainForm()
@@ -25,32 +25,34 @@ namespace AntiMunchLite
 
     private CombatantControl _CreateCombatantControl()
     {
-      return new CombatantControl(_Core,
-                                  _OnInitiativeChange, _OnEffectAdd, _OnAbilityAdd,
-                                  _OnDamage, _DeleteCombatant,
-                                  _OnShiftStart, _OnShiftEnd,
-                                  _OnCombatantManualResize);
+      var newControl = new CombatantControl();
+      newControl.InitiativeChange += _OnInitiativeChange;
+      newControl.Damage += _OnDamage;
+      newControl.AbilityAdd += _OnAbilityAdd;
+      newControl.EffectAdd += _OnEffectAdd;
+      newControl.NeedDeleteCombatant += _OnNeedDeleteCombatant;
+      newControl.ManualResize += _OnManualResize;
+      newControl.ShiftStart += _OnShiftStart;
+      newControl.ShiftEnd += _OnShiftEnd;
+
+      return newControl;
     }
 
-    public void RefreshCombatants(bool refreshCoreObject = false, bool forceInitiativeInit = false)
+    public void RefreshCombatants(bool forceInitiativeInit = false)
     {
       MainFlow.SuspendLayout();
 
       ColorUtils.ResetBackColorAlternation();
-      _CombatantControlsCache.AbjustSize(_Core.Combatants.Count());
+      _CombatantControlsCache.AbjustSize(Core.Combatants.Count());
 
-      var current = _Core.GetCurrentCombatant();
-      var combatants = _Core.Combatants.ToList();
+      var current = Core.GetCurrentCombatant();
+      var combatants = Core.Combatants.ToList();
       for (var i = 0; i < combatants.Count; ++i)
-        _CombatantControlsCache[i].Initialize(combatants[i], combatants[i] == current, forceInitiativeInit);
-
-      if (refreshCoreObject)
-        foreach (var control in _CombatantControlsCache)
-          control.ResetCore(_Core);
+        _CombatantControlsCache[i].Initialize(Core, combatants[i], combatants[i] == current, forceInitiativeInit);
 
       RefreshCombatantsCollision();
 
-      RoundLbl.Text = @"Round " + _Core.CurrentRound;
+      RoundLbl.Text = @"Round " + Core.CurrentRound;
 
       _ControlsSizeRefresh();
 
@@ -59,7 +61,7 @@ namespace AntiMunchLite
 
     public void RefreshCombatantsCollision()
     {
-      var initiativeCollision = (from combatant in _Core.Combatants
+      var initiativeCollision = (from combatant in Core.Combatants
                                  group combatant by new { combatant.Initiative, combatant.SubInitiative } into grp
                                  where grp.Count() > 1
                                  from combatant in grp
@@ -75,9 +77,11 @@ namespace AntiMunchLite
       return MainFlow.ClientRectangle.Width - 10;
     }
 
+    #region Handlers
+
     private void _OnInitiativeChange()
     {
-      if(_Core.Started)
+      if (Core.Started)
         RefreshCombatants();
       else
         RefreshCombatantsCollision();
@@ -107,11 +111,18 @@ namespace AntiMunchLite
         control.RefreshHp();
     }
 
-    private void _DeleteCombatant(Combatant combatant)
+    private void _OnManualResize()
     {
-      _Core.RemoveCombatant(combatant);
+      _FixCombatantControlsWidth();
+    }
+
+    private void _OnNeedDeleteCombatant(Combatant combatant)
+    {
+      Core.RemoveCombatant(combatant);
       RefreshCombatants();
     }
+
+    #endregion
 
     #region Shift Initiative
 
@@ -140,9 +151,9 @@ namespace AntiMunchLite
 
       var shiftCanceled = false;
       if (shiftFrom != null && shiftAfter != null)
-        _Core.ShiftInitiativeAfter(shiftFrom, shiftAfter);
+        Core.ShiftInitiativeAfter(shiftFrom, shiftAfter);
       else if (shiftFrom != null && shiftBefore != null)
-        _Core.ShiftInitiativeBefore(shiftFrom, shiftBefore);
+        Core.ShiftInitiativeBefore(shiftFrom, shiftBefore);
       else
         shiftCanceled = true;
 
@@ -150,32 +161,32 @@ namespace AntiMunchLite
         combatantControl.OnShiftEnd(shiftCanceled);
 
       if(!shiftCanceled)
-        RefreshCombatants(forceInitiativeInit: true);
+        RefreshCombatants(true);
     }
 
     #endregion
 
     private void AddBtn_Click(object sender, EventArgs e)
     {
-      _Core.AddCombatant();
+      Core.AddCombatant();
       RefreshCombatants();
     }
 
     private void CloneBtn_Click(object sender, EventArgs e)
     {
-      if (CloneDialog.ResetEncounter(_Core, this))
+      if (CloneDialog.ResetEncounter(Core, this))
         RefreshCombatants();
     }
 
     private void NextBtn_Click(object sender, EventArgs e)
     {
-      _Core.Next();
+      Core.Next();
       RefreshCombatants();
     }
 
     private void NextRoundBtn_Click(object sender, EventArgs e)
     {
-      _Core.NextRound();
+      Core.NextRound();
       RefreshCombatants();
     }
 
@@ -199,11 +210,6 @@ namespace AntiMunchLite
       _FixCombatantControlsWidth();
     }
 
-    private void _OnCombatantManualResize()
-    {
-      _FixCombatantControlsWidth();
-    }
-
     private void _FixCombatantControlsWidth()
     {
       if (_CombatantControlsCache == null) return;
@@ -215,13 +221,13 @@ namespace AntiMunchLite
 
     private void ResetBtn_Click(object sender, EventArgs e)
     {
-      if (ResetDialog.ResetEncounter(_Core, this))
-        RefreshCombatants(forceInitiativeInit: true);
+      if (ResetDialog.ResetEncounter(Core, this))
+        RefreshCombatants(true);
     }
 
     private void SaveBtn_Click(object sender, EventArgs e)
     {
-      _SaveLoadManager.Save(_Core);
+      _SaveLoadManager.Save(Core);
     }
 
     private void OpenBtn_Click(object sender, EventArgs e)
@@ -229,8 +235,8 @@ namespace AntiMunchLite
       var loaded = _SaveLoadManager.Load();
       if (loaded == null) return;
 
-      _Core = loaded;
-      RefreshCombatants(true);
+      Core = loaded;
+      RefreshCombatants();
     }
 
     private void LoadAddBtn_Click(object sender, EventArgs e)
@@ -238,18 +244,18 @@ namespace AntiMunchLite
       var loaded = _SaveLoadManager.Load();
       if (loaded == null) return;
 
-      _Core.Add(loaded);
+      Core.Add(loaded);
       RefreshCombatants();
     }
 
     private void AbilitiesToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      PreGenAbilitiesDialog.Show(_Core.PreGenAbilities, this);
+      PreGenAbilitiesDialog.Show(Core.PreGenAbilities, this);
     }
 
     private void ShowPreGenEffects_Click(object sender, EventArgs e)
     {
-      PreGenEffectsDialog.Show(_Core.PreGenEffects, this);
+      PreGenEffectsDialog.Show(Core.PreGenEffects, this);
     }
 
     private void MainForm_KeyDown(object sender, KeyEventArgs e)

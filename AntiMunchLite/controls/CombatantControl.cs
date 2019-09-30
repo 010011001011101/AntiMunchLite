@@ -11,16 +11,10 @@ namespace AntiMunchLite.Controls
   public partial class CombatantControl : UserControl
   {
     private Core.Core _Core;
+    public Combatant Combatant { get; private set; }
     private readonly ControlsCache<EffectControl> _EffectsControlsCache;
     private readonly ControlsCache<AbilityControl> _AbilitiesControlsCache;
-    public Combatant Combatant { get; private set; }
-
-    private readonly Action _OnInitiativeChange, _OnShiftStart, _OnShiftEnd;
-    private readonly Action<IEnumerable<Combatant>> _OnEffectAdd, _OnAbilityAdd, _OnDamage;
-    private readonly Action<Combatant> _DeleteDelegate;
-    private readonly Action _OnManualResize;
-
-
+    
     private readonly int _DefaultHeight;
     private readonly float _DefaultEffectsHeight, _DefaultCommentHeight, _DefaultAbilitiesHeight;
     private readonly float _MinCommentHeight;
@@ -31,10 +25,40 @@ namespace AntiMunchLite.Controls
 
     public ShiftInitiativeMode ShiftMode { get; private set; } = ShiftInitiativeMode.None;
 
+    #region Events
+
+    public event Action InitiativeChange;
+    private void _OnInitiativeChange() => InitiativeChange?.Invoke();
+
+    public event Action ManualResize;
+    private void _OnManualResize() => ManualResize?.Invoke();
+
+    public event Action<IEnumerable<Combatant>> Damage;
+    private void _OnDamage(IEnumerable<Combatant> combatants) => Damage?.Invoke(combatants);
+    
+    public event Action<IEnumerable<Combatant>> EffectAdd;
+    private void _OnEffectAdd(IEnumerable<Combatant> combatants) => EffectAdd?.Invoke(combatants);
+
+    public event Action<IEnumerable<Combatant>> AbilityAdd;
+    private void _OnAbilityAdd(IEnumerable<Combatant> combatants) => AbilityAdd?.Invoke(combatants);
+
+    public event Action<Combatant> NeedDeleteCombatant;
+    private void _OnNeedDeleteCombatant(Combatant combatant) => NeedDeleteCombatant?.Invoke(combatant);
+
+    public event Action ShiftStart;
+    private void _OnShiftStart() => ShiftStart?.Invoke();
+
+    public event Action ShiftEnd;
+    private void _OnShiftEnd() => ShiftEnd?.Invoke();
+
+    #endregion
 
     public CombatantControl()
     {
       InitializeComponent();
+
+      _EffectsControlsCache = new ControlsCache<EffectControl>(EffectsFlow.Controls, _CreateEffectControl);
+      _AbilitiesControlsCache = new ControlsCache<AbilityControl>(AbilitiesFlow.Controls, _CreateAbilityControl);
 
       _DefaultHeight = Height;
       _DefaultEffectsHeight = TableLayoutPanel.RowStyles[1].Height;
@@ -43,40 +67,12 @@ namespace AntiMunchLite.Controls
       _MinCommentHeight = Comment.Height;
     }
 
-    public CombatantControl(Core.Core core,
-                            Action onInitiativeChangeDelegate,
-                            Action<IEnumerable<Combatant>> onEffectAdd,
-                            Action<IEnumerable<Combatant>> onAbilityAdd,
-                            Action<IEnumerable<Combatant>> onDamage,
-                            Action<Combatant> deleteDelegate,
-                            Action onShiftStart,
-                            Action onShiftEnd,
-                            Action onManualResize)
-      : this()
-    {
-      _Core = core;
-      _OnInitiativeChange = onInitiativeChangeDelegate;
-      _OnEffectAdd = onEffectAdd;
-      _OnAbilityAdd = onAbilityAdd;
-      _OnDamage = onDamage;
-      _DeleteDelegate = deleteDelegate;
-      _OnShiftStart = onShiftStart;
-      _OnShiftEnd = onShiftEnd;
-      _OnManualResize = onManualResize;
-
-      _EffectsControlsCache = new ControlsCache<EffectControl>(EffectsFlow.Controls, _CreateEffectControl);
-      _AbilitiesControlsCache = new ControlsCache<AbilityControl>(AbilitiesFlow.Controls, _CreateAbilityControl);
-    }
-
-    public void ResetCore(Core.Core core)
-    {
-      _Core = core;
-    }
-
     #region Initialize
 
-    public void Initialize(Combatant combatant, bool isCurrent, bool forceInitiativeInit)
+    public void Initialize(Core.Core core, Combatant combatant, bool isCurrent, bool forceInitiativeInit)
     {
+      _Core = core;
+
       _Inited = false;
 
       if (Combatant != combatant)
@@ -222,7 +218,7 @@ namespace AntiMunchLite.Controls
 
       if (DialogResult.Yes != MessageBox.Show($"Confirm Deletion of [{CombatantName.Text}]", @"Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) return;
 
-      _DeleteDelegate(Combatant);
+      _OnNeedDeleteCombatant(Combatant);
     }
 
     private void ShowEffectsCB_CheckedChanged(object sender, EventArgs e)
@@ -310,7 +306,10 @@ namespace AntiMunchLite.Controls
 
     private EffectControl _CreateEffectControl()
     {
-      return new EffectControl(_DeleteEffect);
+      var newControl = new EffectControl();
+      newControl.NeedDeleteEffect += _DeleteEffect;
+
+      return newControl;
     }
 
     private void _DeleteEffect(Effect effect)
@@ -340,7 +339,10 @@ namespace AntiMunchLite.Controls
 
     private AbilityControl _CreateAbilityControl()
     {
-      return new AbilityControl(_DeleteAbility);
+      var newControl = new AbilityControl();
+      newControl.NeedDeleteAbility += _DeleteAbility;
+
+      return newControl;
     }
 
     private void _DeleteAbility(Ability ability)
