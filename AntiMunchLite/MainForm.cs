@@ -36,6 +36,7 @@ namespace AntiMunchLite
     {
       MainFlow.SuspendLayout();
 
+      ColorUtils.ResetBackColorAlternation();
       _CombatantControlsCache.AbjustSize(_Core.Combatants.Count());
 
       var current = _Core.GetCurrentCombatant();

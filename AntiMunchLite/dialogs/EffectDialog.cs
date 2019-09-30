@@ -33,6 +33,7 @@ namespace AntiMunchLite.Dialogs
           RemainTurns = _GetTime(),
           Type = IsBuff.Checked ? EffectType.Buff : EffectType.Debuff
         });
+        combatant.ShowEffects = true;
 
         yield return combatant;
       }

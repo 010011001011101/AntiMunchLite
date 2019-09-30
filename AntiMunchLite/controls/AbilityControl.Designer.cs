@@ -33,10 +33,10 @@ namespace AntiMunchLite.Controls
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.DelBtn = new System.Windows.Forms.Button();
       this.AbilityNameTB = new System.Windows.Forms.TextBox();
-      this.RemainNum = new CustomNumericInput();
+      this.RemainNum = new AntiMunchLite.BaseControls.CustomNumericInput();
       this.SpendOneBtn = new System.Windows.Forms.Button();
       this.label1 = new System.Windows.Forms.Label();
-      this.TotalNum = new CustomNumericInput();
+      this.TotalNum = new AntiMunchLite.BaseControls.CustomNumericInput();
       this.tableLayoutPanel1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -44,10 +44,10 @@ namespace AntiMunchLite.Controls
       // 
       this.tableLayoutPanel1.ColumnCount = 6;
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 11F));
-      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
       this.tableLayoutPanel1.Controls.Add(this.DelBtn, 5, 0);
       this.tableLayoutPanel1.Controls.Add(this.AbilityNameTB, 0, 0);
@@ -78,30 +78,34 @@ namespace AntiMunchLite.Controls
       // 
       // AbilityNameTB
       // 
-      this.AbilityNameTB.Anchor = System.Windows.Forms.AnchorStyles.Left;
+      this.AbilityNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
       this.AbilityNameTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
       this.AbilityNameTB.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.AbilityNameTB.Location = new System.Drawing.Point(2, 6);
       this.AbilityNameTB.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
       this.AbilityNameTB.Name = "AbilityNameTB";
-      this.AbilityNameTB.Size = new System.Drawing.Size(137, 14);
+      this.AbilityNameTB.Size = new System.Drawing.Size(163, 14);
       this.AbilityNameTB.TabIndex = 0;
       this.AbilityNameTB.TextChanged += new System.EventHandler(this.AbilityNameTB_TextChanged);
       // 
       // RemainNum
       // 
       this.RemainNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.RemainNum.Location = new System.Drawing.Point(141, 2);
+      this.RemainNum.Location = new System.Drawing.Point(167, 2);
       this.RemainNum.Margin = new System.Windows.Forms.Padding(0);
+      this.RemainNum.Maximum = null;
+      this.RemainNum.Minimum = null;
       this.RemainNum.Name = "RemainNum";
-      this.RemainNum.Size = new System.Drawing.Size(33, 20);
+      this.RemainNum.Size = new System.Drawing.Size(20, 20);
       this.RemainNum.TabIndex = 1;
+      this.RemainNum.ToolTip = null;
+      this.RemainNum.Value = 0;
       this.RemainNum.ValueChanged += new System.EventHandler(this.RemainNum_ValueChanged);
       // 
       // SpendOneBtn
       // 
       this.SpendOneBtn.Dock = System.Windows.Forms.DockStyle.Left;
-      this.SpendOneBtn.Location = new System.Drawing.Point(174, 0);
+      this.SpendOneBtn.Location = new System.Drawing.Point(187, 0);
       this.SpendOneBtn.Margin = new System.Windows.Forms.Padding(0);
       this.SpendOneBtn.Name = "SpendOneBtn";
       this.SpendOneBtn.Size = new System.Drawing.Size(15, 24);
@@ -114,7 +118,7 @@ namespace AntiMunchLite.Controls
       // 
       this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(189, 5);
+      this.label1.Location = new System.Drawing.Point(202, 5);
       this.label1.Margin = new System.Windows.Forms.Padding(0);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(11, 13);
@@ -124,11 +128,15 @@ namespace AntiMunchLite.Controls
       // TotalNum
       // 
       this.TotalNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.TotalNum.Location = new System.Drawing.Point(200, 2);
+      this.TotalNum.Location = new System.Drawing.Point(213, 2);
       this.TotalNum.Margin = new System.Windows.Forms.Padding(0);
+      this.TotalNum.Maximum = null;
+      this.TotalNum.Minimum = null;
       this.TotalNum.Name = "TotalNum";
-      this.TotalNum.Size = new System.Drawing.Size(33, 20);
+      this.TotalNum.Size = new System.Drawing.Size(20, 20);
       this.TotalNum.TabIndex = 3;
+      this.TotalNum.ToolTip = null;
+      this.TotalNum.Value = 0;
       this.TotalNum.ValueChanged += new System.EventHandler(this.TotalNum_ValueChanged);
       // 
       // AbilityControl

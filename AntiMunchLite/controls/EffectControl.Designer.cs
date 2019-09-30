@@ -31,7 +31,7 @@ namespace AntiMunchLite.Controls
     private void InitializeComponent()
     {
       this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-      this.RemainTime = new CustomNumericInput();
+      this.RemainTime = new AntiMunchLite.BaseControls.CustomNumericInput();
       this.DelBtn = new System.Windows.Forms.Button();
       this.EffectName = new System.Windows.Forms.TextBox();
       this.TableLayoutPanel.SuspendLayout();
@@ -61,9 +61,13 @@ namespace AntiMunchLite.Controls
       this.RemainTime.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.RemainTime.Location = new System.Drawing.Point(149, 0);
       this.RemainTime.Margin = new System.Windows.Forms.Padding(0);
+      this.RemainTime.Maximum = null;
+      this.RemainTime.Minimum = null;
       this.RemainTime.Name = "RemainTime";
       this.RemainTime.Size = new System.Drawing.Size(33, 23);
       this.RemainTime.TabIndex = 1;
+      this.RemainTime.ToolTip = null;
+      this.RemainTime.Value = 0;
       this.RemainTime.ValueChanged += new System.EventHandler(this.RemainTime_ValueChanged);
       // 
       // DelBtn
@@ -80,7 +84,7 @@ namespace AntiMunchLite.Controls
       // 
       // EffectName
       // 
-      this.EffectName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+      this.EffectName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
       this.EffectName.BorderStyle = System.Windows.Forms.BorderStyle.None;
       this.EffectName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.EffectName.Location = new System.Drawing.Point(2, 5);

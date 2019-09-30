@@ -33,6 +33,7 @@ namespace AntiMunchLite.Dialogs
           Remain = (int)RemainNum.Value,
           Total = (int)TotalNum.Value
         });
+        combatant.ShowAbilities = true;
 
         yield return combatant;
       }

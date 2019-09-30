@@ -11,18 +11,22 @@ namespace AntiMunchLite.Controls
   public partial class CombatantControl : UserControl
   {
     private Core.Core _Core;
+    private readonly ControlsCache<EffectControl> _EffectsControlsCache;
+    private readonly ControlsCache<AbilityControl> _AbilitiesControlsCache;
+    public Combatant Combatant { get; private set; }
+
     private readonly Action _OnInitiativeChange, _OnShiftStart, _OnShiftEnd;
     private readonly Action<IEnumerable<Combatant>> _OnEffectAdd, _OnAbilityAdd, _OnDamage;
     private readonly Action<Combatant> _DeleteDelegate;
     private readonly Action _OnManualResize;
-    private readonly ControlsCache<EffectControl> _EffectsControlsCache;
-    private readonly ControlsCache<AbilityControl> _AbilitiesControlsCache;
 
-    private bool _Inited;
+
     private readonly int _DefaultHeight;
     private readonly float _DefaultEffectsHeight, _DefaultCommentHeight, _DefaultAbilitiesHeight;
     private readonly float _MinCommentHeight;
-    public Combatant Combatant { get; private set; }
+
+    private bool _Inited;
+    private Color _BackColor;
     public bool IsCurrent { get; private set; }
 
     public ShiftInitiativeMode ShiftMode { get; private set; } = ShiftInitiativeMode.None;
@@ -78,65 +82,66 @@ namespace AntiMunchLite.Controls
       if (Combatant != combatant)
         _InitializeCombatant(combatant);
       else if (forceInitiativeInit)
-        _InitializeInitiative(combatant);
+        _InitializeInitiative();
 
       _Inited = true;
 
-      _SetIsCurrent(isCurrent);
+      _InitializeCurrentStatus(isCurrent);
+      _InitializeSubBoxesVisibility();
+
       RefreshEffects();
       RefreshAbilities();
       _RefreshShiftInitiativeImage();
-      _InitSubBoxesVisibility();
+      RefreshSize();
     }
 
     private void _InitializeCombatant(Combatant combatant)
     {
       Combatant = combatant;
-      _InitializeInitiative(combatant);
       CombatantName.Text = combatant.Name;
       Comment.Text = combatant.Comment;
       CurrentHp.Value = combatant.CurrentHp;
       MaxHp.Value = combatant.MaxHp;
+      _InitializeInitiative();
       _RefreshHpStatus();
     }
 
-    private void _InitializeInitiative(Combatant combatant)
+    private void _InitializeInitiative()
     {
-      Initiative.Value = combatant.Initiative;
-      SubInitiative.Value = combatant.SubInitiative;
+      Initiative.Value = Combatant.Initiative;
+      SubInitiative.Value = Combatant.SubInitiative;
     }
 
-    private void _SetIsCurrent(bool isCurrent)
+    private void _InitializeCurrentStatus(bool isCurrent)
     {
       IsCurrent = isCurrent;
 
-      var backColor = IsCurrent ? ColorUtils.Green : ColorUtils.Yellow;
-      CombatantName.BackColor = BackColor = backColor;
-      foreach (var effectControl in _EffectsControlsCache)
-        effectControl.SetTextBackColor(backColor);
-      foreach (var abilityControl in _AbilitiesControlsCache)
-        abilityControl.SetTextBackColor(backColor);
-
       ArrowPB.Visible = IsCurrent;
+      _ResetBackColor();
+    }
+
+    private void _ResetBackColor()
+    {
+      _BackColor = ColorUtils.GetBackColor(IsCurrent);
+
+      CombatantName.BackColor = BackColor = _BackColor;
+      foreach (var effectControl in _EffectsControlsCache)
+        effectControl.SetTextBackColor(_BackColor);
+      foreach (var abilityControl in _AbilitiesControlsCache)
+        abilityControl.SetTextBackColor(_BackColor);
     }
 
     public void MarkInitiativeCollision(bool collision)
     {
       SubInitiative.BackColor =
-      Initiative.BackColor = collision
-                                ? ColorUtils.Red
-                                : IsCurrent
-                                    ? ColorUtils.Green
-                                    : ColorUtils.Yellow;
+      Initiative.BackColor = collision ? ColorUtils.Red : _BackColor;
     }
 
-    private void _InitSubBoxesVisibility()
+    private void _InitializeSubBoxesVisibility()
     {
       ShowEffectsCB.Checked = Combatant.ShowEffects;
       ShowCommentCB.Checked = Combatant.ShowComment;
       ShowAbilitiesCB.Checked = Combatant.ShowAbilities;
-
-      RefreshSize();
     }
 
     #endregion
@@ -249,11 +254,15 @@ namespace AntiMunchLite.Controls
 
     private void AddEffectBtn_Click(object sender, EventArgs e)
     {
+      if (!_Inited) return;
+
       _OnEffectAdd(EffectDialog.CreateEffect(_Core, Combatant, Parent));
     }
 
     private void AddAbilityBtn_Click(object sender, EventArgs e)
     {
+      if (!_Inited) return;
+
       _OnAbilityAdd(AbilityDialog.CreateAbility(_Core, Combatant, Parent));
     }
 
@@ -352,6 +361,8 @@ namespace AntiMunchLite.Controls
       TableLayoutPanel.RowStyles[1].Height = _DefaultEffectsHeight + effectsDelta;
       TableLayoutPanel.RowStyles[2].Height = _DefaultCommentHeight + commentDelta;
       TableLayoutPanel.RowStyles[3].Height = _DefaultAbilitiesHeight + abilitiesDelta;
+
+      Comment.Visible = Combatant.ShowComment;//Because TextBox ignore zero height of it table cell
 
       var newHeight = (int) (_DefaultHeight + effectsDelta + commentDelta + abilitiesDelta);
       if (Height != newHeight)

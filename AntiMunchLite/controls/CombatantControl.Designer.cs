@@ -38,43 +38,40 @@ namespace AntiMunchLite.Controls
       this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CombatantControl));
       this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+      this.label5 = new System.Windows.Forms.Label();
+      this.label4 = new System.Windows.Forms.Label();
       this.HealBtn = new System.Windows.Forms.Button();
       this.ArrowPB = new System.Windows.Forms.PictureBox();
-      this.Initiative = new AntiMunchLite.BaseControls.CustomNumericInput();
-      this.SubInitiative = new AntiMunchLite.BaseControls.CustomNumericInput();
       this.CombatantName = new System.Windows.Forms.TextBox();
       this.DmgBtn = new System.Windows.Forms.Button();
       this.label1 = new System.Windows.Forms.Label();
-      this.CurrentHp = new AntiMunchLite.BaseControls.CustomNumericInput();
       this.label2 = new System.Windows.Forms.Label();
-      this.MaxHp = new AntiMunchLite.BaseControls.CustomNumericInput();
       this.StatusLbl = new System.Windows.Forms.Label();
       this.DelBtn = new System.Windows.Forms.Button();
       this.DragPB = new System.Windows.Forms.PictureBox();
-      this.EffectsGB = new System.Windows.Forms.GroupBox();
-      this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-      this.AddEffectBtn = new System.Windows.Forms.Button();
-      this.EffectsFlow = new System.Windows.Forms.FlowLayoutPanel();
-      this.CommentGB = new System.Windows.Forms.GroupBox();
-      this.Comment = new System.Windows.Forms.TextBox();
-      this.AbilitiesGB = new System.Windows.Forms.GroupBox();
-      this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-      this.AddAbilityBtn = new System.Windows.Forms.Button();
-      this.AbilitiesFlow = new System.Windows.Forms.FlowLayoutPanel();
       this.ShowBoxesFlow = new System.Windows.Forms.FlowLayoutPanel();
       this.ShowEffectsCB = new System.Windows.Forms.CheckBox();
       this.ShowCommentCB = new System.Windows.Forms.CheckBox();
       this.ShowAbilitiesCB = new System.Windows.Forms.CheckBox();
+      this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+      this.AddEffectBtn = new System.Windows.Forms.Button();
+      this.EffectsFlow = new System.Windows.Forms.FlowLayoutPanel();
+      this.label3 = new System.Windows.Forms.Label();
+      this.Comment = new System.Windows.Forms.TextBox();
+      this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+      this.AddAbilityBtn = new System.Windows.Forms.Button();
+      this.AbilitiesFlow = new System.Windows.Forms.FlowLayoutPanel();
       this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
+      this.Initiative = new AntiMunchLite.BaseControls.CustomNumericInput();
+      this.SubInitiative = new AntiMunchLite.BaseControls.CustomNumericInput();
+      this.CurrentHp = new AntiMunchLite.BaseControls.CustomNumericInput();
+      this.MaxHp = new AntiMunchLite.BaseControls.CustomNumericInput();
       this.TableLayoutPanel.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.ArrowPB)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.DragPB)).BeginInit();
-      this.EffectsGB.SuspendLayout();
-      this.tableLayoutPanel1.SuspendLayout();
-      this.CommentGB.SuspendLayout();
-      this.AbilitiesGB.SuspendLayout();
-      this.tableLayoutPanel2.SuspendLayout();
       this.ShowBoxesFlow.SuspendLayout();
+      this.tableLayoutPanel1.SuspendLayout();
+      this.tableLayoutPanel2.SuspendLayout();
       this.SuspendLayout();
       // 
       // TableLayoutPanel
@@ -94,6 +91,8 @@ namespace AntiMunchLite.Controls
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+      this.TableLayoutPanel.Controls.Add(this.label5, 0, 3);
+      this.TableLayoutPanel.Controls.Add(this.label4, 0, 2);
       this.TableLayoutPanel.Controls.Add(this.HealBtn, 6, 0);
       this.TableLayoutPanel.Controls.Add(this.ArrowPB, 0, 0);
       this.TableLayoutPanel.Controls.Add(this.Initiative, 2, 0);
@@ -107,21 +106,44 @@ namespace AntiMunchLite.Controls
       this.TableLayoutPanel.Controls.Add(this.StatusLbl, 11, 0);
       this.TableLayoutPanel.Controls.Add(this.DelBtn, 13, 0);
       this.TableLayoutPanel.Controls.Add(this.DragPB, 1, 0);
-      this.TableLayoutPanel.Controls.Add(this.EffectsGB, 0, 1);
-      this.TableLayoutPanel.Controls.Add(this.CommentGB, 0, 2);
-      this.TableLayoutPanel.Controls.Add(this.AbilitiesGB, 0, 3);
       this.TableLayoutPanel.Controls.Add(this.ShowBoxesFlow, 12, 0);
+      this.TableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 3, 1);
+      this.TableLayoutPanel.Controls.Add(this.label3, 0, 1);
+      this.TableLayoutPanel.Controls.Add(this.Comment, 3, 2);
+      this.TableLayoutPanel.Controls.Add(this.tableLayoutPanel2, 3, 3);
       this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
       this.TableLayoutPanel.Name = "TableLayoutPanel";
       this.TableLayoutPanel.RowCount = 5;
       this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-      this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-      this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-      this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+      this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+      this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+      this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
       this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.TableLayoutPanel.Size = new System.Drawing.Size(840, 202);
+      this.TableLayoutPanel.Size = new System.Drawing.Size(840, 140);
       this.TableLayoutPanel.TabIndex = 0;
+      // 
+      // label5
+      // 
+      this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
+      this.label5.AutoSize = true;
+      this.TableLayoutPanel.SetColumnSpan(this.label5, 3);
+      this.label5.Location = new System.Drawing.Point(44, 115);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(48, 13);
+      this.label5.TabIndex = 17;
+      this.label5.Text = "Abilities :";
+      // 
+      // label4
+      // 
+      this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+      this.label4.AutoSize = true;
+      this.TableLayoutPanel.SetColumnSpan(this.label4, 3);
+      this.label4.Location = new System.Drawing.Point(35, 78);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(57, 13);
+      this.label4.TabIndex = 16;
+      this.label4.Text = "Comment :";
       // 
       // HealBtn
       // 
@@ -149,44 +171,11 @@ namespace AntiMunchLite.Controls
       this.ArrowPB.TabIndex = 9;
       this.ArrowPB.TabStop = false;
       // 
-      // Initiative
-      // 
-      this.Initiative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.Initiative.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.Initiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.Initiative.Location = new System.Drawing.Point(48, 4);
-      this.Initiative.Maximum = null;
-      this.Initiative.Minimum = null;
-      this.Initiative.Name = "Initiative";
-      this.Initiative.Size = new System.Drawing.Size(44, 23);
-      this.Initiative.TabIndex = 0;
-      this.Initiative.Text = "0";
-      this.Initiative.ToolTip = "Initiative Order (desc)";
-      this.Initiative.Value = 0;
-      this.Initiative.ValueChanged += new System.EventHandler(this.Initiative_ValueChanged);
-      // 
-      // SubInitiative
-      // 
-      this.SubInitiative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.SubInitiative.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.SubInitiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.SubInitiative.Location = new System.Drawing.Point(98, 4);
-      this.SubInitiative.Maximum = null;
-      this.SubInitiative.Minimum = null;
-      this.SubInitiative.Name = "SubInitiative";
-      this.SubInitiative.Size = new System.Drawing.Size(39, 23);
-      this.SubInitiative.TabIndex = 1;
-      this.SubInitiative.TabStop = false;
-      this.SubInitiative.Text = "1";
-      this.SubInitiative.ToolTip = "SubInitiative Order (desc)";
-      this.SubInitiative.Value = 1;
-      this.SubInitiative.ValueChanged += new System.EventHandler(this.SubInitiative_ValueChanged);
-      // 
       // CombatantName
       // 
       this.CombatantName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
       this.CombatantName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.CombatantName.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.CombatantName.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.CombatantName.Location = new System.Drawing.Point(143, 8);
       this.CombatantName.Name = "CombatantName";
       this.CombatantName.Size = new System.Drawing.Size(164, 16);
@@ -218,21 +207,6 @@ namespace AntiMunchLite.Controls
       this.label1.TabIndex = 5;
       this.label1.Text = "HP :";
       // 
-      // CurrentHp
-      // 
-      this.CurrentHp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.CurrentHp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.CurrentHp.Location = new System.Drawing.Point(399, 4);
-      this.CurrentHp.Maximum = null;
-      this.CurrentHp.Minimum = null;
-      this.CurrentHp.Name = "CurrentHp";
-      this.CurrentHp.Size = new System.Drawing.Size(44, 23);
-      this.CurrentHp.TabIndex = 6;
-      this.CurrentHp.Text = "0";
-      this.CurrentHp.ToolTip = "Current HP";
-      this.CurrentHp.Value = 0;
-      this.CurrentHp.ValueChanged += new System.EventHandler(this.CurrentHp_ValueChanged);
-      // 
       // label2
       // 
       this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -243,21 +217,6 @@ namespace AntiMunchLite.Controls
       this.label2.Size = new System.Drawing.Size(10, 13);
       this.label2.TabIndex = 7;
       this.label2.Text = "/";
-      // 
-      // MaxHp
-      // 
-      this.MaxHp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.MaxHp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.MaxHp.Location = new System.Drawing.Point(459, 4);
-      this.MaxHp.Maximum = null;
-      this.MaxHp.Minimum = 0;
-      this.MaxHp.Name = "MaxHp";
-      this.MaxHp.Size = new System.Drawing.Size(44, 23);
-      this.MaxHp.TabIndex = 8;
-      this.MaxHp.Text = "0";
-      this.MaxHp.ToolTip = "Maximum HP";
-      this.MaxHp.Value = 0;
-      this.MaxHp.ValueChanged += new System.EventHandler(this.MaxHp_ValueChanged);
       // 
       // StatusLbl
       // 
@@ -296,132 +255,6 @@ namespace AntiMunchLite.Controls
       this.DragPB.TabStop = false;
       this.ToolTip.SetToolTip(this.DragPB, "Shift Initiative");
       this.DragPB.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragPB_MouseDown);
-      // 
-      // EffectsGB
-      // 
-      this.TableLayoutPanel.SetColumnSpan(this.EffectsGB, 14);
-      this.EffectsGB.Controls.Add(this.tableLayoutPanel1);
-      this.EffectsGB.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.EffectsGB.Location = new System.Drawing.Point(3, 35);
-      this.EffectsGB.Name = "EffectsGB";
-      this.EffectsGB.Size = new System.Drawing.Size(834, 49);
-      this.EffectsGB.TabIndex = 11;
-      this.EffectsGB.TabStop = false;
-      this.EffectsGB.Text = "Effects";
-      // 
-      // tableLayoutPanel1
-      // 
-      this.tableLayoutPanel1.ColumnCount = 2;
-      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel1.Controls.Add(this.AddEffectBtn, 0, 0);
-      this.tableLayoutPanel1.Controls.Add(this.EffectsFlow, 1, 0);
-      this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
-      this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-      this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-      this.tableLayoutPanel1.RowCount = 1;
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel1.Size = new System.Drawing.Size(828, 30);
-      this.tableLayoutPanel1.TabIndex = 0;
-      // 
-      // AddEffectBtn
-      // 
-      this.AddEffectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.AddEffectBtn.Image = ((System.Drawing.Image)(resources.GetObject("AddEffectBtn.Image")));
-      this.AddEffectBtn.Location = new System.Drawing.Point(1, 2);
-      this.AddEffectBtn.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-      this.AddEffectBtn.Name = "AddEffectBtn";
-      this.AddEffectBtn.Size = new System.Drawing.Size(26, 26);
-      this.AddEffectBtn.TabIndex = 0;
-      this.AddEffectBtn.TabStop = false;
-      this.AddEffectBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-      this.ToolTip.SetToolTip(this.AddEffectBtn, "Add Effect  (Ctrl+E)");
-      this.AddEffectBtn.UseVisualStyleBackColor = true;
-      this.AddEffectBtn.Click += new System.EventHandler(this.AddEffectBtn_Click);
-      // 
-      // EffectsFlow
-      // 
-      this.EffectsFlow.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.EffectsFlow.Location = new System.Drawing.Point(28, 0);
-      this.EffectsFlow.Margin = new System.Windows.Forms.Padding(0);
-      this.EffectsFlow.Name = "EffectsFlow";
-      this.EffectsFlow.Size = new System.Drawing.Size(800, 30);
-      this.EffectsFlow.TabIndex = 1;
-      // 
-      // CommentGB
-      // 
-      this.TableLayoutPanel.SetColumnSpan(this.CommentGB, 14);
-      this.CommentGB.Controls.Add(this.Comment);
-      this.CommentGB.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.CommentGB.Location = new System.Drawing.Point(3, 90);
-      this.CommentGB.Name = "CommentGB";
-      this.CommentGB.Size = new System.Drawing.Size(834, 54);
-      this.CommentGB.TabIndex = 12;
-      this.CommentGB.TabStop = false;
-      this.CommentGB.Text = "Comment";
-      // 
-      // Comment
-      // 
-      this.Comment.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.Comment.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.Comment.Location = new System.Drawing.Point(3, 16);
-      this.Comment.Multiline = true;
-      this.Comment.Name = "Comment";
-      this.Comment.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-      this.Comment.Size = new System.Drawing.Size(828, 35);
-      this.Comment.TabIndex = 0;
-      this.Comment.TextChanged += new System.EventHandler(this.Comment_TextChanged);
-      // 
-      // AbilitiesGB
-      // 
-      this.TableLayoutPanel.SetColumnSpan(this.AbilitiesGB, 14);
-      this.AbilitiesGB.Controls.Add(this.tableLayoutPanel2);
-      this.AbilitiesGB.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.AbilitiesGB.Location = new System.Drawing.Point(3, 150);
-      this.AbilitiesGB.Name = "AbilitiesGB";
-      this.AbilitiesGB.Size = new System.Drawing.Size(834, 49);
-      this.AbilitiesGB.TabIndex = 13;
-      this.AbilitiesGB.TabStop = false;
-      this.AbilitiesGB.Text = "Abilities";
-      // 
-      // tableLayoutPanel2
-      // 
-      this.tableLayoutPanel2.ColumnCount = 2;
-      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel2.Controls.Add(this.AddAbilityBtn, 0, 0);
-      this.tableLayoutPanel2.Controls.Add(this.AbilitiesFlow, 1, 0);
-      this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
-      this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-      this.tableLayoutPanel2.RowCount = 1;
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel2.Size = new System.Drawing.Size(828, 30);
-      this.tableLayoutPanel2.TabIndex = 0;
-      // 
-      // AddAbilityBtn
-      // 
-      this.AddAbilityBtn.Image = ((System.Drawing.Image)(resources.GetObject("AddAbilityBtn.Image")));
-      this.AddAbilityBtn.Location = new System.Drawing.Point(1, 2);
-      this.AddAbilityBtn.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-      this.AddAbilityBtn.Name = "AddAbilityBtn";
-      this.AddAbilityBtn.Size = new System.Drawing.Size(26, 26);
-      this.AddAbilityBtn.TabIndex = 0;
-      this.AddAbilityBtn.TabStop = false;
-      this.AddAbilityBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-      this.ToolTip.SetToolTip(this.AddAbilityBtn, "Add Ability");
-      this.AddAbilityBtn.UseVisualStyleBackColor = true;
-      this.AddAbilityBtn.Click += new System.EventHandler(this.AddAbilityBtn_Click);
-      // 
-      // AbilitiesFlow
-      // 
-      this.AbilitiesFlow.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.AbilitiesFlow.Location = new System.Drawing.Point(28, 0);
-      this.AbilitiesFlow.Margin = new System.Windows.Forms.Padding(0);
-      this.AbilitiesFlow.Name = "AbilitiesFlow";
-      this.AbilitiesFlow.Size = new System.Drawing.Size(800, 30);
-      this.AbilitiesFlow.TabIndex = 1;
       // 
       // ShowBoxesFlow
       // 
@@ -471,11 +304,189 @@ namespace AntiMunchLite.Controls
       this.ShowAbilitiesCB.UseVisualStyleBackColor = true;
       this.ShowAbilitiesCB.CheckedChanged += new System.EventHandler(this.ShowAbilitiesCB_CheckedChanged);
       // 
+      // tableLayoutPanel1
+      // 
+      this.tableLayoutPanel1.ColumnCount = 2;
+      this.TableLayoutPanel.SetColumnSpan(this.tableLayoutPanel1, 11);
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableLayoutPanel1.Controls.Add(this.AddEffectBtn, 0, 0);
+      this.tableLayoutPanel1.Controls.Add(this.EffectsFlow, 1, 0);
+      this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.tableLayoutPanel1.Location = new System.Drawing.Point(95, 32);
+      this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+      this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+      this.tableLayoutPanel1.RowCount = 1;
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.tableLayoutPanel1.Size = new System.Drawing.Size(745, 30);
+      this.tableLayoutPanel1.TabIndex = 0;
+      // 
+      // AddEffectBtn
+      // 
+      this.AddEffectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.AddEffectBtn.Image = ((System.Drawing.Image)(resources.GetObject("AddEffectBtn.Image")));
+      this.AddEffectBtn.Location = new System.Drawing.Point(1, 2);
+      this.AddEffectBtn.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+      this.AddEffectBtn.Name = "AddEffectBtn";
+      this.AddEffectBtn.Size = new System.Drawing.Size(26, 26);
+      this.AddEffectBtn.TabIndex = 0;
+      this.AddEffectBtn.TabStop = false;
+      this.AddEffectBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+      this.ToolTip.SetToolTip(this.AddEffectBtn, "Add Effect  (Ctrl+E)");
+      this.AddEffectBtn.UseVisualStyleBackColor = true;
+      this.AddEffectBtn.Click += new System.EventHandler(this.AddEffectBtn_Click);
+      // 
+      // EffectsFlow
+      // 
+      this.EffectsFlow.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.EffectsFlow.Location = new System.Drawing.Point(28, 0);
+      this.EffectsFlow.Margin = new System.Windows.Forms.Padding(0);
+      this.EffectsFlow.Name = "EffectsFlow";
+      this.EffectsFlow.Size = new System.Drawing.Size(717, 30);
+      this.EffectsFlow.TabIndex = 1;
+      // 
+      // label3
+      // 
+      this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
+      this.label3.AutoSize = true;
+      this.TableLayoutPanel.SetColumnSpan(this.label3, 3);
+      this.label3.Location = new System.Drawing.Point(46, 40);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(46, 13);
+      this.label3.TabIndex = 15;
+      this.label3.Text = "Effects :";
+      // 
+      // Comment
+      // 
+      this.Comment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.TableLayoutPanel.SetColumnSpan(this.Comment, 11);
+      this.Comment.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.Comment.Location = new System.Drawing.Point(98, 65);
+      this.Comment.Multiline = true;
+      this.Comment.Name = "Comment";
+      this.Comment.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+      this.Comment.Size = new System.Drawing.Size(739, 39);
+      this.Comment.TabIndex = 0;
+      this.Comment.TextChanged += new System.EventHandler(this.Comment_TextChanged);
+      // 
+      // tableLayoutPanel2
+      // 
+      this.tableLayoutPanel2.ColumnCount = 2;
+      this.TableLayoutPanel.SetColumnSpan(this.tableLayoutPanel2, 11);
+      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.tableLayoutPanel2.Controls.Add(this.AddAbilityBtn, 0, 0);
+      this.tableLayoutPanel2.Controls.Add(this.AbilitiesFlow, 1, 0);
+      this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.tableLayoutPanel2.Location = new System.Drawing.Point(95, 107);
+      this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+      this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+      this.tableLayoutPanel2.RowCount = 1;
+      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.tableLayoutPanel2.Size = new System.Drawing.Size(745, 30);
+      this.tableLayoutPanel2.TabIndex = 0;
+      // 
+      // AddAbilityBtn
+      // 
+      this.AddAbilityBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.AddAbilityBtn.Image = ((System.Drawing.Image)(resources.GetObject("AddAbilityBtn.Image")));
+      this.AddAbilityBtn.Location = new System.Drawing.Point(1, 2);
+      this.AddAbilityBtn.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+      this.AddAbilityBtn.Name = "AddAbilityBtn";
+      this.AddAbilityBtn.Size = new System.Drawing.Size(26, 26);
+      this.AddAbilityBtn.TabIndex = 0;
+      this.AddAbilityBtn.TabStop = false;
+      this.AddAbilityBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+      this.ToolTip.SetToolTip(this.AddAbilityBtn, "Add Ability");
+      this.AddAbilityBtn.UseVisualStyleBackColor = true;
+      this.AddAbilityBtn.Click += new System.EventHandler(this.AddAbilityBtn_Click);
+      // 
+      // AbilitiesFlow
+      // 
+      this.AbilitiesFlow.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.AbilitiesFlow.Location = new System.Drawing.Point(28, 0);
+      this.AbilitiesFlow.Margin = new System.Windows.Forms.Padding(0);
+      this.AbilitiesFlow.Name = "AbilitiesFlow";
+      this.AbilitiesFlow.Size = new System.Drawing.Size(717, 30);
+      this.AbilitiesFlow.TabIndex = 1;
+      // 
       // ToolTip
       // 
       this.ToolTip.AutoPopDelay = 5000;
       this.ToolTip.InitialDelay = 1000;
       this.ToolTip.ReshowDelay = 100;
+      // 
+      // Initiative
+      // 
+      this.Initiative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.Initiative.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.Initiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.Initiative.Location = new System.Drawing.Point(48, 4);
+      this.Initiative.Maximum = null;
+      this.Initiative.Minimum = null;
+      this.Initiative.Name = "Initiative";
+      this.Initiative.Size = new System.Drawing.Size(44, 23);
+      this.Initiative.TabIndex = 0;
+      this.Initiative.Text = "0";
+      this.Initiative.ToolTip = "Initiative Order (desc)";
+      this.Initiative.Value = 0;
+      this.Initiative.ValueChanged += new System.EventHandler(this.Initiative_ValueChanged);
+      // 
+      // SubInitiative
+      // 
+      this.SubInitiative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.SubInitiative.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.SubInitiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.SubInitiative.Location = new System.Drawing.Point(98, 4);
+      this.SubInitiative.Maximum = null;
+      this.SubInitiative.Minimum = null;
+      this.SubInitiative.Name = "SubInitiative";
+      this.SubInitiative.Size = new System.Drawing.Size(39, 23);
+      this.SubInitiative.TabIndex = 1;
+      this.SubInitiative.TabStop = false;
+      this.SubInitiative.Text = "1";
+      this.SubInitiative.ToolTip = "SubInitiative Order (desc)";
+      this.SubInitiative.Value = 1;
+      this.SubInitiative.ValueChanged += new System.EventHandler(this.SubInitiative_ValueChanged);
+      // 
+      // CurrentHp
+      // 
+      this.CurrentHp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.CurrentHp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.CurrentHp.Location = new System.Drawing.Point(399, 4);
+      this.CurrentHp.Maximum = null;
+      this.CurrentHp.Minimum = null;
+      this.CurrentHp.Name = "CurrentHp";
+      this.CurrentHp.Size = new System.Drawing.Size(44, 23);
+      this.CurrentHp.TabIndex = 6;
+      this.CurrentHp.Text = "0";
+      this.CurrentHp.ToolTip = "Current HP";
+      this.CurrentHp.Value = 0;
+      this.CurrentHp.ValueChanged += new System.EventHandler(this.CurrentHp_ValueChanged);
+      // 
+      // MaxHp
+      // 
+      this.MaxHp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.MaxHp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.MaxHp.Location = new System.Drawing.Point(459, 4);
+      this.MaxHp.Maximum = null;
+      this.MaxHp.Minimum = 0;
+      this.MaxHp.Name = "MaxHp";
+      this.MaxHp.Size = new System.Drawing.Size(44, 23);
+      this.MaxHp.TabIndex = 8;
+      this.MaxHp.Text = "0";
+      this.MaxHp.ToolTip = "Maximum HP";
+      this.MaxHp.Value = 0;
+      this.MaxHp.ValueChanged += new System.EventHandler(this.MaxHp_ValueChanged);
       // 
       // CombatantControl
       // 
@@ -486,21 +497,17 @@ namespace AntiMunchLite.Controls
       this.Controls.Add(this.TableLayoutPanel);
       this.MinimumSize = new System.Drawing.Size(840, 32);
       this.Name = "CombatantControl";
-      this.Size = new System.Drawing.Size(840, 202);
+      this.Size = new System.Drawing.Size(840, 140);
       this.DragOver += new System.Windows.Forms.DragEventHandler(this.CombatantControl_DragOver);
       this.DragLeave += new System.EventHandler(this.CombatantControl_DragLeave);
       this.TableLayoutPanel.ResumeLayout(false);
       this.TableLayoutPanel.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.ArrowPB)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.DragPB)).EndInit();
-      this.EffectsGB.ResumeLayout(false);
-      this.tableLayoutPanel1.ResumeLayout(false);
-      this.CommentGB.ResumeLayout(false);
-      this.CommentGB.PerformLayout();
-      this.AbilitiesGB.ResumeLayout(false);
-      this.tableLayoutPanel2.ResumeLayout(false);
       this.ShowBoxesFlow.ResumeLayout(false);
       this.ShowBoxesFlow.PerformLayout();
+      this.tableLayoutPanel1.ResumeLayout(false);
+      this.tableLayoutPanel2.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
@@ -524,11 +531,8 @@ namespace AntiMunchLite.Controls
     private FlowLayoutPanel EffectsFlow;
     private Button HealBtn;
     private PictureBox DragPB;
-    private GroupBox EffectsGB;
     private TableLayoutPanel tableLayoutPanel1;
-    private GroupBox CommentGB;
     private TextBox Comment;
-    private GroupBox AbilitiesGB;
     private TableLayoutPanel tableLayoutPanel2;
     private Button AddAbilityBtn;
     private FlowLayoutPanel ShowBoxesFlow;
@@ -536,5 +540,8 @@ namespace AntiMunchLite.Controls
     private CheckBox ShowCommentCB;
     private CheckBox ShowAbilitiesCB;
     private FlowLayoutPanel AbilitiesFlow;
+    private Label label5;
+    private Label label4;
+    private Label label3;
   }
 }
