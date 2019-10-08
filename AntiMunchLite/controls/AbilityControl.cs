@@ -32,6 +32,7 @@ namespace AntiMunchLite.Controls
       TotalNum.Value = Ability.Total;
 
       SetTextBackColor(backColor);
+      ControlsUtils.SubscribeOnChildDragOver(this, (s, e) => OnDragOver(e));
 
       _Inited = true;
     }

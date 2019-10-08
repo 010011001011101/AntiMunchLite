@@ -105,6 +105,7 @@
     <Compile Include="Dialogs\ResetDialog.Designer.cs">
       <DependentUpon>ResetDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="utils\AutoScroller.cs" />
     <Compile Include="utils\ColorUtils.cs" />
     <Compile Include="Controls\CombatantControl.cs">
       <SubType>UserControl</SubType>
@@ -153,6 +154,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="utils\ControlsUtils.cs" />
     <Compile Include="utils\SaveLoadManager.cs" />
     <Compile Include="utils\ControlsCache.cs" />
     <EmbeddedResource Include="Controls\AbilityControl.resx">

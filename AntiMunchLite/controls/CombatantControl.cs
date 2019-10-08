@@ -19,9 +19,9 @@ namespace AntiMunchLite.Controls
     private readonly float _DefaultEffectsHeight, _DefaultCommentHeight, _DefaultAbilitiesHeight;
     private readonly float _MinCommentHeight;
 
-    private bool _Inited;
-    private Color _BackColor;
+    public bool Inited { get; private set; }
     public bool IsCurrent { get; private set; }
+    private Color _BackColor;
 
     public ShiftInitiativeMode ShiftMode { get; private set; } = ShiftInitiativeMode.None;
 
@@ -65,6 +65,8 @@ namespace AntiMunchLite.Controls
       _DefaultCommentHeight = TableLayoutPanel.RowStyles[2].Height;
       _DefaultAbilitiesHeight = TableLayoutPanel.RowStyles[3].Height;
       _MinCommentHeight = Comment.Height;
+
+      ControlsUtils.SubscribeOnChildDragOver(this, (s, e) => OnDragOver(e));
     }
 
     #region Initialize
@@ -73,14 +75,14 @@ namespace AntiMunchLite.Controls
     {
       _Core = core;
 
-      _Inited = false;
+      Inited = false;
 
       if (Combatant != combatant)
         _InitializeCombatant(combatant);
       else if (forceInitiativeInit)
         _InitializeInitiative();
 
-      _Inited = true;
+      Inited = true;
 
       _InitializeCurrentStatus(isCurrent);
       _InitializeSubBoxesVisibility();
@@ -146,7 +148,7 @@ namespace AntiMunchLite.Controls
 
     private void Initiative_ValueChanged(object sender, EventArgs e)
     {
-      if (!_Inited) return;
+      if (!Inited) return;
 
       Combatant.Initiative = (int)Initiative.Value;
       _OnInitiativeChange();
@@ -154,7 +156,7 @@ namespace AntiMunchLite.Controls
 
     private void SubInitiative_ValueChanged(object sender, EventArgs e)
     {
-      if (!_Inited) return;
+      if (!Inited) return;
 
       Combatant.SubInitiative = (int)SubInitiative.Value;
       _OnInitiativeChange();
@@ -162,14 +164,14 @@ namespace AntiMunchLite.Controls
 
     private void CombatantName_TextChanged(object sender, EventArgs e)
     {
-      if (!_Inited) return;
+      if (!Inited) return;
 
       Combatant.Name = CombatantName.Text;
     }
 
     private void Comment_TextChanged(object sender, EventArgs e)
     {
-      if (!_Inited) return;
+      if (!Inited) return;
 
       Combatant.Comment = Comment.Text;
 
@@ -180,7 +182,7 @@ namespace AntiMunchLite.Controls
     private bool _IgnoreHpValueChange;
     private void CurrentHp_ValueChanged(object sender, EventArgs e)
     {
-      if (!_Inited || _IgnoreHpValueChange) return;
+      if (!Inited || _IgnoreHpValueChange) return;
 
       Combatant.CurrentHp = (int)CurrentHp.Value;
 
@@ -192,7 +194,7 @@ namespace AntiMunchLite.Controls
 
     private void MaxHp_ValueChanged(object sender, EventArgs e)
     {
-      if (!_Inited || _IgnoreHpValueChange) return;
+      if (!Inited || _IgnoreHpValueChange) return;
 
       Combatant.MaxHp = (int)MaxHp.Value;
       _RefreshHpStatus();
@@ -200,21 +202,21 @@ namespace AntiMunchLite.Controls
 
     private void DmgBtn_Click(object sender, EventArgs e)
     {
-      if (!_Inited) return;
+      if (!Inited) return;
 
       _OnDamage(DmgDialog.MakeDamage(_Core, Combatant, false, Parent));
     }
 
     private void HealBtn_Click(object sender, EventArgs e)
     {
-      if (!_Inited) return;
+      if (!Inited) return;
 
       _OnDamage(DmgDialog.MakeDamage(_Core, Combatant, true, Parent));
     }
 
     private void DelBtn_Click(object sender, EventArgs e)
     {
-      if (!_Inited) return;
+      if (!Inited) return;
 
       if (DialogResult.Yes != MessageBox.Show($"Confirm Deletion of [{CombatantName.Text}]", @"Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) return;
 
@@ -223,7 +225,7 @@ namespace AntiMunchLite.Controls
 
     private void ShowEffectsCB_CheckedChanged(object sender, EventArgs e)
     {
-      if (!_Inited) return;
+      if (!Inited) return;
 
       Combatant.ShowEffects = ShowEffectsCB.Checked;
       if (RefreshHeight())
@@ -232,7 +234,7 @@ namespace AntiMunchLite.Controls
 
     private void ShowCommentCB_CheckedChanged(object sender, EventArgs e)
     {
-      if (!_Inited) return;
+      if (!Inited) return;
 
       Combatant.ShowComment = ShowCommentCB.Checked;
       if (RefreshHeight())
@@ -241,7 +243,7 @@ namespace AntiMunchLite.Controls
 
     private void ShowAbilitiesCB_CheckedChanged(object sender, EventArgs e)
     {
-      if (!_Inited) return;
+      if (!Inited) return;
 
       Combatant.ShowAbilities = ShowAbilitiesCB.Checked;
       if (RefreshHeight())
@@ -250,14 +252,14 @@ namespace AntiMunchLite.Controls
 
     private void AddEffectBtn_Click(object sender, EventArgs e)
     {
-      if (!_Inited) return;
+      if (!Inited) return;
 
       _OnEffectAdd(EffectDialog.CreateEffect(_Core, Combatant, Parent));
     }
 
     private void AddAbilityBtn_Click(object sender, EventArgs e)
     {
-      if (!_Inited) return;
+      if (!Inited) return;
 
       _OnAbilityAdd(AbilityDialog.CreateAbility(_Core, Combatant, Parent));
     }
@@ -308,6 +310,7 @@ namespace AntiMunchLite.Controls
     {
       var newControl = new EffectControl();
       newControl.NeedDeleteEffect += _DeleteEffect;
+      newControl.DragOver += (s, e) => OnDragOver(e);
 
       return newControl;
     }
@@ -341,6 +344,7 @@ namespace AntiMunchLite.Controls
     {
       var newControl = new AbilityControl();
       newControl.NeedDeleteAbility += _DeleteAbility;
+      newControl.DragOver += (s, e) => OnDragOver(e);
 
       return newControl;
     }
@@ -356,6 +360,8 @@ namespace AntiMunchLite.Controls
 
     public bool RefreshHeight()
     {
+      if (!Inited) return false;
+
       var effectsDelta = GetFlowDelta(EffectsFlow, Combatant.ShowEffects, _DefaultEffectsHeight);
       var commentDelta = GetCommentDelta(Comment, Combatant.ShowComment, _MinCommentHeight, _DefaultCommentHeight);
       var abilitiesDelta = GetFlowDelta(AbilitiesFlow, Combatant.ShowAbilities, _DefaultAbilitiesHeight);

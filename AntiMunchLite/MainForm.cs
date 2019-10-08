@@ -13,6 +13,7 @@ namespace AntiMunchLite
   {
     private readonly SaveLoadManager _SaveLoadManager;
     private readonly ControlsCache<CombatantControl> _CombatantControlsCache;
+    private readonly AutoScroller _AutoScroller;
     public Core.Core Core { get; private set; } = new Core.Core();
 
 
@@ -22,6 +23,7 @@ namespace AntiMunchLite
 
       _SaveLoadManager = new SaveLoadManager(this);
       _CombatantControlsCache = new ControlsCache<CombatantControl>(MainFlow.Controls, _CreateCombatantControl);
+      _AutoScroller = new AutoScroller(MainFlow);
     }
 
     private CombatantControl _CreateCombatantControl()
@@ -35,6 +37,7 @@ namespace AntiMunchLite
       newControl.ManualResize += _OnManualResize;
       newControl.ShiftStart += _OnShiftStart;
       newControl.ShiftEnd += _OnShiftEnd;
+      newControl.DragOver += (s, e) => _CheckForManualScroll();
 
       return newControl;
     }
@@ -172,7 +175,9 @@ namespace AntiMunchLite
       foreach (var combatantControl in _CombatantControlsCache)
         combatantControl.OnShiftEnd(shiftCanceled);
 
-      if(!shiftCanceled)
+      _AutoScroller.SetState(AutoScroller.State.Disable);
+
+      if (!shiftCanceled)
         RefreshCombatants(true);
     }
 
@@ -297,6 +302,28 @@ namespace AntiMunchLite
         if (currentControl != null)
           action(currentControl);
       }
+    }
+
+    private void MainFlow_DragOver(object sender, DragEventArgs e)
+    {
+      _CheckForManualScroll();
+    }
+
+    private void _CheckForManualScroll()
+    {
+      if (!MainFlow.VerticalScroll.Visible)
+        return;
+
+      const int  manualScrollHeightPercent = 6;
+      const int manualScrollHeightMax = 60;
+      var manualScrollSens = Math.Min(MainFlow.Height * manualScrollHeightPercent / 100, manualScrollHeightMax);
+      var curPos = MainFlow.PointToClient(MousePosition);
+      if (curPos.Y >= 0 && curPos.Y <= manualScrollSens)
+        _AutoScroller.SetState(AutoScroller.State.Up);
+      else if (curPos.Y >= MainFlow.Height - manualScrollSens && curPos.Y <= MainFlow.Height)
+        _AutoScroller.SetState(AutoScroller.State.Down);
+      else
+        _AutoScroller.SetState(AutoScroller.State.Disable);
     }
   }
 }

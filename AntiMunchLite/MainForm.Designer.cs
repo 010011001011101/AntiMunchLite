@@ -1,4 +1,6 @@
-﻿namespace AntiMunchLite
+﻿using System.Windows.Forms;
+
+namespace AntiMunchLite
 {
   partial class MainForm
   {
@@ -227,6 +229,7 @@
       this.MainFlow.Size = new System.Drawing.Size(884, 337);
       this.MainFlow.TabIndex = 1;
       this.MainFlow.WrapContents = false;
+      this.MainFlow.DragOver += new System.Windows.Forms.DragEventHandler(this.MainFlow_DragOver);
       // 
       // MainForm
       // 

@@ -35,6 +35,8 @@ namespace AntiMunchLite.Controls
       EffectName.ForeColor =
       RemainTime.ForeColor = Effect.Type == EffectType.Buff ? Color.Black : Color.DarkRed;
 
+      ControlsUtils.SubscribeOnChildDragOver(this, (s, e) => OnDragOver(e));
+
       _Inited = true;
     }
 
