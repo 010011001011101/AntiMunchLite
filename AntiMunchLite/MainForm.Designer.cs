@@ -70,7 +70,7 @@
             this.ResetBtn});
       this.ToolBar.Location = new System.Drawing.Point(0, 0);
       this.ToolBar.Name = "ToolBar";
-      this.ToolBar.Size = new System.Drawing.Size(905, 25);
+      this.ToolBar.Size = new System.Drawing.Size(884, 25);
       this.ToolBar.TabIndex = 0;
       this.ToolBar.Text = "toolStrip1";
       // 
@@ -224,7 +224,7 @@
       this.MainFlow.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
       this.MainFlow.Location = new System.Drawing.Point(0, 25);
       this.MainFlow.Name = "MainFlow";
-      this.MainFlow.Size = new System.Drawing.Size(905, 341);
+      this.MainFlow.Size = new System.Drawing.Size(884, 337);
       this.MainFlow.TabIndex = 1;
       this.MainFlow.WrapContents = false;
       // 
@@ -232,7 +232,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(905, 366);
+      this.ClientSize = new System.Drawing.Size(884, 362);
       this.Controls.Add(this.MainFlow);
       this.Controls.Add(this.ToolBar);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

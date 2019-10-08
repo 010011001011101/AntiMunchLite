@@ -88,7 +88,7 @@ namespace AntiMunchLite.Controls
       RefreshEffects();
       RefreshAbilities();
       _RefreshShiftInitiativeImage();
-      RefreshSize();
+      RefreshHeight();
     }
 
     private void _InitializeCombatant(Combatant combatant)
@@ -173,7 +173,7 @@ namespace AntiMunchLite.Controls
 
       Combatant.Comment = Comment.Text;
 
-      if (RefreshSize())
+      if (RefreshHeight())
         _OnManualResize();
     }
 
@@ -226,7 +226,7 @@ namespace AntiMunchLite.Controls
       if (!_Inited) return;
 
       Combatant.ShowEffects = ShowEffectsCB.Checked;
-      if (RefreshSize())
+      if (RefreshHeight())
         _OnManualResize();
     }
 
@@ -235,7 +235,7 @@ namespace AntiMunchLite.Controls
       if (!_Inited) return;
 
       Combatant.ShowComment = ShowCommentCB.Checked;
-      if (RefreshSize())
+      if (RefreshHeight())
         _OnManualResize();
     }
 
@@ -244,7 +244,7 @@ namespace AntiMunchLite.Controls
       if (!_Inited) return;
 
       Combatant.ShowAbilities = ShowAbilitiesCB.Checked;
-      if (RefreshSize())
+      if (RefreshHeight())
         _OnManualResize();
     }
 
@@ -300,7 +300,7 @@ namespace AntiMunchLite.Controls
       for (var i = 0; i < effects.Count; ++i)
         _EffectsControlsCache[i].Initialize(effects[i], BackColor);
 
-      RefreshSize();
+      RefreshHeight();
       EffectsFlow.ResumeLayout();
     }
 
@@ -333,7 +333,7 @@ namespace AntiMunchLite.Controls
       for (var i = 0; i < abilities.Count; ++i)
         _AbilitiesControlsCache[i].Initialize(abilities[i], BackColor);
 
-      RefreshSize();
+      RefreshHeight();
       AbilitiesFlow.ResumeLayout();
     }
 
@@ -354,7 +354,7 @@ namespace AntiMunchLite.Controls
 
     #endregion
 
-    public bool RefreshSize()
+    public bool RefreshHeight()
     {
       var effectsDelta = GetFlowDelta(EffectsFlow, Combatant.ShowEffects, _DefaultEffectsHeight);
       var commentDelta = GetCommentDelta(Comment, Combatant.ShowComment, _MinCommentHeight, _DefaultCommentHeight);

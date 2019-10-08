@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using AntiMunchLite.Controls;
@@ -55,7 +56,6 @@ namespace AntiMunchLite
       RoundLbl.Text = @"Round " + Core.CurrentRound;
 
       _ControlsSizeRefresh();
-
       MainFlow.ResumeLayout();
     }
 
@@ -74,7 +74,19 @@ namespace AntiMunchLite
 
     private int _GetCombatantControlsWidth()
     {
-      return MainFlow.ClientRectangle.Width - 10;
+      var width = MainFlow.ClientRectangle.Width - 8;
+
+      //Thx to post ResumeLayout update of default scrolls
+      var realNeedVertScroll = MainFlow.ClientRectangle.Height < _CombatantControlsCache.Sum(c => c.Height + c.Margin.Vertical);
+      if (realNeedVertScroll != MainFlow.VerticalScroll.Visible)
+      {
+        if (realNeedVertScroll)
+          width -= SystemInformation.VerticalScrollBarWidth;
+        else
+          width += SystemInformation.VerticalScrollBarWidth;
+      }
+
+      return width;
     }
 
     #region Handlers
@@ -113,7 +125,7 @@ namespace AntiMunchLite
 
     private void _OnManualResize()
     {
-      _FixCombatantControlsWidth();
+      _ControlsSizeRefresh();
     }
 
     private void _OnNeedDeleteCombatant(Combatant combatant)
@@ -204,19 +216,12 @@ namespace AntiMunchLite
     {
       if (_CombatantControlsCache == null) return;
 
-      foreach (var control in _CombatantControlsCache)
-        control.RefreshSize();
-
-      _FixCombatantControlsWidth();
-    }
-
-    private void _FixCombatantControlsWidth()
-    {
-      if (_CombatantControlsCache == null) return;
-
       var newWidth = _GetCombatantControlsWidth();
       foreach (var control in _CombatantControlsCache)
+      {
+        control.RefreshHeight();
         control.Width = newWidth;
+      }
     }
 
     private void ResetBtn_Click(object sender, EventArgs e)
