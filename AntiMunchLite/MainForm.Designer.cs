@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using AntiMunchLite.BaseControls;
 
 namespace AntiMunchLite
 {
@@ -52,7 +53,7 @@ namespace AntiMunchLite
       this.RoundLbl = new System.Windows.Forms.ToolStripLabel();
       this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
       this.ResetBtn = new System.Windows.Forms.ToolStripButton();
-      this.MainFlow = new System.Windows.Forms.FlowLayoutPanel();
+      this.MainFlow = new AntiMunchLite.BaseControls.DoubleBufferedFlow();
       this.ToolBar.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -242,9 +243,12 @@ namespace AntiMunchLite
       this.KeyPreview = true;
       this.Name = "MainForm";
       this.Text = "AntiMunch Lite";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
       this.Load += new System.EventHandler(this.MainForm_Load);
-      this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
+      this.ResizeBegin += new System.EventHandler(this.MainForm_ResizeBegin);
+      this.ResizeEnd += new System.EventHandler(this.MainForm_ResizeEnd);
       this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+      this.Resize += new System.EventHandler(this.MainForm_Resize);
       this.ToolBar.ResumeLayout(false);
       this.ToolBar.PerformLayout();
       this.ResumeLayout(false);
@@ -259,7 +263,7 @@ namespace AntiMunchLite
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     private System.Windows.Forms.ToolStripButton NextBtn;
     private System.Windows.Forms.ToolStripLabel RoundLbl;
-    private System.Windows.Forms.FlowLayoutPanel MainFlow;
+    private DoubleBufferedFlow MainFlow;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     private System.Windows.Forms.ToolStripButton ResetBtn;
     private System.Windows.Forms.ToolStripDropDownButton MenuList;

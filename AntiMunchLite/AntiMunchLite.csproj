@@ -80,6 +80,9 @@
     <Compile Include="Controls\AbilityControl.Designer.cs">
       <DependentUpon>AbilityControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaseControls\DoubleBufferedFlow.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Core\Ability.cs" />
     <Compile Include="Dialogs\CloneDialog.cs">
       <SubType>Form</SubType>

@@ -16,6 +16,8 @@ namespace AntiMunchLite
     private readonly AutoScroller _AutoScroller;
     public Core.Core Core { get; private set; } = new Core.Core();
 
+    private bool _MainFlowSuspended;
+
 
     public MainForm()
     {
@@ -44,22 +46,25 @@ namespace AntiMunchLite
 
     public void RefreshCombatants(bool forceInitiativeInit = false)
     {
-      MainFlow.SuspendLayout();
+      ControlsUtils.InSuspendLayout(MainFlow, () =>
+      {
+        ColorUtils.ResetBackColorAlternation();
+        _CombatantControlsCache.AbjustSize(Core.Combatants.Count());
 
-      ColorUtils.ResetBackColorAlternation();
-      _CombatantControlsCache.AbjustSize(Core.Combatants.Count());
+        var current = Core.GetCurrentCombatant();
+        var combatants = Core.Combatants.ToList();
+        for (var i = 0; i < combatants.Count; ++i)
+          _CombatantControlsCache[i].Initialize(Core, combatants[i], combatants[i] == current, forceInitiativeInit);
 
-      var current = Core.GetCurrentCombatant();
-      var combatants = Core.Combatants.ToList();
-      for (var i = 0; i < combatants.Count; ++i)
-        _CombatantControlsCache[i].Initialize(Core, combatants[i], combatants[i] == current, forceInitiativeInit);
+        RefreshCombatantsCollision();
 
-      RefreshCombatantsCollision();
+        RoundLbl.Text = @"Round " + Core.CurrentRound;
 
-      RoundLbl.Text = @"Round " + Core.CurrentRound;
+        _ControlsSizeRefresh();
+      }, _MainFlowSuspended);
 
-      _ControlsSizeRefresh();
-      MainFlow.ResumeLayout();
+      //If ResizeEnd was mysteriusly ignored
+      ControlsUtils.ResumeLayout(MainFlow, ref _MainFlowSuspended);
     }
 
     public void RefreshCombatantsCollision()
@@ -128,7 +133,7 @@ namespace AntiMunchLite
 
     private void _OnManualResize()
     {
-      _ControlsSizeRefresh();
+      ControlsUtils.InSuspendLayout(MainFlow, _ControlsSizeRefresh);
     }
 
     private void _OnNeedDeleteCombatant(Combatant combatant)
@@ -212,9 +217,21 @@ namespace AntiMunchLite
       RefreshCombatants();
     }
 
-    private void MainForm_SizeChanged(object sender, EventArgs e)
+    private void MainForm_ResizeEnd(object sender, EventArgs e)
+    {
+      ControlsUtils.ResumeLayout(MainFlow, ref _MainFlowSuspended);
+    }
+
+    private void MainForm_ResizeBegin(object sender, EventArgs e)
+    {
+     ControlsUtils.SuspendLayout(MainFlow, ref _MainFlowSuspended);
+    }
+
+    private void MainForm_Resize(object sender, EventArgs e)
     {
       _ControlsSizeRefresh();
+      ControlsUtils.ResumeLayout(MainFlow, ref _MainFlowSuspended);//Coz simple PerfomLayout didnt work for child controls...
+      ControlsUtils.SuspendLayout(MainFlow, ref _MainFlowSuspended);
     }
 
     private void _ControlsSizeRefresh()
@@ -324,6 +341,11 @@ namespace AntiMunchLite
         _AutoScroller.SetState(AutoScroller.State.Down);
       else
         _AutoScroller.SetState(AutoScroller.State.Disable);
+    }
+
+    private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+      ControlsUtils.SuspendLayout(MainFlow);
     }
   }
 }

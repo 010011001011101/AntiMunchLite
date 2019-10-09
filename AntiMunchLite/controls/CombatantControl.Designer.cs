@@ -42,14 +42,10 @@ namespace AntiMunchLite.Controls
       this.label4 = new System.Windows.Forms.Label();
       this.HealBtn = new System.Windows.Forms.Button();
       this.ArrowPB = new System.Windows.Forms.PictureBox();
-      this.Initiative = new AntiMunchLite.BaseControls.CustomNumericInput();
-      this.SubInitiative = new AntiMunchLite.BaseControls.CustomNumericInput();
       this.CombatantName = new System.Windows.Forms.TextBox();
       this.DmgBtn = new System.Windows.Forms.Button();
       this.label1 = new System.Windows.Forms.Label();
-      this.CurrentHp = new AntiMunchLite.BaseControls.CustomNumericInput();
       this.label2 = new System.Windows.Forms.Label();
-      this.MaxHp = new AntiMunchLite.BaseControls.CustomNumericInput();
       this.StatusLbl = new System.Windows.Forms.Label();
       this.DelBtn = new System.Windows.Forms.Button();
       this.DragPB = new System.Windows.Forms.PictureBox();
@@ -59,13 +55,17 @@ namespace AntiMunchLite.Controls
       this.ShowAbilitiesCB = new System.Windows.Forms.CheckBox();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.AddEffectBtn = new System.Windows.Forms.Button();
-      this.EffectsFlow = new System.Windows.Forms.FlowLayoutPanel();
       this.label3 = new System.Windows.Forms.Label();
-      this.Comment = new System.Windows.Forms.TextBox();
       this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
       this.AddAbilityBtn = new System.Windows.Forms.Button();
-      this.AbilitiesFlow = new System.Windows.Forms.FlowLayoutPanel();
       this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
+      this.Comment = new System.Windows.Forms.RichTextBox();
+      this.Initiative = new AntiMunchLite.BaseControls.CustomNumericInput();
+      this.SubInitiative = new AntiMunchLite.BaseControls.CustomNumericInput();
+      this.CurrentHp = new AntiMunchLite.BaseControls.CustomNumericInput();
+      this.MaxHp = new AntiMunchLite.BaseControls.CustomNumericInput();
+      this.EffectsFlow = new AntiMunchLite.BaseControls.DoubleBufferedFlow();
+      this.AbilitiesFlow = new AntiMunchLite.BaseControls.DoubleBufferedFlow();
       this.TableLayoutPanel.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.ArrowPB)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.DragPB)).BeginInit();
@@ -109,8 +109,8 @@ namespace AntiMunchLite.Controls
       this.TableLayoutPanel.Controls.Add(this.ShowBoxesFlow, 12, 0);
       this.TableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 3, 1);
       this.TableLayoutPanel.Controls.Add(this.label3, 0, 1);
-      this.TableLayoutPanel.Controls.Add(this.Comment, 3, 2);
       this.TableLayoutPanel.Controls.Add(this.tableLayoutPanel2, 3, 3);
+      this.TableLayoutPanel.Controls.Add(this.Comment, 3, 2);
       this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
       this.TableLayoutPanel.Name = "TableLayoutPanel";
@@ -171,39 +171,6 @@ namespace AntiMunchLite.Controls
       this.ArrowPB.TabIndex = 9;
       this.ArrowPB.TabStop = false;
       // 
-      // Initiative
-      // 
-      this.Initiative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.Initiative.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.Initiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.Initiative.Location = new System.Drawing.Point(48, 4);
-      this.Initiative.Maximum = null;
-      this.Initiative.Minimum = null;
-      this.Initiative.Name = "Initiative";
-      this.Initiative.Size = new System.Drawing.Size(44, 23);
-      this.Initiative.TabIndex = 0;
-      this.Initiative.Text = "0";
-      this.Initiative.ToolTip = "Initiative Order (desc)";
-      this.Initiative.Value = 0;
-      this.Initiative.ValueChanged += new System.EventHandler(this.Initiative_ValueChanged);
-      // 
-      // SubInitiative
-      // 
-      this.SubInitiative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.SubInitiative.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.SubInitiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.SubInitiative.Location = new System.Drawing.Point(98, 4);
-      this.SubInitiative.Maximum = null;
-      this.SubInitiative.Minimum = null;
-      this.SubInitiative.Name = "SubInitiative";
-      this.SubInitiative.Size = new System.Drawing.Size(39, 23);
-      this.SubInitiative.TabIndex = 1;
-      this.SubInitiative.TabStop = false;
-      this.SubInitiative.Text = "1";
-      this.SubInitiative.ToolTip = "SubInitiative Order (desc)";
-      this.SubInitiative.Value = 1;
-      this.SubInitiative.ValueChanged += new System.EventHandler(this.SubInitiative_ValueChanged);
-      // 
       // CombatantName
       // 
       this.CombatantName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -240,21 +207,6 @@ namespace AntiMunchLite.Controls
       this.label1.TabIndex = 5;
       this.label1.Text = "HP :";
       // 
-      // CurrentHp
-      // 
-      this.CurrentHp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.CurrentHp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.CurrentHp.Location = new System.Drawing.Point(399, 4);
-      this.CurrentHp.Maximum = null;
-      this.CurrentHp.Minimum = null;
-      this.CurrentHp.Name = "CurrentHp";
-      this.CurrentHp.Size = new System.Drawing.Size(44, 23);
-      this.CurrentHp.TabIndex = 6;
-      this.CurrentHp.Text = "0";
-      this.CurrentHp.ToolTip = "Current HP";
-      this.CurrentHp.Value = 0;
-      this.CurrentHp.ValueChanged += new System.EventHandler(this.CurrentHp_ValueChanged);
-      // 
       // label2
       // 
       this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -265,21 +217,6 @@ namespace AntiMunchLite.Controls
       this.label2.Size = new System.Drawing.Size(10, 13);
       this.label2.TabIndex = 7;
       this.label2.Text = "/";
-      // 
-      // MaxHp
-      // 
-      this.MaxHp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.MaxHp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.MaxHp.Location = new System.Drawing.Point(459, 4);
-      this.MaxHp.Maximum = null;
-      this.MaxHp.Minimum = 0;
-      this.MaxHp.Name = "MaxHp";
-      this.MaxHp.Size = new System.Drawing.Size(44, 23);
-      this.MaxHp.TabIndex = 8;
-      this.MaxHp.Text = "0";
-      this.MaxHp.ToolTip = "Maximum HP";
-      this.MaxHp.Value = 0;
-      this.MaxHp.ValueChanged += new System.EventHandler(this.MaxHp_ValueChanged);
       // 
       // StatusLbl
       // 
@@ -408,15 +345,6 @@ namespace AntiMunchLite.Controls
       this.AddEffectBtn.UseVisualStyleBackColor = true;
       this.AddEffectBtn.Click += new System.EventHandler(this.AddEffectBtn_Click);
       // 
-      // EffectsFlow
-      // 
-      this.EffectsFlow.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.EffectsFlow.Location = new System.Drawing.Point(28, 0);
-      this.EffectsFlow.Margin = new System.Windows.Forms.Padding(0);
-      this.EffectsFlow.Name = "EffectsFlow";
-      this.EffectsFlow.Size = new System.Drawing.Size(717, 30);
-      this.EffectsFlow.TabIndex = 1;
-      // 
       // label3
       // 
       this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -427,19 +355,6 @@ namespace AntiMunchLite.Controls
       this.label3.Size = new System.Drawing.Size(46, 13);
       this.label3.TabIndex = 15;
       this.label3.Text = "Effects :";
-      // 
-      // Comment
-      // 
-      this.Comment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.TableLayoutPanel.SetColumnSpan(this.Comment, 11);
-      this.Comment.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.Comment.Location = new System.Drawing.Point(98, 65);
-      this.Comment.Multiline = true;
-      this.Comment.Name = "Comment";
-      this.Comment.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-      this.Comment.Size = new System.Drawing.Size(739, 39);
-      this.Comment.TabIndex = 0;
-      this.Comment.TextChanged += new System.EventHandler(this.Comment_TextChanged);
       // 
       // tableLayoutPanel2
       // 
@@ -473,6 +388,98 @@ namespace AntiMunchLite.Controls
       this.AddAbilityBtn.UseVisualStyleBackColor = true;
       this.AddAbilityBtn.Click += new System.EventHandler(this.AddAbilityBtn_Click);
       // 
+      // ToolTip
+      // 
+      this.ToolTip.AutoPopDelay = 5000;
+      this.ToolTip.InitialDelay = 1000;
+      this.ToolTip.ReshowDelay = 100;
+      // 
+      // Comment
+      // 
+      this.Comment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.TableLayoutPanel.SetColumnSpan(this.Comment, 11);
+      this.Comment.DetectUrls = false;
+      this.Comment.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.Comment.Location = new System.Drawing.Point(98, 65);
+      this.Comment.Name = "Comment";
+      this.Comment.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+      this.Comment.Size = new System.Drawing.Size(739, 39);
+      this.Comment.TabIndex = 18;
+      this.Comment.Text = "";
+      this.Comment.TextChanged += new System.EventHandler(this.Comment_TextChanged);
+      // 
+      // Initiative
+      // 
+      this.Initiative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.Initiative.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.Initiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.Initiative.Location = new System.Drawing.Point(48, 4);
+      this.Initiative.Maximum = null;
+      this.Initiative.Minimum = null;
+      this.Initiative.Name = "Initiative";
+      this.Initiative.Size = new System.Drawing.Size(44, 23);
+      this.Initiative.TabIndex = 0;
+      this.Initiative.Text = "0";
+      this.Initiative.ToolTip = "Initiative Order (desc)";
+      this.Initiative.Value = 0;
+      this.Initiative.ValueChanged += new System.EventHandler(this.Initiative_ValueChanged);
+      // 
+      // SubInitiative
+      // 
+      this.SubInitiative.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.SubInitiative.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.SubInitiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.SubInitiative.Location = new System.Drawing.Point(98, 4);
+      this.SubInitiative.Maximum = null;
+      this.SubInitiative.Minimum = null;
+      this.SubInitiative.Name = "SubInitiative";
+      this.SubInitiative.Size = new System.Drawing.Size(39, 23);
+      this.SubInitiative.TabIndex = 1;
+      this.SubInitiative.TabStop = false;
+      this.SubInitiative.Text = "1";
+      this.SubInitiative.ToolTip = "SubInitiative Order (desc)";
+      this.SubInitiative.Value = 1;
+      this.SubInitiative.ValueChanged += new System.EventHandler(this.SubInitiative_ValueChanged);
+      // 
+      // CurrentHp
+      // 
+      this.CurrentHp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.CurrentHp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.CurrentHp.Location = new System.Drawing.Point(399, 4);
+      this.CurrentHp.Maximum = null;
+      this.CurrentHp.Minimum = null;
+      this.CurrentHp.Name = "CurrentHp";
+      this.CurrentHp.Size = new System.Drawing.Size(44, 23);
+      this.CurrentHp.TabIndex = 6;
+      this.CurrentHp.Text = "0";
+      this.CurrentHp.ToolTip = "Current HP";
+      this.CurrentHp.Value = 0;
+      this.CurrentHp.ValueChanged += new System.EventHandler(this.CurrentHp_ValueChanged);
+      // 
+      // MaxHp
+      // 
+      this.MaxHp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.MaxHp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.MaxHp.Location = new System.Drawing.Point(459, 4);
+      this.MaxHp.Maximum = null;
+      this.MaxHp.Minimum = 0;
+      this.MaxHp.Name = "MaxHp";
+      this.MaxHp.Size = new System.Drawing.Size(44, 23);
+      this.MaxHp.TabIndex = 8;
+      this.MaxHp.Text = "0";
+      this.MaxHp.ToolTip = "Maximum HP";
+      this.MaxHp.Value = 0;
+      this.MaxHp.ValueChanged += new System.EventHandler(this.MaxHp_ValueChanged);
+      // 
+      // EffectsFlow
+      // 
+      this.EffectsFlow.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.EffectsFlow.Location = new System.Drawing.Point(28, 0);
+      this.EffectsFlow.Margin = new System.Windows.Forms.Padding(0);
+      this.EffectsFlow.Name = "EffectsFlow";
+      this.EffectsFlow.Size = new System.Drawing.Size(717, 30);
+      this.EffectsFlow.TabIndex = 1;
+      // 
       // AbilitiesFlow
       // 
       this.AbilitiesFlow.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -481,12 +488,6 @@ namespace AntiMunchLite.Controls
       this.AbilitiesFlow.Name = "AbilitiesFlow";
       this.AbilitiesFlow.Size = new System.Drawing.Size(717, 30);
       this.AbilitiesFlow.TabIndex = 1;
-      // 
-      // ToolTip
-      // 
-      this.ToolTip.AutoPopDelay = 5000;
-      this.ToolTip.InitialDelay = 1000;
-      this.ToolTip.ReshowDelay = 100;
       // 
       // CombatantControl
       // 
@@ -528,20 +529,20 @@ namespace AntiMunchLite.Controls
     private ToolTip ToolTip;
     private PictureBox ArrowPB;
     private Button AddEffectBtn;
-    private FlowLayoutPanel EffectsFlow;
+    private DoubleBufferedFlow EffectsFlow;
     private Button HealBtn;
     private PictureBox DragPB;
     private TableLayoutPanel tableLayoutPanel1;
-    private TextBox Comment;
     private TableLayoutPanel tableLayoutPanel2;
     private Button AddAbilityBtn;
     private FlowLayoutPanel ShowBoxesFlow;
     private CheckBox ShowEffectsCB;
     private CheckBox ShowCommentCB;
     private CheckBox ShowAbilitiesCB;
-    private FlowLayoutPanel AbilitiesFlow;
+    private DoubleBufferedFlow AbilitiesFlow;
     private Label label5;
     private Label label4;
     private Label label3;
+    private RichTextBox Comment;
   }
 }

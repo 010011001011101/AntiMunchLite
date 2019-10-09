@@ -17,7 +17,7 @@ namespace AntiMunchLite
       _CreateNewControlDelegate = createNewControlDelegate ?? throw new ArgumentNullException(nameof(createNewControlDelegate));
     }
 
-    public void AbjustSize(int newSize)
+    public void AbjustSize(int newSize, bool suspendLayoutOfNewControls = true)
     {
       var currentSize = Count;
 
@@ -32,7 +32,10 @@ namespace AntiMunchLite
       if (currentSize < newSize)
         foreach (var newControl in Enumerable.Range(0, newSize - currentSize).Select(i => _CreateNewControlDelegate()))
         {
-          Add(newControl);
+          if (suspendLayoutOfNewControls)
+            ControlsUtils.SuspendLayout(newControl);
+
+            Add(newControl);
           _HostCollection.Add(newControl);
         }
     }

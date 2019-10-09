@@ -21,7 +21,7 @@ namespace AntiMunchLite
       if(!(param is FlowLayoutPanel scrollArea))
         return;
 
-      while (!scrollArea.Disposing)
+      while (!scrollArea.IsDisposed && !scrollArea.Disposing)
       {
         switch (_State)
         {

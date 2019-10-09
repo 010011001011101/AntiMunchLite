@@ -294,16 +294,16 @@ namespace AntiMunchLite.Controls
 
     public void RefreshEffects()
     {
-      EffectsFlow.SuspendLayout();
+      ControlsUtils.InSuspendLayout(EffectsFlow, () =>
+      {
+        _EffectsControlsCache.AbjustSize(Combatant.Effects.Count);
 
-      _EffectsControlsCache.AbjustSize(Combatant.Effects.Count);
+        var effects = Combatant.Effects.OrderBy(e => e.Type).ToList();
+        for (var i = 0; i < effects.Count; ++i)
+          _EffectsControlsCache[i].Initialize(effects[i], BackColor);
 
-      var effects = Combatant.Effects.OrderBy(e => e.Type).ToList();
-      for (var i = 0; i < effects.Count; ++i)
-        _EffectsControlsCache[i].Initialize(effects[i], BackColor);
-
-      RefreshHeight();
-      EffectsFlow.ResumeLayout();
+        RefreshHeight();
+      });
     }
 
     private EffectControl _CreateEffectControl()
@@ -328,16 +328,16 @@ namespace AntiMunchLite.Controls
 
     public void RefreshAbilities()
     {
-      AbilitiesFlow.SuspendLayout();
+      ControlsUtils.InSuspendLayout(AbilitiesFlow, () =>
+      {
+        _AbilitiesControlsCache.AbjustSize(Combatant.Abilities.Count);
 
-      _AbilitiesControlsCache.AbjustSize(Combatant.Abilities.Count);
+        var abilities = Combatant.Abilities.ToList();
+        for (var i = 0; i < abilities.Count; ++i)
+          _AbilitiesControlsCache[i].Initialize(abilities[i], BackColor);
 
-      var abilities = Combatant.Abilities.ToList();
-      for (var i = 0; i < abilities.Count; ++i)
-        _AbilitiesControlsCache[i].Initialize(abilities[i], BackColor);
-
-      RefreshHeight();
-      AbilitiesFlow.ResumeLayout();
+        RefreshHeight();
+      });
     }
 
     private AbilityControl _CreateAbilityControl()
@@ -380,7 +380,7 @@ namespace AntiMunchLite.Controls
       }
       return false;
 
-      float GetFlowDelta(FlowLayoutPanel flow, bool showFlag, float totalBoxHeight)
+      float GetFlowDelta(Control flow, bool showFlag, float totalBoxHeight)
       {
         if (!showFlag) return -totalBoxHeight;
 
@@ -391,7 +391,7 @@ namespace AntiMunchLite.Controls
           : 0;
       }
 
-      float GetCommentDelta(TextBox textBox, bool showFlag, float min, float totalBoxHeight)
+      float GetCommentDelta(Control textBox, bool showFlag, float min, float totalBoxHeight)
       {
         if (!showFlag) return -totalBoxHeight;
 
