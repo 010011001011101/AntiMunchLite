@@ -230,8 +230,12 @@ namespace AntiMunchLite
     private void MainForm_Resize(object sender, EventArgs e)
     {
       _ControlsSizeRefresh();
-      ControlsUtils.ResumeLayout(MainFlow, ref _MainFlowSuspended);//Coz simple PerfomLayout didnt work for child controls...
-      ControlsUtils.SuspendLayout(MainFlow, ref _MainFlowSuspended);
+
+      if (_MainFlowSuspended)
+      {
+        ControlsUtils.ResumeLayout(MainFlow, ref _MainFlowSuspended); //Coz simple PerfomLayout didnt work for child controls...
+        ControlsUtils.SuspendLayout(MainFlow, ref _MainFlowSuspended);
+      }
     }
 
     private void _ControlsSizeRefresh()
