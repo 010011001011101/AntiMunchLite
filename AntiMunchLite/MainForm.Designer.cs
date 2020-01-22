@@ -152,7 +152,7 @@ namespace AntiMunchLite
       this.AddBtn.Name = "AddBtn";
       this.AddBtn.Size = new System.Drawing.Size(23, 22);
       this.AddBtn.Text = "Add Combatant";
-      this.AddBtn.ToolTipText = "Add Combatant (Ctrl+A)";
+      this.AddBtn.ToolTipText = "Add Combatant (Ctrl+N)";
       this.AddBtn.Click += new System.EventHandler(this.AddBtn_Click);
       // 
       // CloneBtn
@@ -179,7 +179,7 @@ namespace AntiMunchLite
       this.NextBtn.Name = "NextBtn";
       this.NextBtn.Size = new System.Drawing.Size(55, 22);
       this.NextBtn.Text = "Next";
-      this.NextBtn.ToolTipText = "Next (Ctrl+N)";
+      this.NextBtn.ToolTipText = "Next (Ctrl+Enter)";
       this.NextBtn.Click += new System.EventHandler(this.NextBtn_Click);
       // 
       // NextRoundBtn

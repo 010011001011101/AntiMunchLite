@@ -294,13 +294,13 @@ namespace AntiMunchLite
       if (e.Control)
         switch (e.KeyCode)
         {
-          case Keys.A:
+          case Keys.N:
             AddBtn.PerformClick();
             break;
           case Keys.P:
             CloneBtn.PerformClick();
             break;
-          case Keys.N:
+          case Keys.Enter:
             NextBtn.PerformClick();
             break;
           case Keys.R:
