@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace AntiMunchLite
 {
-  static class Program
+    static class Program
   {
     /// <summary>
     /// Главная точка входа для приложения.
@@ -13,6 +12,7 @@ namespace AntiMunchLite
     static void Main()
     {
       Application.EnableVisualStyles();
+      Application.SetHighDpiMode(HighDpiMode.SystemAware);
       Application.SetCompatibleTextRenderingDefault(false);
       Application.Run(new MainForm());
     }

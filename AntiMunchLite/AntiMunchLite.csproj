@@ -1,220 +1,41 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{21DE144D-5089-416C-A827-E3D35D922689}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AntiMunchLite</RootNamespace>
-    <AssemblyName>AntiMunchLite</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>shield.ico</ApplicationIcon>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BaseControls\CustomNumericInput.cs">
+    <Compile Update="BaseControls\CustomNumericInput.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BaseControls\SimpleParser.cs" />
-    <Compile Include="Controls\AbilityControl.cs">
+    <Compile Update="Controls\AbilityControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\AbilityControl.Designer.cs">
-      <DependentUpon>AbilityControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BaseControls\DoubleBufferedFlow.cs">
+    <Compile Update="BaseControls\DoubleBufferedFlow.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Core\Ability.cs" />
-    <Compile Include="Dialogs\CloneDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\CloneDialog.Designer.cs">
-      <DependentUpon>CloneDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\AbilityDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\AbilityDialog.Designer.cs">
-      <DependentUpon>AbilityDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\PreGenAbilitiesDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\PreGenAbilitiesDialog.Designer.cs">
-      <DependentUpon>PreGenAbilitiesDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\ResetDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\ResetDialog.Designer.cs">
-      <DependentUpon>ResetDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="utils\AutoScroller.cs" />
-    <Compile Include="utils\ColorUtils.cs" />
-    <Compile Include="Controls\CombatantControl.cs">
+    <Compile Update="Controls\CombatantControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\CombatantControl.Designer.cs">
-      <DependentUpon>CombatantControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Core\Combatant.cs" />
-    <Compile Include="Core\Core.cs" />
-    <Compile Include="Core\Effect.cs" />
-    <Compile Include="Core\EffectType.cs" />
-    <Compile Include="Core\HpStatus.cs" />
-    <Compile Include="Dialogs\DMGDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\DMGDialog.Designer.cs">
-      <DependentUpon>DMGDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\EffectControl.cs">
+    <Compile Update="Controls\EffectControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\EffectControl.Designer.cs">
-      <DependentUpon>EffectControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\EffectDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\EffectDialog.Designer.cs">
-      <DependentUpon>EffectDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\PreGenEffectsDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\PreGenEffectsDialog.Designer.cs">
-      <DependentUpon>PreGenEffectsDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="utils\ControlsUtils.cs" />
-    <Compile Include="utils\SaveLoadManager.cs" />
-    <Compile Include="utils\ControlsCache.cs" />
-    <EmbeddedResource Include="Controls\AbilityControl.resx">
-      <DependentUpon>AbilityControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\CombatantControl.resx">
-      <DependentUpon>CombatantControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\CloneDialog.resx">
-      <DependentUpon>CloneDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\AbilityDialog.resx">
-      <DependentUpon>AbilityDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\DMGDialog.resx">
-      <DependentUpon>DMGDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\EffectControl.resx">
-      <DependentUpon>EffectControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\EffectDialog.resx">
-      <DependentUpon>EffectDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\PreGenAbilitiesDialog.resx">
-      <DependentUpon>PreGenAbilitiesDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\PreGenEffectsDialog.resx">
-      <DependentUpon>PreGenEffectsDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ResetDialog.resx">
-      <DependentUpon>ResetDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Up.png" />
-    <None Include="Resources\Move.png" />
-    <None Include="Resources\Down.png" />
-    <None Include="Resources\From.png" />
     <Content Include="shield.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.256001">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
