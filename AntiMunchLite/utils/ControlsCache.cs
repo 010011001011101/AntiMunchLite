@@ -35,7 +35,7 @@ namespace AntiMunchLite
           if (suspendLayoutOfNewControls)
             ControlsUtils.SuspendLayout(newControl);
 
-            Add(newControl);
+          Add(newControl);
           _HostCollection.Add(newControl);
         }
     }

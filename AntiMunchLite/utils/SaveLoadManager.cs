@@ -1,30 +1,30 @@
 using System;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AntiMunchLite
 {
-  public class SaveLoadManager
+  public class SaveLoadManager(IWin32Window parent)
   {
     private const string SaveFilesExtension = "amls";
-    private readonly IWin32Window _Parent;
 
-
-    public SaveLoadManager(IWin32Window parent)
+    private readonly IWin32Window _Parent = parent;
+    private readonly JsonSerializerOptions _Options = new(JsonSerializerDefaults.General)
     {
-      _Parent = parent;
-    }
+      WriteIndented = true
+    };
 
-    public void Save(Core.Core core)
+    public async Task SaveAsync(Core.Core core)
     {
       try
       {
-        _Save(core);
+        await _Save(core);
       }
       catch (Exception e)
       {
-        MessageBox.Show(e.Message, @"Save error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show(_Parent, e.Message, @"Save error", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
     }
 
@@ -36,42 +36,43 @@ namespace AntiMunchLite
       }
       catch (Exception e)
       {
-        MessageBox.Show(e.Message, @"Load error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show(_Parent, e.Message, @"Load error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         return null;
       }
     }
 
-    private void _Save(Core.Core core)
+    private async Task _Save(Core.Core core)
     {
-      using (var dialog = new SaveFileDialog())
+      using var dialog = new SaveFileDialog
       {
-        dialog.FileName = $"Save_R{core.CurrentRound}_[{DateTime.Now:MM.dd.yy H.mm.ss}].{SaveFilesExtension}";
-        dialog.Filter = $"AntiMunchLite Save | *.{SaveFilesExtension}";
-        dialog.RestoreDirectory = true;
+        FileName = $"Save_R{core.CurrentRound}_[{DateTime.Now:MM.dd.yy H.mm.ss}].{SaveFilesExtension}",
+        Filter = $"AntiMunchLite Save | *.{SaveFilesExtension}",
+        RestoreDirectory = true
+      };
 
-        if(dialog.ShowDialog(_Parent) == DialogResult.OK)
-          using (var file = dialog.OpenFile())
-          {
-            var formetter = new BinaryFormatter();
-            formetter.Serialize(file, core);
-          }
+      if (dialog.ShowDialog(_Parent) == DialogResult.OK)
+      {
+        await using var fileStream = File.Create(dialog.FileName);
+        await JsonSerializer.SerializeAsync(fileStream, core, _Options);
       }
     }
 
     private Core.Core _Load()
     {
-      using (var dialog = new OpenFileDialog())
+      using var dialog = new OpenFileDialog
       {
-        dialog.CheckFileExists = true;
-        dialog.Filter = $"AntiMunchLite Save | *.{SaveFilesExtension}";
-        dialog.RestoreDirectory = true;
+        CheckFileExists = true,
+        Filter = $"AntiMunchLite Save | *.{SaveFilesExtension}",
+        RestoreDirectory = true
+      };
 
-        if (dialog.ShowDialog(_Parent) == DialogResult.OK)
-          using (var file = dialog.OpenFile())
-            return new BinaryFormatter().Deserialize(file) as Core.Core;
-
-        return null;
+      if (dialog.ShowDialog(_Parent) == DialogResult.OK)
+      {
+        var serializedStr = File.ReadAllText(dialog.FileName);
+        return JsonSerializer.Deserialize<Core.Core>(serializedStr);
       }
+
+      return null;
     }
   }
 }

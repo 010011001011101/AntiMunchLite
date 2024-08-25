@@ -17,6 +17,8 @@ namespace AntiMunchLite.BaseControls
       set => _ToolTip.SetToolTip(this, _ToolTipStr = value);
     }
 
+    public string ParseDescription { get; private set; }
+
     public event EventHandler ValueChanged;
 
     private void _OnValueChanged() => ValueChanged?.Invoke(this, new EventArgs());
@@ -66,7 +68,8 @@ namespace AntiMunchLite.BaseControls
     protected override void OnLostFocus(EventArgs e)
     {
       Value = _Parse(Text, out var parseDescription);
-      _ToolTip.SetToolTip(this, $"{_ToolTipStr} [{parseDescription}]");
+      ParseDescription = parseDescription;
+      _ToolTip.SetToolTip(this, $"{_ToolTipStr} [{ParseDescription}]");
 
       base.OnLostFocus(e);
     }

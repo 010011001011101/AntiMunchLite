@@ -2,7 +2,6 @@
 
 namespace AntiMunchLite.Core
 {
-  [Serializable]
   public class Ability
   {
     public string Name { get; set; }

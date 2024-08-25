@@ -8,13 +8,13 @@ namespace AntiMunchLite.BaseControls
 {
   public static class SimpleParser
   {
-    private static readonly Lazy<Random> Random = new Lazy<Random>(() => new Random(DateTime.Now.Millisecond));
+    private static readonly Lazy<Random> _Random = new(() => new(DateTime.Now.Millisecond));
 
     private static readonly (string Sign, Func<int, int, int> Operation)[] Operations =
     {
-        ("*", (Func<int, int, int>) ((a, b) => a * b)),
-        ("-", (Func<int, int, int>) ((a, b) => a - b)),
-        ("+", (Func<int, int, int>) ((a, b) => a + b))
+        ("*", (a, b) => a * b),
+        ("-", (a, b) => a - b),
+        ("+", (a, b) => a + b)
       };
 
     public static int Parse(string str, out string parseDescription)
@@ -24,13 +24,13 @@ namespace AntiMunchLite.BaseControls
       var signs = string.Join(null, Operations.Select(i => '\\' + i.Sign));
 
       var matchFirst = Regex.Match(str, $"^([^{signs}]*)");
-      chain.AddLast(new ElementNode(matchFirst.Groups[1].Captures[0].Value, Random.Value));
+      chain.AddLast(new ElementNode(matchFirst.Groups[1].Captures[0].Value, _Random.Value));
 
       var match = Regex.Match(str, $"([{signs}])([^{signs}]*)");
       while (match.Success)
       {
         chain.AddLast(new OperationNode(match.Groups[1].Captures[0].Value));
-        chain.AddLast(new ElementNode(match.Groups[2].Captures[0].Value, Random.Value));
+        chain.AddLast(new ElementNode(match.Groups[2].Captures[0].Value, _Random.Value));
         match = match.NextMatch();
       }
 
@@ -69,7 +69,7 @@ namespace AntiMunchLite.BaseControls
       {
         try
         {
-          var matchDice = Regex.Match(str, "^\\s*(\\d*)([dDhH])(\\d+)");
+          var matchDice = Regex.Match(str, "^\\s*(\\d*)([dDhHвВрР])(\\d+)");//вВрР - ru
           if (matchDice.Success)
           {
             var countStr = matchDice.Groups[1].Captures[0].Value;
@@ -111,15 +111,12 @@ namespace AntiMunchLite.BaseControls
 
       private int _ThrowDice(string type, int diceNum, int dice, Random random)
       {
-        switch (type)
+        return type switch
         {
-          case "d":
-            return _NormalDice(diceNum, dice, random);
-          case "h":
-            return _MaxFirstDice(diceNum, dice, random);
-          default:
-            throw new ArgumentOutOfRangeException(nameof(type));
-        }
+          "d" or "в"/*ru*/ => _NormalDice(diceNum, dice, random),
+          "h" or "р"/*ru*/ => _MaxFirstDice(diceNum, dice, random),
+          _ => throw new ArgumentOutOfRangeException(nameof(type)),
+        };
       }
 
       private static int _NormalDice(int diceNum, int dice, Random random)

@@ -30,230 +30,242 @@ namespace AntiMunchLite.Dialogs
     /// </summary>
     private void InitializeComponent()
     {
-      this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-      this.OkBtn = new System.Windows.Forms.Button();
-      this.CancelBtn = new System.Windows.Forms.Button();
-      this.EffectName = new System.Windows.Forms.ComboBox();
-      this.Combotants = new System.Windows.Forms.CheckedListBox();
-      this.TypePanel = new System.Windows.Forms.FlowLayoutPanel();
-      this.IsDebuff = new System.Windows.Forms.RadioButton();
-      this.IsBuff = new System.Windows.Forms.RadioButton();
-      this.RemainTime = new AntiMunchLite.BaseControls.CustomNumericInput();
-      this.TimeFlow = new System.Windows.Forms.FlowLayoutPanel();
-      this.RoundTime = new System.Windows.Forms.RadioButton();
-      this.MinuteTime = new System.Windows.Forms.RadioButton();
-      this.TenMinutesTime = new System.Windows.Forms.RadioButton();
-      this.HourTime = new System.Windows.Forms.RadioButton();
-      this.TableLayoutPanel.SuspendLayout();
-      this.TypePanel.SuspendLayout();
-      this.TimeFlow.SuspendLayout();
-      this.SuspendLayout();
+      TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+      OkBtn = new System.Windows.Forms.Button();
+      CancelBtn = new System.Windows.Forms.Button();
+      EffectName = new System.Windows.Forms.ComboBox();
+      Combotants = new System.Windows.Forms.CheckedListBox();
+      TypePanel = new System.Windows.Forms.FlowLayoutPanel();
+      IsDebuff = new System.Windows.Forms.RadioButton();
+      IsBuff = new System.Windows.Forms.RadioButton();
+      RemainTime = new CustomNumericInput();
+      TimeFlow = new System.Windows.Forms.FlowLayoutPanel();
+      RoundTime = new System.Windows.Forms.RadioButton();
+      MinuteTime = new System.Windows.Forms.RadioButton();
+      TenMinutesTime = new System.Windows.Forms.RadioButton();
+      HourTime = new System.Windows.Forms.RadioButton();
+      TableLayoutPanel.SuspendLayout();
+      TypePanel.SuspendLayout();
+      TimeFlow.SuspendLayout();
+      SuspendLayout();
       // 
       // TableLayoutPanel
       // 
-      this.TableLayoutPanel.ColumnCount = 4;
-      this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
-      this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-      this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-      this.TableLayoutPanel.Controls.Add(this.OkBtn, 2, 3);
-      this.TableLayoutPanel.Controls.Add(this.CancelBtn, 3, 3);
-      this.TableLayoutPanel.Controls.Add(this.EffectName, 0, 1);
-      this.TableLayoutPanel.Controls.Add(this.Combotants, 0, 0);
-      this.TableLayoutPanel.Controls.Add(this.TypePanel, 2, 1);
-      this.TableLayoutPanel.Controls.Add(this.RemainTime, 0, 2);
-      this.TableLayoutPanel.Controls.Add(this.TimeFlow, 1, 2);
-      this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-      this.TableLayoutPanel.Name = "TableLayoutPanel";
-      this.TableLayoutPanel.RowCount = 4;
-      this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-      this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-      this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-      this.TableLayoutPanel.Size = new System.Drawing.Size(344, 262);
-      this.TableLayoutPanel.TabIndex = 0;
+      TableLayoutPanel.ColumnCount = 4;
+      TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
+      TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+      TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+      TableLayoutPanel.Controls.Add(OkBtn, 2, 3);
+      TableLayoutPanel.Controls.Add(CancelBtn, 3, 3);
+      TableLayoutPanel.Controls.Add(EffectName, 0, 1);
+      TableLayoutPanel.Controls.Add(Combotants, 0, 0);
+      TableLayoutPanel.Controls.Add(TypePanel, 2, 1);
+      TableLayoutPanel.Controls.Add(RemainTime, 0, 2);
+      TableLayoutPanel.Controls.Add(TimeFlow, 1, 2);
+      TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+      TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+      TableLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+      TableLayoutPanel.Name = "TableLayoutPanel";
+      TableLayoutPanel.RowCount = 4;
+      TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+      TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+      TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+      TableLayoutPanel.Size = new System.Drawing.Size(401, 302);
+      TableLayoutPanel.TabIndex = 0;
       // 
       // OkBtn
       // 
-      this.OkBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-      this.OkBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.OkBtn.Location = new System.Drawing.Point(207, 238);
-      this.OkBtn.Name = "OkBtn";
-      this.OkBtn.Size = new System.Drawing.Size(64, 21);
-      this.OkBtn.TabIndex = 3;
-      this.OkBtn.Text = "OK";
-      this.OkBtn.UseVisualStyleBackColor = true;
+      OkBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
+      OkBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+      OkBtn.Location = new System.Drawing.Point(241, 274);
+      OkBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+      OkBtn.Name = "OkBtn";
+      OkBtn.Size = new System.Drawing.Size(74, 25);
+      OkBtn.TabIndex = 3;
+      OkBtn.Text = "OK";
+      OkBtn.UseVisualStyleBackColor = true;
       // 
       // CancelBtn
       // 
-      this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-      this.CancelBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.CancelBtn.Location = new System.Drawing.Point(277, 238);
-      this.CancelBtn.Name = "CancelBtn";
-      this.CancelBtn.Size = new System.Drawing.Size(64, 21);
-      this.CancelBtn.TabIndex = 4;
-      this.CancelBtn.Text = "Cancel";
-      this.CancelBtn.UseVisualStyleBackColor = true;
+      CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+      CancelBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+      CancelBtn.Location = new System.Drawing.Point(323, 274);
+      CancelBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+      CancelBtn.Name = "CancelBtn";
+      CancelBtn.Size = new System.Drawing.Size(74, 25);
+      CancelBtn.TabIndex = 4;
+      CancelBtn.Text = "Cancel";
+      CancelBtn.UseVisualStyleBackColor = true;
       // 
       // EffectName
       // 
-      this.EffectName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-      this.EffectName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-      this.TableLayoutPanel.SetColumnSpan(this.EffectName, 2);
-      this.EffectName.Dock = System.Windows.Forms.DockStyle.Top;
-      this.EffectName.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.EffectName.FormattingEnabled = true;
-      this.EffectName.Location = new System.Drawing.Point(3, 185);
-      this.EffectName.Name = "EffectName";
-      this.EffectName.Size = new System.Drawing.Size(198, 22);
-      this.EffectName.TabIndex = 0;
+      EffectName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+      EffectName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+      TableLayoutPanel.SetColumnSpan(EffectName, 2);
+      EffectName.Dock = System.Windows.Forms.DockStyle.Top;
+      EffectName.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 204);
+      EffectName.FormattingEnabled = true;
+      EffectName.Location = new System.Drawing.Point(4, 213);
+      EffectName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+      EffectName.Name = "EffectName";
+      EffectName.Size = new System.Drawing.Size(229, 22);
+      EffectName.TabIndex = 0;
       // 
       // Combotants
       // 
-      this.Combotants.CheckOnClick = true;
-      this.TableLayoutPanel.SetColumnSpan(this.Combotants, 4);
-      this.Combotants.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.Combotants.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.Combotants.FormattingEnabled = true;
-      this.Combotants.Location = new System.Drawing.Point(3, 3);
-      this.Combotants.Name = "Combotants";
-      this.Combotants.Size = new System.Drawing.Size(338, 176);
-      this.Combotants.TabIndex = 5;
-      this.Combotants.TabStop = false;
+      Combotants.CheckOnClick = true;
+      TableLayoutPanel.SetColumnSpan(Combotants, 4);
+      Combotants.Dock = System.Windows.Forms.DockStyle.Fill;
+      Combotants.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 204);
+      Combotants.FormattingEnabled = true;
+      Combotants.Location = new System.Drawing.Point(4, 3);
+      Combotants.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+      Combotants.Name = "Combotants";
+      Combotants.Size = new System.Drawing.Size(393, 204);
+      Combotants.TabIndex = 5;
+      Combotants.TabStop = false;
       // 
       // TypePanel
       // 
-      this.TableLayoutPanel.SetColumnSpan(this.TypePanel, 2);
-      this.TypePanel.Controls.Add(this.IsDebuff);
-      this.TypePanel.Controls.Add(this.IsBuff);
-      this.TypePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.TypePanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-      this.TypePanel.Location = new System.Drawing.Point(204, 182);
-      this.TypePanel.Margin = new System.Windows.Forms.Padding(0);
-      this.TypePanel.Name = "TypePanel";
-      this.TypePanel.Size = new System.Drawing.Size(140, 27);
-      this.TypePanel.TabIndex = 1;
+      TableLayoutPanel.SetColumnSpan(TypePanel, 2);
+      TypePanel.Controls.Add(IsDebuff);
+      TypePanel.Controls.Add(IsBuff);
+      TypePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+      TypePanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+      TypePanel.Location = new System.Drawing.Point(237, 210);
+      TypePanel.Margin = new System.Windows.Forms.Padding(0);
+      TypePanel.Name = "TypePanel";
+      TypePanel.Size = new System.Drawing.Size(164, 31);
+      TypePanel.TabIndex = 1;
       // 
       // IsDebuff
       // 
-      this.IsDebuff.AutoSize = true;
-      this.IsDebuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.IsDebuff.ForeColor = System.Drawing.Color.DarkRed;
-      this.IsDebuff.Location = new System.Drawing.Point(74, 3);
-      this.IsDebuff.Name = "IsDebuff";
-      this.IsDebuff.Size = new System.Drawing.Size(63, 17);
-      this.IsDebuff.TabIndex = 1;
-      this.IsDebuff.Text = "Debuff";
-      this.IsDebuff.UseVisualStyleBackColor = true;
+      IsDebuff.AutoSize = true;
+      IsDebuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 204);
+      IsDebuff.ForeColor = System.Drawing.Color.DarkRed;
+      IsDebuff.Location = new System.Drawing.Point(97, 3);
+      IsDebuff.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+      IsDebuff.Name = "IsDebuff";
+      IsDebuff.Size = new System.Drawing.Size(63, 17);
+      IsDebuff.TabIndex = 1;
+      IsDebuff.Text = "Debuff";
+      IsDebuff.UseVisualStyleBackColor = true;
       // 
       // IsBuff
       // 
-      this.IsBuff.AutoSize = true;
-      this.IsBuff.Checked = true;
-      this.IsBuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.IsBuff.ForeColor = System.Drawing.Color.Green;
-      this.IsBuff.Location = new System.Drawing.Point(20, 3);
-      this.IsBuff.Name = "IsBuff";
-      this.IsBuff.Size = new System.Drawing.Size(48, 17);
-      this.IsBuff.TabIndex = 0;
-      this.IsBuff.TabStop = true;
-      this.IsBuff.Text = "Buff";
-      this.IsBuff.UseVisualStyleBackColor = true;
+      IsBuff.AutoSize = true;
+      IsBuff.Checked = true;
+      IsBuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 204);
+      IsBuff.ForeColor = System.Drawing.Color.Green;
+      IsBuff.Location = new System.Drawing.Point(41, 3);
+      IsBuff.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+      IsBuff.Name = "IsBuff";
+      IsBuff.Size = new System.Drawing.Size(48, 17);
+      IsBuff.TabIndex = 0;
+      IsBuff.TabStop = true;
+      IsBuff.Text = "Buff";
+      IsBuff.UseVisualStyleBackColor = true;
       // 
       // RemainTime
       // 
-      this.RemainTime.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.RemainTime.Location = new System.Drawing.Point(3, 212);
-      this.RemainTime.Maximum = null;
-      this.RemainTime.Minimum = null;
-      this.RemainTime.Name = "RemainTime";
-      this.RemainTime.Size = new System.Drawing.Size(42, 20);
-      this.RemainTime.TabIndex = 2;
-      this.RemainTime.Text = "1";
-      this.RemainTime.ToolTip = null;
-      this.RemainTime.Value = 1;
+      RemainTime.Dock = System.Windows.Forms.DockStyle.Fill;
+      RemainTime.Location = new System.Drawing.Point(4, 244);
+      RemainTime.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+      RemainTime.Maximum = null;
+      RemainTime.Minimum = null;
+      RemainTime.Name = "RemainTime";
+      RemainTime.Size = new System.Drawing.Size(48, 23);
+      RemainTime.TabIndex = 2;
+      RemainTime.Text = "1";
+      RemainTime.ToolTip = null;
+      RemainTime.Value = 1;
       // 
       // TimeFlow
       // 
-      this.TableLayoutPanel.SetColumnSpan(this.TimeFlow, 3);
-      this.TimeFlow.Controls.Add(this.RoundTime);
-      this.TimeFlow.Controls.Add(this.MinuteTime);
-      this.TimeFlow.Controls.Add(this.TenMinutesTime);
-      this.TimeFlow.Controls.Add(this.HourTime);
-      this.TimeFlow.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.TimeFlow.Location = new System.Drawing.Point(48, 209);
-      this.TimeFlow.Margin = new System.Windows.Forms.Padding(0);
-      this.TimeFlow.Name = "TimeFlow";
-      this.TimeFlow.Size = new System.Drawing.Size(296, 26);
-      this.TimeFlow.TabIndex = 5;
+      TableLayoutPanel.SetColumnSpan(TimeFlow, 3);
+      TimeFlow.Controls.Add(RoundTime);
+      TimeFlow.Controls.Add(MinuteTime);
+      TimeFlow.Controls.Add(TenMinutesTime);
+      TimeFlow.Controls.Add(HourTime);
+      TimeFlow.Dock = System.Windows.Forms.DockStyle.Fill;
+      TimeFlow.Location = new System.Drawing.Point(56, 241);
+      TimeFlow.Margin = new System.Windows.Forms.Padding(0);
+      TimeFlow.Name = "TimeFlow";
+      TimeFlow.Size = new System.Drawing.Size(345, 30);
+      TimeFlow.TabIndex = 5;
       // 
       // RoundTime
       // 
-      this.RoundTime.AutoSize = true;
-      this.RoundTime.Checked = true;
-      this.RoundTime.Location = new System.Drawing.Point(3, 3);
-      this.RoundTime.Name = "RoundTime";
-      this.RoundTime.Size = new System.Drawing.Size(66, 17);
-      this.RoundTime.TabIndex = 0;
-      this.RoundTime.TabStop = true;
-      this.RoundTime.Text = "1 Round";
-      this.RoundTime.UseVisualStyleBackColor = true;
+      RoundTime.AutoSize = true;
+      RoundTime.Checked = true;
+      RoundTime.Location = new System.Drawing.Point(4, 3);
+      RoundTime.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+      RoundTime.Name = "RoundTime";
+      RoundTime.Size = new System.Drawing.Size(69, 19);
+      RoundTime.TabIndex = 0;
+      RoundTime.TabStop = true;
+      RoundTime.Text = "1 Round";
+      RoundTime.UseVisualStyleBackColor = true;
       // 
       // MinuteTime
       // 
-      this.MinuteTime.AutoSize = true;
-      this.MinuteTime.Location = new System.Drawing.Point(75, 3);
-      this.MinuteTime.Name = "MinuteTime";
-      this.MinuteTime.Size = new System.Drawing.Size(66, 17);
-      this.MinuteTime.TabIndex = 1;
-      this.MinuteTime.Text = "1 Minute";
-      this.MinuteTime.UseVisualStyleBackColor = true;
+      MinuteTime.AutoSize = true;
+      MinuteTime.Location = new System.Drawing.Point(81, 3);
+      MinuteTime.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+      MinuteTime.Name = "MinuteTime";
+      MinuteTime.Size = new System.Drawing.Size(72, 19);
+      MinuteTime.TabIndex = 1;
+      MinuteTime.Text = "1 Minute";
+      MinuteTime.UseVisualStyleBackColor = true;
       // 
       // TenMinutesTime
       // 
-      this.TenMinutesTime.AutoSize = true;
-      this.TenMinutesTime.Location = new System.Drawing.Point(147, 3);
-      this.TenMinutesTime.Name = "TenMinutesTime";
-      this.TenMinutesTime.Size = new System.Drawing.Size(77, 17);
-      this.TenMinutesTime.TabIndex = 2;
-      this.TenMinutesTime.Text = "10 Minutes";
-      this.TenMinutesTime.UseVisualStyleBackColor = true;
+      TenMinutesTime.AutoSize = true;
+      TenMinutesTime.Location = new System.Drawing.Point(161, 3);
+      TenMinutesTime.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+      TenMinutesTime.Name = "TenMinutesTime";
+      TenMinutesTime.Size = new System.Drawing.Size(83, 19);
+      TenMinutesTime.TabIndex = 2;
+      TenMinutesTime.Text = "10 Minutes";
+      TenMinutesTime.UseVisualStyleBackColor = true;
       // 
       // HourTime
       // 
-      this.HourTime.AutoSize = true;
-      this.HourTime.Location = new System.Drawing.Point(230, 3);
-      this.HourTime.Name = "HourTime";
-      this.HourTime.Size = new System.Drawing.Size(57, 17);
-      this.HourTime.TabIndex = 3;
-      this.HourTime.Text = "1 Hour";
-      this.HourTime.UseVisualStyleBackColor = true;
+      HourTime.AutoSize = true;
+      HourTime.Location = new System.Drawing.Point(252, 3);
+      HourTime.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+      HourTime.Name = "HourTime";
+      HourTime.Size = new System.Drawing.Size(61, 19);
+      HourTime.TabIndex = 3;
+      HourTime.Text = "1 Hour";
+      HourTime.UseVisualStyleBackColor = true;
       // 
       // EffectDialog
       // 
-      this.AcceptButton = this.OkBtn;
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.CancelButton = this.CancelBtn;
-      this.ClientSize = new System.Drawing.Size(344, 262);
-      this.Controls.Add(this.TableLayoutPanel);
-      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-      this.MaximizeBox = false;
-      this.MinimizeBox = false;
-      this.Name = "EffectDialog";
-      this.ShowIcon = false;
-      this.ShowInTaskbar = false;
-      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-      this.Text = "Create Effect";
-      this.TableLayoutPanel.ResumeLayout(false);
-      this.TableLayoutPanel.PerformLayout();
-      this.TypePanel.ResumeLayout(false);
-      this.TypePanel.PerformLayout();
-      this.TimeFlow.ResumeLayout(false);
-      this.TimeFlow.PerformLayout();
-      this.ResumeLayout(false);
-
+      AcceptButton = OkBtn;
+      AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+      AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      CancelButton = CancelBtn;
+      ClientSize = new System.Drawing.Size(401, 302);
+      Controls.Add(TableLayoutPanel);
+      FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+      Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+      MaximizeBox = false;
+      MinimizeBox = false;
+      Name = "EffectDialog";
+      ShowIcon = false;
+      ShowInTaskbar = false;
+      StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+      Text = "Create Effect";
+      TableLayoutPanel.ResumeLayout(false);
+      TableLayoutPanel.PerformLayout();
+      TypePanel.ResumeLayout(false);
+      TypePanel.PerformLayout();
+      TimeFlow.ResumeLayout(false);
+      TimeFlow.PerformLayout();
+      ResumeLayout(false);
     }
 
     #endregion

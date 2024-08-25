@@ -256,9 +256,9 @@ namespace AntiMunchLite
         RefreshCombatants(true);
     }
 
-    private void SaveBtn_Click(object sender, EventArgs e)
+    private async void SaveBtn_Click(object sender, EventArgs e)
     {
-      _SaveLoadManager.Save(Core);
+      await _SaveLoadManager.SaveAsync(Core);
     }
 
     private void OpenBtn_Click(object sender, EventArgs e)

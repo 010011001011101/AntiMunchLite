@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace AntiMunchLite.Core
 {
-  [Serializable]
   public class Combatant
   {
     public string Name { get; set; }

@@ -1,21 +1,28 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace AntiMunchLite.Core
 {
-  [Serializable]
   public class Core
   {
+    [JsonInclude]
     public List<string> PreGenEffects { get; private set; } = new List<string>();
+    [JsonInclude]
     public List<string> PreGenAbilities { get; private set; } = new List<string>();
 
+    [JsonInclude]
     public bool Started { get; private set; }
+    [JsonInclude]
     public uint CurrentRound { get; private set; }
+    [JsonInclude]
     public int CurrentInitiative { get; private set; }
+    [JsonInclude]
     public int CurrentSubInitiative { get; private set; }
 
-    private readonly List<Combatant> _Combatants = new List<Combatant>();
+    [JsonInclude]
+    private List<Combatant> _Combatants = new List<Combatant>();
 
     public Core()
     {
@@ -130,6 +137,7 @@ namespace AntiMunchLite.Core
     }
 
 
+    [JsonIgnore]
     public IEnumerable<Combatant> Combatants
     {
       get
